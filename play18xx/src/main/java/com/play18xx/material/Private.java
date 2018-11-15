@@ -100,9 +100,9 @@ public class Private implements Serializable {
 			}
 		}
 
-		corpindex = material.Corporation.getCorporationNumber(basic, "B&O");
+		corpindex = Corporation.getCorporationNumber(basic, "B&O");
 		if (basic.getCorporations().get(corpindex).getTrains().size() > 0) { // if B&O has a train
-			privindex = material.Private.getPrivateNumber(basic, "BO");
+			privindex = Private.getPrivateNumber(basic, "BO");
 			basic.getPrivates().get(privindex).setOwner(99);
 		}
 	};

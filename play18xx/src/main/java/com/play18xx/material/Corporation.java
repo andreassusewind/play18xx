@@ -69,10 +69,6 @@ public class Corporation implements Serializable {
 	}
 
 	public Corporation(String Name, int StationQuantity) {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Corporation.Corporation");
-		}
-
 		this.Name = Name;
 
 		this.Certificates.add(new Certificate(this, 20, true)); // Set President share
@@ -94,9 +90,6 @@ public class Corporation implements Serializable {
 	}
 
 	public int getSoldShares() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Corporation.getSoldShares");
-		}
 		int SoldShares = 0;
 		for (int i = 0; i < this.Certificates.size(); i++) {
 			if (this.Certificates.get(i).getOwner() < 10) {
@@ -107,9 +100,6 @@ public class Corporation implements Serializable {
 	}
 
 	public int getInitialShares() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Corporation.getInitialShares");
-		}
 		int InitialShares = 0;
 		for (Certificate cert : this.Certificates) {
 			if (cert.getOwner() == 91) {

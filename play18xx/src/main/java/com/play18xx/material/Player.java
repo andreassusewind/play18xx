@@ -39,9 +39,6 @@ public class Player implements Serializable {
 	}
 
 	public Player(String Name, int Playernumber, int Money) {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Player.Player");
-		}
 		this.Name = Name;
 		this.Playernumber = Playernumber;
 		this.Money = Money;
@@ -65,7 +62,6 @@ public class Player implements Serializable {
 	}
 	
 	public void setCertCorps(Basic basic) {
-		if (startmethods.Play1830.verbose) { System.out.println("Player.setCertCorps"); }
 		for(Certificate cert : this.getCertificates()) {
 			for(Corporation corp : basic.getCorporations()) {
 				if(cert.getName().split("-")[0].equals(corp.getName())) {cert.setCorporation(corp);};

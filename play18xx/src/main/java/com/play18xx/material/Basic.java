@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.play18xx.graphic.FrameMain;
+
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Basic implements Serializable {
@@ -29,12 +31,7 @@ public class Basic implements Serializable {
 //	private PaneOperatingRound_OLD POR = new PaneOperatingRound_OLD();
 
 	public Basic() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Basic.Basic");
-		}
-
 		this.TP = new FrameMain();
-
 		graphic.PaneConfiguration.setPaneConfiguration(this);
 	}
 
@@ -42,9 +39,6 @@ public class Basic implements Serializable {
 			int[] CorpStations, int PrivateQuantity, String[] PrivNames, int[] PrivParVal, int[] PrivRev,
 			String[] PrivSpecial, int MaxMoney, int MaxCertificates, int[] TrainDistances, int[] TrainQuantities,
 			int[] TrainCosts, int[] TrainRusts, String FilePathStockmarket, FrameMain tp) {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Basic.Basic");
-		}
 
 		for (int i = 0; i < PlayerQuantity; i++) {
 			this.Players.add(new Player(PlayerNames[i], i, PlayerMoney));
@@ -65,11 +59,8 @@ public class Basic implements Serializable {
 	}
 
 	public void buildGraphics() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Basic.buildGraphics");
-		}
 		// refreshing functions
-		material.Private.closePrivates(this);
+		Private.closePrivates(this);
 
 		// build all graphic panels
 		graphic.PaneStockmarket.setPaneStockmarket(this);
@@ -79,9 +70,6 @@ public class Basic implements Serializable {
 	}
 
 	public void switchToOperationRound() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Basic.switchToOperationRound");
-		}
 		// if there is no corp order for operation round
 //		if (this.Gameplay.getOperationroundCorpOrder().size() == 0) 
 		System.out.print(this.Gameplay.isOperationRound());
@@ -98,7 +86,7 @@ public class Basic implements Serializable {
 				}
 			}
 			//sort corpos on stockmarket list
-			material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
 
 			for (CorporationPosition cp : this.getStockmarket().getCorporationPositions()) {
 				if (cp.getCorp().getSoldShares() == 100) {
@@ -115,7 +103,7 @@ public class Basic implements Serializable {
 				}
 			}
 			// sort corppos on stockmarket list (AGAIN)
-			material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
 			for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 				this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
 			}
@@ -128,16 +116,11 @@ public class Basic implements Serializable {
 	}
 
 	public void switchToStockMarketRound() {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("Basic.switchToStockMarketRound");
-		}
-
 		this.Gameplay.getOperationroundCorpOrder().clear();
 		this.getGameplay().setOperationRound(false);
 		this.getGameplay().setStockmarketRound(true);
 		this.buildGraphics();
 		this.getTP().setSelectedIndex(1);
-
 	}
 
 	public void asave() {
