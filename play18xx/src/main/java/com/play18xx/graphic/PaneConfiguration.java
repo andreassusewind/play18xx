@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -351,6 +353,7 @@ public class PaneConfiguration extends JPanel implements Serializable {
 				}
 				/// NOT CODED: filepath variable
 				String FilePathStockmarket = "StockMarket.cfg";
+
 				new Basic(Integer.valueOf((String) PlayerQuantity.getSelectedItem()), PlayerNames,
 						Integer.valueOf((String) PlayerMoney.getText()),
 
@@ -411,6 +414,7 @@ public class PaneConfiguration extends JPanel implements Serializable {
 		});
 		panel.add(loadxml, c);
 
+		
 		
 		basic.getTP().addTab("Konfiguration", panel);
 	}

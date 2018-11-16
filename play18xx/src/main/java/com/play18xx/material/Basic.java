@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.play18xx.graphic.FrameMain;
+import com.play18xx.graphic.PaneConfiguration;
 import com.play18xx.graphic.PaneCorporation;
 import com.play18xx.graphic.PaneOperatingRound;
 import com.play18xx.graphic.PanePlayer;

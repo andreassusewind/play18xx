@@ -35,7 +35,6 @@ public class Certificate implements Serializable {
 	}
 
 	public Certificate(Corporation Corporation, int PercentValue, boolean President) {
-		if(App.verbose){ System.out.println("Certificate.Certificate"); }
 		this.Name = Corporation.getName() + "-" + PercentValue;
 		this.Corporation = Corporation;
 		this.PercentValue = PercentValue;

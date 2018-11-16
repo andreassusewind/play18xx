@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Stockmarket implements Serializable {
 			List<String> stringList = Files.readAllLines(FilePath);
 			stringArray = stringList.toArray(new String[] {});
 		} catch (Exception e) {
-			System.out.println("Config file for Corporations not found");
+			System.out.println("Config file for Stockmarket not found");
 		}
 		String[] columnDetail = stringArray[0].split("\t");
 

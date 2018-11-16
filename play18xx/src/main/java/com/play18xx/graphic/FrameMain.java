@@ -1,5 +1,7 @@
 package com.play18xx.graphic;
 
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
@@ -19,8 +21,9 @@ public class FrameMain extends JTabbedPane {
 
 		JDialog frame = new JDialog();
 
+		frame.setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
 		frame.setTitle(App.gamename);
-		frame.setSize(1400, 900);
+//		frame.setSize(1400, 900);
 		frame.add(this);
 		frame.setVisible(true);
 	}
