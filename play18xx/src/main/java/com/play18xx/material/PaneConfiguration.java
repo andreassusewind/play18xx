@@ -15,8 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.xml.bind.JAXBException;
 
-import material.Basic;
-import material.BasicSave;
+import com.play18xx.app.App;
 
 public class PaneConfiguration extends JPanel implements Serializable {
 	/**
@@ -25,10 +24,6 @@ public class PaneConfiguration extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static void setPaneConfiguration(Basic basic) {
-		if (startmethods.Play1830.verbose) {
-			System.out.println("PaneConfiguration.setPaneConfiguration");
-		}
-
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new GridBagLayout());
@@ -36,7 +31,7 @@ public class PaneConfiguration extends JPanel implements Serializable {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0.01;
 
-		JLabel label = new JLabel("Konfiguration der " + startmethods.Play1830.gamename + " Umgebung");
+		JLabel label = new JLabel("Konfiguration der " + App.gamename + " Umgebung");
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 16;
@@ -380,10 +375,10 @@ public class PaneConfiguration extends JPanel implements Serializable {
 		c.gridy = 18;
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BasicSave savedata = new BasicSave(basic);
+/*				BasicSave savedata = new BasicSave(basic);
 				savedata.load(basic);
 				basic.buildGraphics();
-				basic.getTP().setSelectedIndex(0);
+				basic.getTP().setSelectedIndex(0);*/
 			}
 		});
 		panel.add(load, c);

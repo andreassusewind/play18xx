@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.play18xx.graphic.WindowBuy;
+
 @XmlRootElement
 public class Private implements Serializable {
 	/**
@@ -65,7 +67,7 @@ public class Private implements Serializable {
 			basic.getPlayers().get(playernumber).getCertificates().add(Cert); // Save Certificate on Player
 			basic.getCorporations().get(index).getInitialStock().remove(0); // Remove Certificate from InitialStock
 			// ***** WindowBuy for President Certificate must be implemented
-			graphic.WindowBuy.setWindowBuy(basic, basic.getCorporations().get(index),
+			WindowBuy.setWindowBuy(basic, basic.getCorporations().get(index),
 					basic.getPlayers().get(playernumber), 48);
 			break;
 		}

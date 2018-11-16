@@ -13,6 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.play18xx.graphic.FrameMain;
+import com.play18xx.graphic.PaneCorporation;
+import com.play18xx.graphic.PaneOperatingRound;
+import com.play18xx.graphic.PanePlayer;
+import com.play18xx.graphic.PaneStockmarket;
 
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
@@ -32,7 +36,7 @@ public class Basic implements Serializable {
 
 	public Basic() {
 		this.TP = new FrameMain();
-		graphic.PaneConfiguration.setPaneConfiguration(this);
+		PaneConfiguration.setPaneConfiguration(this);
 	}
 
 	public Basic(int PlayerQuantity, String[] PlayerNames, int PlayerMoney, int CorporationQuantity, String[] CorpNames,
@@ -63,10 +67,10 @@ public class Basic implements Serializable {
 		Private.closePrivates(this);
 
 		// build all graphic panels
-		graphic.PaneStockmarket.setPaneStockmarket(this);
-		graphic.PaneOperatingRound.setPaneOperatingRound(this);
-		graphic.PanePlayer.setPanePlayer(this);
-		graphic.PaneCorporation.setPaneCorporation(this);
+		PaneStockmarket.setPaneStockmarket(this);
+		PaneOperatingRound.setPaneOperatingRound(this);
+		PanePlayer.setPanePlayer(this);
+		PaneCorporation.setPaneCorporation(this);
 	}
 
 	public void switchToOperationRound() {
