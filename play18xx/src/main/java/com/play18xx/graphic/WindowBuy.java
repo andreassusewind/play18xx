@@ -90,7 +90,7 @@ public class WindowBuy {
 
 				for (Certificate Certs : corp.getCertificates()) {
 					if (Certs.getOwner() == 91) {
-						Certs.setOwner(player.getInex());
+						Certs.setOwner(player.getIndex());
 						break;
 					}
 				}
@@ -149,10 +149,10 @@ public class WindowBuy {
 				player.decreaseMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 2); // Player lost money
 //				player.getCertificates().add(Cert); // Save Certificate on Player
 //				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
-				corp.getCertificates().get(0).setOwner(player.getInex());
+				corp.getCertificates().get(0).setOwner(player.getIndex());
 				corp.setShareParValue(Integer.parseInt((String) initvalue.getSelectedItem()));
 				corp.setMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 10);
-				corp.setPresident(player);
+				corp.setPresident(player.getIndex());
 				corp.setMarker(
 						new CorporationPosition(basic, corp, Integer.parseInt((String) initvalue.getSelectedItem())));
 
@@ -213,7 +213,7 @@ public class WindowBuy {
 				corp.setMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 10);
 				corp.setMarker(
 						new CorporationPosition(basic, corp, Integer.parseInt((String) initvalue.getSelectedItem())));
-				corp.setPresident(player);
+				corp.setPresident(player.getIndex());
 
 //		    	basic.getStockmarket().getCorporationPositions().add(new CorporationPosition(basic, corp, Integer.parseInt((String)initvalue.getSelectedItem())));
 				basic.buildGraphics();

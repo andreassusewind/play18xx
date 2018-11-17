@@ -49,10 +49,10 @@ public class Basic implements Serializable {
 			this.Players.add(new Player(PlayerNames[i], i, PlayerMoney));
 		}
 		for (int i = 0; i < CorporationQuantity; i++) {
-			this.Corporations.add(new Corporation(CorpNames[i], CorpStations[i]));
+			this.Corporations.add(new Corporation(CorpNames[i], CorpStations[i], i));
 		}
 		for (int i = 0; i < PrivateQuantity; i++) {
-			this.Privates.add(new Private(PrivNames[i], PrivParVal[i], PrivRev[i], PrivSpecial[i]));
+			this.Privates.add(new Private(PrivNames[i], PrivParVal[i], PrivRev[i], PrivSpecial[i], i));
 		}
 
 		this.Gameplay = new Gameplay(MaxMoney, MaxCertificates, TrainDistances, TrainQuantities, TrainCosts,
@@ -126,6 +126,13 @@ public class Basic implements Serializable {
 		this.getGameplay().setStockmarketRound(true);
 		this.buildGraphics();
 		this.getTP().setSelectedIndex(1);
+	}
+	
+	public int getCorporationIndex(String Name) {
+		for(Corporation corp : this.Corporations) {
+			if(corp.getName().equals(Name)) {return corp.getIndex();}
+		}
+		return 99;
 	}
 
 	public void asave() {

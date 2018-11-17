@@ -1,7 +1,6 @@
 package xml;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,21 +42,26 @@ public class XMLBasicLoad {
 	public XMLBasicLoad getXMLBasic() { return this; }
 	
 	
-	public static void loadfromxml(Basic basic) throws JAXBException, FileNotFoundException {
+	public static void loadfromxml(Basic basic) {
 		//File file = new File("/home/andreas/eclipse-workspace/play18xx/save.xml");
 		File file = new File("../save.xml");
-		JAXBContext jaxbContext = JAXBContext.newInstance(XMLBasicLoad.class);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		XMLBasicLoad xmlbasic = (XMLBasicLoad) unmarshaller.unmarshal(file);
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(XMLBasicLoad.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			XMLBasicLoad xmlbasic = (XMLBasicLoad) unmarshaller.unmarshal(file);
+			basic.setPlayers(xmlbasic.Players);
+			basic.setCorporations(xmlbasic.Corporations);
+			basic.setPrivates(xmlbasic.Privates);
+			basic.setGameplay(xmlbasic.Gameplay);
+			basic.setStockmarket(xmlbasic.Stockmarket);
+			
+			for(Corporation corp : basic.getCorporations()) {corp.getMarker().setCorp(corp);}
+			basic.getGameplay().refreshOperationroundCorpOrder(basic);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		basic.setPlayers(xmlbasic.Players);
-		basic.setCorporations(xmlbasic.Corporations);
-		basic.setPrivates(xmlbasic.Privates);
-		basic.setGameplay(xmlbasic.Gameplay);
-		basic.setStockmarket(xmlbasic.Stockmarket);
-		
-//		for(Player player : basic.getPlayers()) {player.setCertCorps(basic);}
-		for(Corporation corp : basic.getCorporations()) {corp.getMarker().setCorp(corp);}
-		basic.getGameplay().refreshOperationroundCorpOrder(basic);
 	}
 }

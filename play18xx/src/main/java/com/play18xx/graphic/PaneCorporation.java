@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
-import com.play18xx.material.Private;
 import com.play18xx.material.Station;
 import com.play18xx.material.Train;
 
@@ -29,7 +28,7 @@ public class PaneCorporation {
 				panel.setLayout(new GridBagLayout());
 				GridBagConstraints c = new GridBagConstraints();
 
-				JLabel label = new JLabel("President for " + corp.getName() + " is " + corp.getPresident().getName());
+				JLabel label = new JLabel("President for " + corp.getName() + " is " + basic.getPlayers().get((corp.getPresident())).getName());
 				c.gridx = 0;
 				c.gridy = 0;
 				c.gridwidth = 1;
@@ -120,7 +119,7 @@ public class PaneCorporation {
 					COUNTERtrain = COUNTERtrain + 1;
 				}
 
-				int COUNTERpriv = 1;
+//				int COUNTERpriv = 1;
 				label = new JLabel("Privates: ");
 				c.gridx = 0;
 				c.gridy = 7;

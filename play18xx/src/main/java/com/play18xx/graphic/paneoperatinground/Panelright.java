@@ -48,7 +48,7 @@ public class Panelright extends JPanel{
 		tile80.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				corp.decreaseMoney(80);
-				corp.setTileDone("done");
+				corp.setTileDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -67,7 +67,7 @@ public class Panelright extends JPanel{
 		tile120.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				corp.decreaseMoney(120);
-				corp.setTileDone("done");
+				corp.setTileDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -85,7 +85,7 @@ public class Panelright extends JPanel{
 		c.insets = new Insets(10, 0, 0, 0);
 		non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				corp.setTileDone("done");
+				corp.setTileDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -110,6 +110,7 @@ public class Panelright extends JPanel{
 				break;
 			}
 		}
+
 		Station stationtouse = Stationsave;
 
 		if (stationcost == 9999) {
@@ -140,7 +141,7 @@ public class Panelright extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					corp.decreaseMoney(stationtouse.getCost());
 					stationtouse.setBuild(true);
-					corp.setStationDone("done");
+					corp.setStationDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -159,7 +160,7 @@ public class Panelright extends JPanel{
 		c.insets = new Insets(10, 0, 0, 0);
 		non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				corp.setStationDone("done");
+				corp.setStationDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -213,14 +214,14 @@ public class Panelright extends JPanel{
 			c.insets = new Insets(10, 0, 0, 0);
 			this.add(income, c);
 			int[] revenue = corp.getPlayerShares(basic.getPlayers());
-			int[] pincome = corp.getPlayerIncome(basic.getPlayers(), Integer.parseInt((String) income.getText()));
+			int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
 			DocumentListener incomelistener = new DocumentListener() {
 				@Override
 				public void insertUpdate(DocumentEvent e) {
 					lastincome = Integer.parseInt(income.getText());
 					basic.getTP().getPOR().getPanelright().remove(player);
 					int[] revenue = corp.getPlayerShares(basic.getPlayers());
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers(), Integer.parseInt((String) income.getText()));
+					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
 					player = setPanelDividendtoPlayer(basic, revenue, pincome);
 					c.gridx = 0;
 					c.gridy = 6;
@@ -239,7 +240,7 @@ public class Panelright extends JPanel{
 					lastincome = Integer.parseInt(income.getText());
 					basic.getTP().getPOR().getPanelright().remove(player);
 					int[] revenue = corp.getPlayerShares(basic.getPlayers());
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers(), Integer.parseInt((String) income.getText()));
+					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
 					player = setPanelDividendtoPlayer(basic, revenue, pincome);
 					c.gridx = 0;
 					c.gridy = 6;
@@ -259,12 +260,12 @@ public class Panelright extends JPanel{
 			c.insets = new Insets(10, 0, 0, 0);
 			toplayer.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers(), Integer.parseInt((String) income.getText()));
+					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
 					for (Player player : basic.getPlayers()) {
-						player.increaseMoney(pincome[player.getInex()]);
+						player.increaseMoney(pincome[player.getIndex()]);
 					}
 					corp.getMarker().setRight(basic);
-					corp.setDividendDone("done");
+					corp.setDividendDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -284,7 +285,7 @@ public class Panelright extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					corp.increaseMoney(Integer.parseInt((String) income.getText()));
 					corp.getMarker().setLeft(basic);
-					corp.setDividendDone("done");
+					corp.setDividendDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -320,7 +321,7 @@ public class Panelright extends JPanel{
 			nodiv.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					corp.getMarker().setLeft(basic);
-					corp.setDividendDone("done");
+					corp.setDividendDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -419,7 +420,7 @@ public class Panelright extends JPanel{
 
 		String[] corpnames = new String[basic.getCorporations().size()];
 		for (Corporation corps : basic.getCorporations()) {
-			corpnames[corps.getCorporationNumber(basic)] = corps.getName();
+			corpnames[corps.getIndex()] = corps.getName();
 		}
 		JComboBox<Object> corpbox = new JComboBox<Object>(corpnames);
 		corpbox.setSelectedIndex(trainbuyindex);
@@ -527,7 +528,7 @@ public class Panelright extends JPanel{
 		c.insets = new Insets(50, 0, 0, 0);
 		non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				corp.setTrainDone("done");
+				corp.setTrainDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);

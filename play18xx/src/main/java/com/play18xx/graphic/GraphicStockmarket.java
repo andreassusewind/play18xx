@@ -85,7 +85,7 @@ public class GraphicStockmarket extends JComponent {
 				g.setColor(Color.BLACK);
 				g.fillOval(xpos + xoff - 4, ypos + yoff - 10, 12, 12);
 				g.setColor(Color.WHITE);
-				g.drawString(Integer.toString(corp.getCorporationNumber(basic) + 1), xpos + xoff, ypos + yoff);
+				g.drawString(Integer.toString(corp.getIndex() + 1), xpos + xoff, ypos + yoff);
 			}
 		}
 		/*

@@ -19,12 +19,10 @@ public class Certificate implements Serializable {
 
 	@XmlAttribute
 	private String Name;
-/*	@XmlTransient
-	private Corporation Corporation; */
 	@XmlElement
 	private int PercentValue;
 	@XmlElement
-	private int Owner;
+	private int Owner;// Owner 0-9 Player --- 91 InitialStock --- 92 BankPool
 	@XmlElement
 	private boolean President;
 
@@ -33,18 +31,15 @@ public class Certificate implements Serializable {
 
 	public Certificate(Corporation Corporation, int PercentValue, boolean President) {
 		this.Name = Corporation.getName() + "-" + PercentValue;
-//		this.Corporation = Corporation;
 		this.PercentValue = PercentValue;
-		this.Owner = 91; // Owner 0-7 Player --- 91 InitialStock --- 92 BankPool
+		this.Owner = 91; 
 		this.President = President;
 	}
 
 	public static Comparator<Certificate> NameComparator = new Comparator<Certificate>() {
-
 		public int compare(Certificate s1, Certificate s2) {
 			String CertName1 = s1.getName();
 			String CertName2 = s2.getName();
-
 			return CertName1.compareTo(CertName2);
 		}
 	};
@@ -56,14 +51,6 @@ public class Certificate implements Serializable {
 	public void setName(String name) {
 		Name = name;
 	}
-
-/*	public Corporation getCorporation() {
-		return Corporation;
-	}
-
-	public void setCorporation(Corporation corporation) {
-		Corporation = corporation;
-	}*/
 
 	public int getPercentValue() {
 		return PercentValue;

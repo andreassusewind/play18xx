@@ -32,8 +32,9 @@ public class Private implements Serializable {
 	public Private() {
 	}
 
-	public Private(String Name, int ParValue, int Revenue, String SpecialFunction) {
+	public Private(String Name, int ParValue, int Revenue, String SpecialFunction, int Index) {
 		this.Name = Name;
+		this.Index = Index;
 		this.ParValue = ParValue;
 		this.Revenue = Revenue;
 		this.SpecialFunction = SpecialFunction;
@@ -95,7 +96,7 @@ public class Private implements Serializable {
 	}
 
 	public static void closePrivates(Basic basic) {
-		int corpindex;
+		int corpindex = basic.getCorporationIndex("B&O");//Corporation.getCorporationNumber(basic, "B&O");
 		int privindex;
 
 		if (basic.getGameplay().getPhase() >= 5) { // if Phase 5 has started
@@ -104,7 +105,6 @@ public class Private implements Serializable {
 			}
 		}
 
-		corpindex = Corporation.getCorporationNumber(basic, "B&O");
 		if (basic.getCorporations().get(corpindex).getTrains().size() > 0) { // if B&O has a train
 			privindex = Private.getPrivateNumber(basic, "BO");
 			basic.getPrivates().get(privindex).setOwner(99);

@@ -52,7 +52,7 @@ public class XMLBasicSave {
 	public void savetoxml() {
 		  try {
 				//File file = new File("/home/andreas/eclipse-workspace/play18xx/save.xml");
-			  	File file = new File("../save.xml");
+			  	File file = new File("save.xml");
 				JAXBContext jaxbContext = JAXBContext.newInstance(xml.XMLBasicSave.class);
 				Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -60,39 +60,9 @@ public class XMLBasicSave {
 
 				jaxbMarshaller.marshal(this, file);
 
+			  	System.out.println("Game is saved as XML file");
 		  } catch (JAXBException e) {
 				e.printStackTrace();
 		  }
 	}
 }
-
-
-
-
-/*
-@XmlTransient
-@XmlRootElement
-@XmlSeeAlso({XMLPrivates.class})
-public class XMLBasic {
-	
-	XMLPrivates Privates = new XMLPrivates();
-	
-	public XMLBasic() {}
-	
-	public XMLBasic(Basic basic) {
-		this.Privates = new XMLPrivates(basic);
-	}
-	
-	@XmlElement(name = "Basic")
-	public XMLBasic getXMLBasic() {
-		return this;
-	}
-	
-	@XmlElement(name = "Private")
-	public XMLPrivates getPrivates() {
-		return this.Privates;
-	}
-	
-	
-}
-*/

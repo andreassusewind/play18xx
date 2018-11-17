@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 
 import javax.swing.JButton;
@@ -13,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.xml.bind.JAXBException;
 
 import com.play18xx.app.App;
 import com.play18xx.material.Basic;
@@ -400,12 +398,7 @@ public class PaneConfiguration extends JPanel implements Serializable {
 		c.gridy = 20;
 		loadxml.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					xml.XMLBasicLoad.loadfromxml(basic);
-				} catch (FileNotFoundException | JAXBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				xml.XMLBasicLoad.loadfromxml(basic);
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(0);
 			}

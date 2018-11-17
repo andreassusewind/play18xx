@@ -26,21 +26,12 @@ public class Corporation implements Serializable {
 	@XmlElementWrapper(name = "Certificates") 
 	@XmlElement
 	private List<Certificate> Certificates = new ArrayList<Certificate>();
-/*	@XmlElementWrapper(name = "InitialStock") 
 	@XmlElement
-	private List<Certificate> InitialStock = new ArrayList<Certificate>(); */
-/*	@XmlElementWrapper(name = "BankPool") 
+	private int ShareParValue = 0;
 	@XmlElement
-	private List<Certificate> BankPool = new ArrayList<Certificate>();*/
-/*	@XmlElementWrapper(name = "Privates") 
+	private CorporationPosition Marker = new CorporationPosition();
 	@XmlElement
-	private List<Private> Privates = new ArrayList<Private>();*/
-	@XmlElement
-	private int ShareParValue;
-	@XmlElement
-	private CorporationPosition Marker;
-	@XmlElement
-	private int Money;
+	private int Money = 0;
 	@XmlElementWrapper(name = "Trains") 
 	@XmlElement
 	private List<Train> Trains = new ArrayList<Train>();
@@ -51,44 +42,36 @@ public class Corporation implements Serializable {
 	@XmlElement
 	private List<Dividend> Dividends = new ArrayList<Dividend>();
 	@XmlElement
-	private Player President;
+	private int President = 99;
 	@XmlElement
-	private boolean Open;
+	private boolean Open = false;
 	@XmlElement
-	private String PrivateDone = "";
+	private boolean PrivateDone = false;
 	@XmlElement
-	private String TileDone = "";
+	private boolean TileDone = false;
 	@XmlElement
-	private String StationDone = "";
+	private boolean StationDone = false;
 	@XmlElement
-	private String DividendDone = "";
+	private boolean DividendDone = false;
 	@XmlElement
-	private String TrainDone = "";
+	private boolean TrainDone = false;
 	@XmlElement
-	private String OpRoundDone = "";
+	private boolean OpRoundDone = false;
 
 	public Corporation() {
 	}
 
-	public Corporation(String Name, int StationQuantity) {
+	public Corporation(String Name, int StationQuantity, int index) {
 		this.Name = Name;
-
-		this.Certificates.add(new Certificate(this, 20, true)); // Set President share
-//		this.InitialStock.add(new Certificate(this, 20, true));
+		this.Index = index;
+		this.Certificates.add(new Certificate(this, 20, true));
 		for (int i = 0; i < 8; i++) {
-			this.Certificates.add(new Certificate(this, 10, false));// Set Normal shares
-//			this.InitialStock.add(new Certificate(this, 10, false));
+			this.Certificates.add(new Certificate(this, 10, false));
 		}
-
-		ShareParValue = 0;
-		this.Marker = new CorporationPosition();
-
-		int[] StationCosts = { 0, 40, 100, 100, 100, 100 }; // Set Stations
+		int[] StationCosts = { 0, 40, 100, 100, 100, 100 };
 		for (int i = 0; i < StationQuantity; i++) {
 			this.Stations.add(new Station(StationCosts[i]));
 		}
-
-		this.Open = false;
 	}
 
 	public int getSoldShares() {
@@ -111,29 +94,8 @@ public class Corporation implements Serializable {
 		return InitialShares;
 	}
 
-	public int getCorporationNumber(Basic basic) {
-		// gets the List Number in a Corporation List (i.e. in Basic Class)
-		for (int i = 1; i <= basic.getCorporations().size(); i++) {
-			if (basic.getCorporations().get(i - 1).getName().equals(this.Name)) {
-				return (i - 1);
-			}
-		}
-		return 99;
-	}
-
-	public static int getCorporationNumber(Basic basic, String name) {
-		// gets the List Number in a Corporation List (i.e. in Basic Class)
-		for (int i = 1; i <= basic.getCorporations().size(); i++) {
-			if (basic.getCorporations().get(i - 1).getName().equals(name)) {
-				return (i - 1);
-			}
-		}
-		return (99);
-	}
-
-	public int[] getPlayerShares(List<Player> players) {
+	public int[] getPlayerShares(List<Player> players) {  // delete List<Player> and set for the size() a maximum function
 		int[] revenue = new int[players.size()];
-
 		for (Certificate cert : this.Certificates) {
 			if (cert.getOwner() < 10) {
 				revenue[cert.getOwner()] = revenue[cert.getOwner()] + cert.getPercentValue();
@@ -142,9 +104,9 @@ public class Corporation implements Serializable {
 		return revenue;
 	}
 
-	public int[] getPlayerIncome(List<Player> players, int income) {
-		int[] pincome = new int[players.size()];
-		int[] revenue = new int[players.size()];
+	public int[] getPlayerIncome(int playernumber, int income) {  // Could be deleted....
+		int[] pincome = new int[playernumber];
+		int[] revenue = new int[playernumber];
 		for (Certificate cert : this.Certificates) {
 			if (cert.getOwner() < 10) {
 				revenue[cert.getOwner()] = revenue[cert.getOwner()] + cert.getPercentValue();
@@ -155,18 +117,6 @@ public class Corporation implements Serializable {
 		}
 		return pincome;
 	}
-
-/*	public int findPrivate(Private priv) {
-		int index = 0;
-		for (Private privs : Privates) {
-			if (privs.getName().equals(priv.getName())) {
-				break;
-			} else {
-				index = index + 1;
-			}
-		}
-		return index;
-	}*/
 
 	public void increaseMoney(int diff) {
 		this.Money = this.Money + diff;
@@ -184,44 +134,20 @@ public class Corporation implements Serializable {
 		Name = name;
 	}
 
+	public int getIndex() {
+		return Index;
+	}
+
+	public void setIndex(int index) {
+		Index = index;
+	}
+
 	public List<Certificate> getCertificates() {
 		return Certificates;
 	}
 
 	public void setCertificates(List<Certificate> certificates) {
 		Certificates = certificates;
-	}
-
-/*	public List<Certificate> getInitialStock() {
-		return InitialStock;
-	}
-
-	public void setInitialStock(List<Certificate> initialStock) {
-		InitialStock = initialStock;
-	}*/
-
-/*	public List<Certificate> getBankPool() {
-		return BankPool;
-	}
-
-	public void setBankPool(List<Certificate> bankPool) {
-		BankPool = bankPool;
-	}*/
-
-/*	public List<Private> getPrivates() {
-		return Privates;
-	}
-
-	public void setPrivates(List<Private> privates) {
-		Privates = privates;
-	}*/
-
-	public String getPrivateDone() {
-		return PrivateDone;
-	}
-
-	public void setPrivateDone(String privateDone) {
-		PrivateDone = privateDone;
 	}
 
 	public int getShareParValue() {
@@ -248,28 +174,12 @@ public class Corporation implements Serializable {
 		Money = money;
 	}
 
-	public String getTileDone() {
-		return TileDone;
-	}
-
-	public void setTileDone(String tileDone) {
-		TileDone = tileDone;
-	}
-
 	public List<Train> getTrains() {
 		return Trains;
 	}
 
 	public void setTrains(List<Train> trains) {
 		Trains = trains;
-	}
-
-	public String getTrainDone() {
-		return TrainDone;
-	}
-
-	public void setTrainDone(String trainDone) {
-		TrainDone = trainDone;
 	}
 
 	public List<Station> getStations() {
@@ -280,14 +190,6 @@ public class Corporation implements Serializable {
 		Stations = stations;
 	}
 
-	public String getStationDone() {
-		return StationDone;
-	}
-
-	public void setStationDone(String stationDone) {
-		StationDone = stationDone;
-	}
-
 	public List<Dividend> getDividends() {
 		return Dividends;
 	}
@@ -296,19 +198,11 @@ public class Corporation implements Serializable {
 		Dividends = dividends;
 	}
 
-	public String getDividendDone() {
-		return DividendDone;
-	}
-
-	public void setDividendDone(String dividendDone) {
-		DividendDone = dividendDone;
-	}
-
-	public Player getPresident() {
+	public int getPresident() {
 		return President;
 	}
 
-	public void setPresident(Player president) {
+	public void setPresident(int president) {
 		President = president;
 	}
 
@@ -320,12 +214,51 @@ public class Corporation implements Serializable {
 		Open = open;
 	}
 
-	public String getOpRoundDone() {
+	public boolean isPrivateDone() {
+		return PrivateDone;
+	}
+
+	public void setPrivateDone(boolean privateDone) {
+		PrivateDone = privateDone;
+	}
+
+	public boolean isTileDone() {
+		return TileDone;
+	}
+
+	public void setTileDone(boolean tileDone) {
+		TileDone = tileDone;
+	}
+
+	public boolean isStationDone() {
+		return StationDone;
+	}
+
+	public void setStationDone(boolean stationDone) {
+		StationDone = stationDone;
+	}
+
+	public boolean isDividendDone() {
+		return DividendDone;
+	}
+
+	public void setDividendDone(boolean dividendDone) {
+		DividendDone = dividendDone;
+	}
+
+	public boolean isTrainDone() {
+		return TrainDone;
+	}
+
+	public void setTrainDone(boolean trainDone) {
+		TrainDone = trainDone;
+	}
+
+	public boolean isOpRoundDone() {
 		return OpRoundDone;
 	}
 
-	public void setOpRoundDone(String opRoundDone) {
+	public void setOpRoundDone(boolean opRoundDone) {
 		OpRoundDone = opRoundDone;
 	}
-
 }

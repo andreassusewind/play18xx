@@ -80,7 +80,7 @@ public class Panemiddel extends JPanel{
 		GridBagConstraints c = new GridBagConstraints();
 
 		
-		JLabel label = new JLabel(corp.getPresident().getName() + " is President for " + corp.getName());
+		JLabel label = new JLabel(basic.getPlayers().get(corp.getPresident()).getName() + " is President for " + corp.getName());
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -102,7 +102,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		if((corp.getTileDone().equals("done"))) {tile.setEnabled(false);}
+		if(corp.isTileDone()) {tile.setEnabled(false);}
 		this.add(tile, c);
 /*		label = new JLabel(corp.getTileDone());
 		c.gridx = 1;
@@ -126,7 +126,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		if(corp.getStationDone().equals("done")) {station.setEnabled(false);}
+		if(corp.isStationDone()) {station.setEnabled(false);}
 		this.add(station, c);
 /*		label = new JLabel(corp.getStationDone());
 		c.gridx = 1;
@@ -150,7 +150,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		if(corp.getDividendDone().equals("done")) {dividend.setEnabled(false);}
+		if(corp.isDividendDone()) {dividend.setEnabled(false);}
 		this.add(dividend, c);
 /*		label = new JLabel(corp.getDividendDone());
 		c.gridx = 1;
@@ -174,7 +174,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		if(corp.getTrainDone().equals("done")) {train.setEnabled(false);}
+		if(corp.isTrainDone()) {train.setEnabled(false);}
 		this.add(train, c);
 /*		label = new JLabel(corp.getTrainDone());
 		c.gridx = 1;
@@ -201,7 +201,7 @@ public class Panemiddel extends JPanel{
 				}
 			});
 			this.add(buyprivate, c);
-			label = new JLabel(corp.getPrivateDone());
+//			label = new JLabel(corp.getPrivateDone());
 			c.gridx = 1;
 			c.gridy = 5;
 			c.gridwidth = 1;
@@ -221,7 +221,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().getPOR().getPanelleft().getPanelleftmiddel().removeAll();
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
-				corp.setOpRoundDone("done");
+				corp.setOpRoundDone(true);
 				PaneOperatingRound.setPaneOperatingRound(basic);
 				basic.getTP().setSelectedIndex(tabpos);
 			}

@@ -145,7 +145,7 @@ public class Panelleft extends JPanel{
 					basic.getTP().setSelectedIndex(tabpos);
 				}
 			});
-			if(corp.getOpRoundDone().equals("done")) { corpbutton.setEnabled(false); }
+			if(corp.isOpRoundDone()) { corpbutton.setEnabled(false); }
 			panelleftmiddel.add(corpbutton, c);
 /*			JLabel label = new JLabel(corp.getOpRoundDone());
 			c.weighty = 0.1;
