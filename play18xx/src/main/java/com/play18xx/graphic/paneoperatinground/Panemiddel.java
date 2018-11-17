@@ -66,7 +66,8 @@ public class Panemiddel extends JPanel{
 				for (Private priv : basic.getPrivates()) {
 					priv.distributeRevenue(basic);
 				}
-				basic.getGameplay().setPrivatesDone("done");
+				basic.getGameplay().setPrivatesDone(true);
+				basic.getTP().getPOR().getPanelleft().getPanelleftmiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				PaneOperatingRound.setPaneOperatingRound(basic);
 				basic.getTP().setSelectedIndex(tabpos);

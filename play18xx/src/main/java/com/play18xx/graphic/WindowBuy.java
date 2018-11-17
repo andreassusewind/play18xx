@@ -25,15 +25,14 @@ public class WindowBuy {
 		frame.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
+		//For Buyoptions search in material.Stockmarket.java
 		switch (buyoption) {
 		case 38:
 			BuyNormalShareInitialStock(basic, corp, player, frame, c);
-			break;// Normal share is lying in Initial Stock or Bank Pool -> buy from bank or
-					// initial (Drop-Down-List)
+			break;
 		case 39:
 			BuyPresident(basic, corp, player, frame, c);
-			break;// 39: President share is lying in Initial Stock -> set Par Value
-					// (Drop-Down-List)
+			break;
 		case 48:
 			BuyPresidentBaO(basic, corp, player, frame, c);
 			break; // called by Private.BuyPrivate -> Switch for BO
@@ -41,7 +40,6 @@ public class WindowBuy {
 			break;
 		}
 
-//		frame.setDefaultCloseOperation(0);
 		frame.setVisible(true);
 	}
 
@@ -81,21 +79,15 @@ public class WindowBuy {
 		JButton buy = new JButton("Buy");
 		buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				Certificate Cert = corp.getInitialStock().get(0);
-//				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
-
-				player.decreaseMoney(corp.getShareParValue()); // Player lost money
-//				player.getCertificates().add(Cert); // Save Certificate on Player
-//				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
-
-				for (Certificate Certs : corp.getCertificates()) {
+				player.decreaseMoney(corp.getShareParValue()); 
+				corp.getInitialStock().get(0).setOwner(player.getIndex());
+/*				for (Certificate Certs : corp.getCertificates()) {
 					if (Certs.getOwner() == 91) {
 						Certs.setOwner(player.getIndex());
 						break;
 					}
-				}
-				basic.getGameplay()
-						.setCurrentPlayer((basic.getGameplay().getCurrentPlayer() + 1) % basic.getPlayers().size());
+				}*/
+				basic.getGameplay().setCurrentPlayer(basic);
 				basic.getGameplay().setPassNumber(0);
 
 				basic.buildGraphics();
@@ -143,23 +135,16 @@ public class WindowBuy {
 		JButton buy = new JButton("Buy");
 		buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				Certificate Cert = corp.getInitialStock().get(0);
-//				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
-
-				player.decreaseMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 2); // Player lost money
-//				player.getCertificates().add(Cert); // Save Certificate on Player
-//				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
+				player.decreaseMoney(Integer.parseInt((String) initvalue.getSelectedItem())   *   2);
 				corp.getCertificates().get(0).setOwner(player.getIndex());
 				corp.setShareParValue(Integer.parseInt((String) initvalue.getSelectedItem()));
 				corp.setMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 10);
 				corp.setPresident(player.getIndex());
 				corp.setMarker(
 						new CorporationPosition(basic, corp, Integer.parseInt((String) initvalue.getSelectedItem())));
-
 //				basic.getStockmarket().getCorporationPositions().add(new CorporationPosition(basic, corp, Integer.parseInt((String)initvalue.getSelectedItem())));
-
-				basic.getGameplay()
-						.setCurrentPlayer((basic.getGameplay().getCurrentPlayer() + 1) % basic.getPlayers().size());
+				//basic.getGameplay().setCurrentPlayer((basic.getGameplay().getCurrentPlayer() + 1) % basic.getPlayers().size());
+				basic.getGameplay().setCurrentPlayer(basic);
 				basic.getGameplay().setPassNumber(0);
 
 				basic.buildGraphics();
@@ -214,8 +199,6 @@ public class WindowBuy {
 				corp.setMarker(
 						new CorporationPosition(basic, corp, Integer.parseInt((String) initvalue.getSelectedItem())));
 				corp.setPresident(player.getIndex());
-
-//		    	basic.getStockmarket().getCorporationPositions().add(new CorporationPosition(basic, corp, Integer.parseInt((String)initvalue.getSelectedItem())));
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 				frame.dispose();

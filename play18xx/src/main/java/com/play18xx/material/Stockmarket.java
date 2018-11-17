@@ -74,6 +74,10 @@ public class Stockmarket implements Serializable {
 		/*
 		 * BUY OPTIONS: : Player has not enough money for min(Bank or initial share)
 		 * 
+		 * 38: Shares are lying on Initial stock AND President share is NOT lying on Initial Stock
+		 * 
+		 * 39: Shares are lying on Initial stock AND President share is lying on Initial Stock
+		 * 
 		 * : CorporationPosition is in Brown Colored Area -> Buy as much as you like :
 		 * 51 + CorporationPosition is in Orange or lower Colored Area -> Buy more than
 		 * 60% : 52 + CorporationPosition is in Yellow or lower Colored Area -> Buy more
@@ -93,8 +97,16 @@ public class Stockmarket implements Serializable {
 		 * 97: If you sell certificates in a corporation, you may not later buy certificates in that corporation in the same stock round.
 		 */
 
-		int Buyoption = 99;
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
+		
+		if(corp.getInitialStock().size() > 0) {
+			if(corp.getInitialStock().get(0).isPresident()) {
+				if(player.getMoney() >= 128) {return 39;}
+				}
+			else {
+				return 38;
+			}
+		}
 
 /*		if (corp.getInitialStock().size() > 0) { // if shares are on the initial stock
 			if (corp.getInitialStock().get(0).isPresident()) { // 39: President share is lying in Initial Stock -> set
@@ -110,7 +122,7 @@ public class Stockmarket implements Serializable {
 		
 //		if(player.soldCorp(corp)) { return 97; }
 
-		return (Buyoption);
+		return 99;
 	}
 
 	public int getSelloption(Basic basic, Corporation corp, Player player) {

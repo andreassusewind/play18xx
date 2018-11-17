@@ -368,25 +368,6 @@ public class PaneConfiguration extends JPanel implements Serializable {
 		});
 		panel.add(start, c);
 
-/*		JButton load = new JButton("Laden");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipady = 0;
-		c.weighty = 1.0;
-		c.anchor = GridBagConstraints.PAGE_END;
-		c.insets = new Insets(10, 0, 0, 0);
-		c.gridwidth = 1;
-		c.gridx = 1;
-		c.gridy = 20;
-		load.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BasicSave savedata = new BasicSave(basic);
-				savedata.load(basic);
-				basic.buildGraphics();
-				basic.getTP().setSelectedIndex(0);
-			}
-		});
-		panel.add(load, c); */
-
 		JButton loadxml = new JButton("Laden XML");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 0;

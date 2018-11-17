@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.List;
 
 import javax.swing.JComponent;
 
+import com.play18xx.material.Basic;
+import com.play18xx.material.Certificate;
 import com.play18xx.material.Player;
+import com.play18xx.material.Private;
 
 public class GraphicPlayer extends JComponent {
 
@@ -17,9 +21,11 @@ public class GraphicPlayer extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	Player player;
+	Basic basic;
 
-	public GraphicPlayer(Player player) {
+	public GraphicPlayer(Basic basic, Player player) {
 		this.player = player;
+		this.basic = basic;
 		setPreferredSize(new Dimension(200, 250));
 	}
 
@@ -41,15 +47,17 @@ public class GraphicPlayer extends JComponent {
 		g.drawString(Integer.toString(player.getMoney()), xpos2, ypos);
 
 		ypos = 50;
-/*		for (int i = 1; i <= player.getPrivates().size(); i++) {
-			ypos = ypos + 10;
-			g.drawString(player.getPrivates().get(i - 1).getName(), xpos1, ypos);
-		}*/
-/*		Collections.sort(player.getCertificates(), Certificate.NameComparator);
-		for (int i = 1; i <= player.getCertificates().size(); i++) {
-			ypos = ypos + 10;
-			g.drawString(player.getCertificates().get(i - 1).getName(), xpos1, ypos);
-		}*/
 		
+		List<Private> privs = basic.getPlayerPrivates(player.getIndex());
+		for(Private priv : privs) {
+			ypos = ypos + 10;
+			g.drawString(priv.getName(), xpos1, ypos);
+		}
+
+		List<Certificate> certs = basic.getPlayerCertificates(player.getIndex());
+		for(Certificate cert : certs) {
+			ypos = ypos + 10;
+			g.drawString(cert.getName(), xpos1, ypos);
+		}
 	}
 }

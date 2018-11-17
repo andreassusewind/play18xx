@@ -42,12 +42,9 @@ public class PaneStockmarket {
 			c.gridy = 1;
 			c.gridheight = 1;
 			c.gridwidth = 2;
-			panel.add(new GraphicPlayer(basic.getPlayers().get(basic.getGameplay().getCurrentPlayer())), c);
+			panel.add(new GraphicPlayer(basic, basic.getPlayers().get(basic.getGameplay().getCurrentPlayer())), c);
 
-			// set buttons for stock rounds
-			c.insets = new Insets(basic.getStockmarket().getRows() * 50, 0, 0, 0); // padding for the first button ->
-																					// all buttons move to the button
-
+			c.insets = new Insets(basic.getStockmarket().getRows() * 50, 0, 0, 0); 
 			// PASS Button
 			JButton pass = new JButton("pass");
 			pass.addActionListener(new ActionListener() {

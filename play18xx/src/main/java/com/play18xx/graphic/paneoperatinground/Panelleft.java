@@ -58,7 +58,7 @@ public class Panelleft extends JPanel{
 			c.insets = new Insets(20, 0, 0, 0);
 			this.add(label,c);
 		}
-		// Bottom of LEFTPANEL -> Speichern
+
 		JButton save = new JButton("Speichern");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0.1;
@@ -69,14 +69,12 @@ public class Panelleft extends JPanel{
 		c.gridy = 20;
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				BasicSave savedata = new BasicSave(basic);
-//				savedata.save();
 				XMLBasicSave savexml = new XMLBasicSave(basic);
 				savexml.savetoxml();
 			}
 		});
 		this.add(save, c);
-		// Bottom of LEFTPANEL -> LADEN
+
 		JButton load = new JButton("Laden");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weighty = 0.1;
@@ -87,8 +85,7 @@ public class Panelleft extends JPanel{
 		c.gridy = 21;
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				BasicSave savedata = new BasicSave(basic);
-//				savedata.load(basic);
+				xml.XMLBasicLoad.loadfromxml(basic);
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 			}
@@ -115,7 +112,7 @@ public class Panelleft extends JPanel{
 					basic.getTP().setSelectedIndex(tabpos);
 				}
 			});
-			if(basic.getGameplay().getPrivatesDone().equals("done")) {privates.setEnabled(false);}
+			if(basic.getGameplay().isPrivatesDone()) {privates.setEnabled(false);}
 			panelleftmiddel.add(privates, c);
 			/*			JLabel label = new JLabel(basic.getGameplay().getPrivatesDone());
 			c.gridx = 2;

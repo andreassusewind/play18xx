@@ -43,7 +43,7 @@ public class Gameplay implements Serializable {
 	@XmlElement
 	private List<Corporation> OperationroundCorpOrder = new ArrayList<Corporation>();
 	@XmlElement
-	private String PrivatesDone = "";
+	private boolean PrivatesDone = false;
 
 	public Gameplay() {
 	}
@@ -129,6 +129,10 @@ public class Gameplay implements Serializable {
 	public void setCurrentPlayer(int currentPlayer) {
 		CurrentPlayer = currentPlayer;
 	}
+	
+	public void setCurrentPlayer(Basic basic) {
+		CurrentPlayer = ((CurrentPlayer + 1) % basic.getPlayers().size());
+	}
 
 	public int getPassNumber() {
 		return PassNumber;
@@ -206,11 +210,11 @@ public class Gameplay implements Serializable {
 		this.OperationroundCorpOrder = oco;
 	}
 
-	public String getPrivatesDone() {
+	public boolean isPrivatesDone() {
 		return PrivatesDone;
 	}
 
-	public void setPrivatesDone(String privatesDone) {
+	public void setPrivatesDone(boolean privatesDone) {
 		PrivatesDone = privatesDone;
 	}
 }

@@ -400,7 +400,7 @@ public class Panelright extends JPanel{
 				corp.getTrains().add(basic.getGameplay().getTrains().get(0));
 				basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(0));
 				basic.getGameplay().getTrains().remove(0);
-//				corp.setTrainDone("done");
+				corp.setTrainDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -500,7 +500,7 @@ public class Panelright extends JPanel{
 					buycorp.increaseMoney(Integer.valueOf(trainvalue.getText()));
 					corp.getTrains().add(buycorp.getTrains().get(trainbox.getSelectedIndex()));
 					buycorp.getTrains().remove(trainbox.getSelectedIndex());
-//					corp.setTrainDone("done");
+					corp.setTrainDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);

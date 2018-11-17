@@ -75,47 +75,37 @@ public class Basic implements Serializable {
 	}
 
 	public void switchToOperationRound() {
-		// if there is no corp order for operation round
-//		if (this.Gameplay.getOperationroundCorpOrder().size() == 0) 
-		System.out.print(this.Gameplay.isOperationRound());
 		if(this.Gameplay.isStockmarketRound())
 		{ 
-			System.out.print(this.Gameplay.isOperationRound());
-			// clear the corppos on stockmarket
+			// get all CorporationPositions of President sold corps
 			this.getStockmarket().getCorporationPositions().clear(); 
 			for (Corporation corp : this.Corporations) {
-				// if first cert (president) is sold to player
 				if (corp.getCertificates().get(0).getOwner() < 10) {
-					// take marker to stockmarket corppos list
 					this.getStockmarket().getCorporationPositions().add(corp.getMarker()); 
 				}
 			}
-			//sort corpos on stockmarket list
 			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
-
+			// in sorting order set all fully sold corps marker one up
 			for (CorporationPosition cp : this.getStockmarket().getCorporationPositions()) {
-				if (cp.getCorp().getSoldShares() == 100) {
-					cp.getCorp().getMarker().setUp(this);
-				} // set up corp markers for fully sold corps
+				if (cp.getCorp().getSoldShares() == 100) { cp.getCorp().getMarker().setUp(this); }
 			}
-
-			this.getStockmarket().getCorporationPositions().clear(); // clear the corppos on stockmarket (AGAIN)
+			// get all CorporationPositions of min 60% sold corps
+			this.getStockmarket().getCorporationPositions().clear();
 			for (Corporation corp : this.Corporations) {
-				if (corp.getInitialShares() <= 40) { // open corps with min 60% sold shares AND copy markers corppos to
-														// stockmarket corppos list
+				if (corp.getInitialShares() <= 40) { 
 					corp.setOpen(true);
 					this.getStockmarket().getCorporationPositions().add(corp.getMarker());
 				}
 			}
-			// sort corppos on stockmarket list (AGAIN)
 			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			// in sorting order write the corp of CorporationPositions on the OperationroundCorpOrder
 			for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 				this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
 			}
+			
+			this.getGameplay().setOperationRound(true);
+			this.getGameplay().setStockmarketRound(false);
 		}
-		this.getGameplay().setOperationRound(true);
-		this.getGameplay().setStockmarketRound(false);
-		System.out.print(this.Gameplay.isOperationRound());
 		this.buildGraphics();
 		this.getTP().setSelectedIndex(1);
 	}
@@ -134,8 +124,26 @@ public class Basic implements Serializable {
 		}
 		return 99;
 	}
-
-	public void asave() {
+	
+	public List<Private> getPlayerPrivates(int player){
+		List<Private> privs = new ArrayList<Private>();
+		for(Private priv : this.Privates) {
+			if(priv.getOwner() == player) {privs.add(priv);}
+		}
+		return privs;
+	}
+	
+	public List<Certificate> getPlayerCertificates(int player) {
+		List<Certificate> certs= new ArrayList<Certificate>();
+		for(Corporation corp : this.Corporations) {
+			for(Certificate cert : corp.getCertificates()) {
+				if(cert.getOwner() == player) {certs.add(cert);}
+			}
+		}
+		return certs;
+	}
+	
+/*	public void asave() {
 		try {
 			// write object to file
 			//FileOutputStream fos = new FileOutputStream("/home/andreas/eclipse-workspace/play18xx/save.1830");
@@ -149,7 +157,7 @@ public class Basic implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public List<Player> getPlayers() {
 		return Players;

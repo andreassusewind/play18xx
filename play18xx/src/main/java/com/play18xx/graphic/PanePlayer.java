@@ -30,7 +30,7 @@ public class PanePlayer {
 			} else {
 				c.gridy = 1;
 			}
-			panel.add(new GraphicPlayer(basic.getPlayers().get(i)), c);
+			panel.add(new GraphicPlayer(basic, basic.getPlayers().get(i)), c);
 		}
 
 		ImageIcon newicon = new ImageIcon(); // dummy ImageIcon maybe set in later versions

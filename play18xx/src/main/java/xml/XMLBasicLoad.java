@@ -43,8 +43,7 @@ public class XMLBasicLoad {
 	
 	
 	public static void loadfromxml(Basic basic) {
-		//File file = new File("/home/andreas/eclipse-workspace/play18xx/save.xml");
-		File file = new File("../save.xml");
+		File file = new File("save.xml");
 		JAXBContext jaxbContext;
 		try {
 			jaxbContext = JAXBContext.newInstance(XMLBasicLoad.class);
@@ -58,6 +57,10 @@ public class XMLBasicLoad {
 			
 			for(Corporation corp : basic.getCorporations()) {corp.getMarker().setCorp(corp);}
 			basic.getGameplay().refreshOperationroundCorpOrder(basic);
+			
+			basic.getTP().refreshPOR();
+
+			System.out.println("Game is loaded from XML file");
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

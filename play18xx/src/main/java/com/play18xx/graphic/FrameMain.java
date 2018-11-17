@@ -23,7 +23,6 @@ public class FrameMain extends JTabbedPane {
 
 		frame.setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
 		frame.setTitle(App.gamename);
-//		frame.setSize(1400, 900);
 		frame.add(this);
 		frame.setVisible(true);
 	}

@@ -24,7 +24,7 @@ public class Corporation implements Serializable {
 	@XmlElement
 	private int Index;
 	@XmlElementWrapper(name = "Certificates") 
-	@XmlElement
+	@XmlElement // Owner 0-9 Player --- 91 InitialStock --- 92 BankPool
 	private List<Certificate> Certificates = new ArrayList<Certificate>();
 	@XmlElement
 	private int ShareParValue = 0;
@@ -102,6 +102,14 @@ public class Corporation implements Serializable {
 			}
 		}
 		return revenue;
+	}
+	
+	public List<Certificate> getInitialStock(){
+		List<Certificate> certs = new ArrayList<Certificate>();
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == 91) {certs.add(cert);}
+		}
+		return certs;
 	}
 
 	public int[] getPlayerIncome(int playernumber, int income) {  // Could be deleted....
