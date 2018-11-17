@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;

@@ -133,7 +133,7 @@ public class PaneCorporation {
 				c.gridwidth = 1;
 				c.anchor = GridBagConstraints.PAGE_START;
 				panel.add(label, c);
-				for (Private priv : corp.getPrivates()) {
+/*				for (Private priv : corp.getPrivates()) {
 					label = new JLabel(priv.getName());
 					c.gridx = COUNTERpriv;
 					c.gridy = 7;
@@ -149,7 +149,7 @@ public class PaneCorporation {
 					panel.add(label, c);
 
 					COUNTERpriv = COUNTERpriv + 1;
-				}
+				}*/
 
 				ImageIcon newicon = new ImageIcon(); // dummy ImageIcon maybe set in later versions
 				basic.getTP().insertTab(corp.getName(), newicon, panel, corp.getName(), tabpos + COUNTER);

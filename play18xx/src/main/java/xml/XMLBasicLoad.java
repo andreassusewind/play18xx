@@ -56,7 +56,7 @@ public class XMLBasicLoad {
 		basic.setGameplay(xmlbasic.Gameplay);
 		basic.setStockmarket(xmlbasic.Stockmarket);
 		
-		for(Player player : basic.getPlayers()) {player.setCertCorps(basic);}
+//		for(Player player : basic.getPlayers()) {player.setCertCorps(basic);}
 		for(Corporation corp : basic.getCorporations()) {corp.getMarker().setCorp(corp);}
 		basic.getGameplay().refreshOperationroundCorpOrder(basic);
 	}

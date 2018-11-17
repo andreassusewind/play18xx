@@ -91,7 +91,7 @@ public class Basic implements Serializable {
 				}
 			}
 			//sort corpos on stockmarket list
-			Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
 
 			for (CorporationPosition cp : this.getStockmarket().getCorporationPositions()) {
 				if (cp.getCorp().getSoldShares() == 100) {
@@ -108,7 +108,7 @@ public class Basic implements Serializable {
 				}
 			}
 			// sort corppos on stockmarket list (AGAIN)
-			Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
 			for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 				this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
 			}

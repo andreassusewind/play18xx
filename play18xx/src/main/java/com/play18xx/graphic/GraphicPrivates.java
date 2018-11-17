@@ -70,8 +70,8 @@ public class GraphicPrivates extends JPanel {
 				for (int i = 0; i < basic.getPrivates().size(); i++) { // for every private
 					basic.getPlayers().get(playerbox[i].getSelectedIndex())
 							.decreaseMoney(Integer.valueOf(values[i].getText())); // decrease Money of the player
-					basic.getPlayers().get(playerbox[i].getSelectedIndex()).getPrivates()
-							.add(basic.getPrivates().get(i)); // the player get the P-Certificate
+//					basic.getPlayers().get(playerbox[i].getSelectedIndex()).getPrivates()
+//							.add(basic.getPrivates().get(i)); // the player get the P-Certificate
 					basic.getPrivates().get(i).setOwner(playerbox[i].getSelectedIndex()); // the P-Certificate get
 																							// player as owner
 					basic.getPrivates().get(i).BuyPrivate(basic, playerbox[i].getSelectedIndex()); // the P-Special

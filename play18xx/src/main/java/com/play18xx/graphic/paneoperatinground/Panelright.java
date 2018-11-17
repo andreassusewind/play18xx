@@ -261,7 +261,7 @@ public class Panelright extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					int[] pincome = corp.getPlayerIncome(basic.getPlayers(), Integer.parseInt((String) income.getText()));
 					for (Player player : basic.getPlayers()) {
-						player.increaseMoney(pincome[player.getPlayernumber()]);
+						player.increaseMoney(pincome[player.getInex()]);
 					}
 					corp.getMarker().setRight(basic);
 					corp.setDividendDone("done");

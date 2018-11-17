@@ -21,47 +21,49 @@ public class Corporation implements Serializable {
 
 	@XmlAttribute
 	private String Name;
+	@XmlElement
+	private int Index;
 	@XmlElementWrapper(name = "Certificates") 
 	@XmlElement
 	private List<Certificate> Certificates = new ArrayList<Certificate>();
-	@XmlElementWrapper(name = "InitialStock") 
+/*	@XmlElementWrapper(name = "InitialStock") 
 	@XmlElement
-	private List<Certificate> InitialStock = new ArrayList<Certificate>();
-	@XmlElementWrapper(name = "BankPool") 
+	private List<Certificate> InitialStock = new ArrayList<Certificate>(); */
+/*	@XmlElementWrapper(name = "BankPool") 
 	@XmlElement
-	private List<Certificate> BankPool = new ArrayList<Certificate>();
-	@XmlElementWrapper(name = "Privates") 
+	private List<Certificate> BankPool = new ArrayList<Certificate>();*/
+/*	@XmlElementWrapper(name = "Privates") 
 	@XmlElement
-	private List<Private> Privates = new ArrayList<Private>();
-	@XmlElement
-	private String PrivateDone = "";
+	private List<Private> Privates = new ArrayList<Private>();*/
 	@XmlElement
 	private int ShareParValue;
 	@XmlElement
 	private CorporationPosition Marker;
 	@XmlElement
 	private int Money;
-	@XmlElement
-	private String TileDone = "";
 	@XmlElementWrapper(name = "Trains") 
 	@XmlElement
 	private List<Train> Trains = new ArrayList<Train>();
-	@XmlElement
-	private String TrainDone = "";
 	@XmlElementWrapper(name = "Stations") 
 	@XmlElement
 	private List<Station> Stations = new ArrayList<Station>();
-	@XmlElement
-	private String StationDone = "";
 	@XmlElementWrapper(name = "Dividends") 
 	@XmlElement
 	private List<Dividend> Dividends = new ArrayList<Dividend>();
 	@XmlElement
-	private String DividendDone = "";
-	@XmlElement
 	private Player President;
 	@XmlElement
 	private boolean Open;
+	@XmlElement
+	private String PrivateDone = "";
+	@XmlElement
+	private String TileDone = "";
+	@XmlElement
+	private String StationDone = "";
+	@XmlElement
+	private String DividendDone = "";
+	@XmlElement
+	private String TrainDone = "";
 	@XmlElement
 	private String OpRoundDone = "";
 
@@ -72,10 +74,10 @@ public class Corporation implements Serializable {
 		this.Name = Name;
 
 		this.Certificates.add(new Certificate(this, 20, true)); // Set President share
-		this.InitialStock.add(new Certificate(this, 20, true));
+//		this.InitialStock.add(new Certificate(this, 20, true));
 		for (int i = 0; i < 8; i++) {
 			this.Certificates.add(new Certificate(this, 10, false));// Set Normal shares
-			this.InitialStock.add(new Certificate(this, 10, false));
+//			this.InitialStock.add(new Certificate(this, 10, false));
 		}
 
 		ShareParValue = 0;
@@ -154,7 +156,7 @@ public class Corporation implements Serializable {
 		return pincome;
 	}
 
-	public int findPrivate(Private priv) {
+/*	public int findPrivate(Private priv) {
 		int index = 0;
 		for (Private privs : Privates) {
 			if (privs.getName().equals(priv.getName())) {
@@ -164,7 +166,7 @@ public class Corporation implements Serializable {
 			}
 		}
 		return index;
-	}
+	}*/
 
 	public void increaseMoney(int diff) {
 		this.Money = this.Money + diff;
@@ -190,29 +192,29 @@ public class Corporation implements Serializable {
 		Certificates = certificates;
 	}
 
-	public List<Certificate> getInitialStock() {
+/*	public List<Certificate> getInitialStock() {
 		return InitialStock;
 	}
 
 	public void setInitialStock(List<Certificate> initialStock) {
 		InitialStock = initialStock;
-	}
+	}*/
 
-	public List<Certificate> getBankPool() {
+/*	public List<Certificate> getBankPool() {
 		return BankPool;
 	}
 
 	public void setBankPool(List<Certificate> bankPool) {
 		BankPool = bankPool;
-	}
+	}*/
 
-	public List<Private> getPrivates() {
+/*	public List<Private> getPrivates() {
 		return Privates;
 	}
 
 	public void setPrivates(List<Private> privates) {
 		Privates = privates;
-	}
+	}*/
 
 	public String getPrivateDone() {
 		return PrivateDone;

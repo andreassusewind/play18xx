@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,7 +96,7 @@ public class Stockmarket implements Serializable {
 		int Buyoption = 99;
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 
-		if (corp.getInitialStock().size() > 0) { // if shares are on the initial stock
+/*		if (corp.getInitialStock().size() > 0) { // if shares are on the initial stock
 			if (corp.getInitialStock().get(0).isPresident()) { // 39: President share is lying in Initial Stock -> set
 																// Par Value (Drop-Down-List)
 				Buyoption = 39;
@@ -105,11 +104,11 @@ public class Stockmarket implements Serializable {
 						// initial (Drop-Down-List)
 				Buyoption = 38;
 			}
-		}
+		}*/
 		
 		
 		
-		if(player.soldCorp(corp)) { return 97; }
+//		if(player.soldCorp(corp)) { return 97; }
 
 		return (Buyoption);
 	}
@@ -131,7 +130,7 @@ public class Stockmarket implements Serializable {
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 		if(basic.getGameplay().getStockmarketRoundCounter()==1) {return 98;}
 		
-		for(Certificate cert : player.getCertificates()) { if( cert.getCorporation().equals(corp) ) { return 49; } }
+//		for(Certificate cert : player.getCertificates()) { if( cert.getCorporation().equals(corp) ) { return 49; } }
 
 
 		return (Selloption);

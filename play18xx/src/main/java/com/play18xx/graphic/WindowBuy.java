@@ -81,16 +81,16 @@ public class WindowBuy {
 		JButton buy = new JButton("Buy");
 		buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Certificate Cert = corp.getInitialStock().get(0);
-				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
+//				Certificate Cert = corp.getInitialStock().get(0);
+//				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
 
 				player.decreaseMoney(corp.getShareParValue()); // Player lost money
-				player.getCertificates().add(Cert); // Save Certificate on Player
-				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
+//				player.getCertificates().add(Cert); // Save Certificate on Player
+//				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
 
 				for (Certificate Certs : corp.getCertificates()) {
 					if (Certs.getOwner() == 91) {
-						Certs.setOwner(player.getPlayernumber());
+						Certs.setOwner(player.getInex());
 						break;
 					}
 				}
@@ -143,13 +143,13 @@ public class WindowBuy {
 		JButton buy = new JButton("Buy");
 		buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Certificate Cert = corp.getInitialStock().get(0);
-				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
+//				Certificate Cert = corp.getInitialStock().get(0);
+//				Cert.setOwner(player.getPlayernumber()); // Get President Certificate and switch Owner
 
 				player.decreaseMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 2); // Player lost money
-				player.getCertificates().add(Cert); // Save Certificate on Player
-				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
-				corp.getCertificates().get(0).setOwner(player.getPlayernumber());
+//				player.getCertificates().add(Cert); // Save Certificate on Player
+//				corp.getInitialStock().remove(0); // Remove Certificate from InitialStock
+				corp.getCertificates().get(0).setOwner(player.getInex());
 				corp.setShareParValue(Integer.parseInt((String) initvalue.getSelectedItem()));
 				corp.setMoney(Integer.parseInt((String) initvalue.getSelectedItem()) * 10);
 				corp.setPresident(player);

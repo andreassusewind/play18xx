@@ -8,9 +8,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import com.play18xx.app.App;
 
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
@@ -22,8 +19,8 @@ public class Certificate implements Serializable {
 
 	@XmlAttribute
 	private String Name;
-	@XmlTransient
-	private Corporation Corporation;
+/*	@XmlTransient
+	private Corporation Corporation; */
 	@XmlElement
 	private int PercentValue;
 	@XmlElement
@@ -36,7 +33,7 @@ public class Certificate implements Serializable {
 
 	public Certificate(Corporation Corporation, int PercentValue, boolean President) {
 		this.Name = Corporation.getName() + "-" + PercentValue;
-		this.Corporation = Corporation;
+//		this.Corporation = Corporation;
 		this.PercentValue = PercentValue;
 		this.Owner = 91; // Owner 0-7 Player --- 91 InitialStock --- 92 BankPool
 		this.President = President;
@@ -60,13 +57,13 @@ public class Certificate implements Serializable {
 		Name = name;
 	}
 
-	public Corporation getCorporation() {
+/*	public Corporation getCorporation() {
 		return Corporation;
 	}
 
 	public void setCorporation(Corporation corporation) {
 		Corporation = corporation;
-	}
+	}*/
 
 	public int getPercentValue() {
 		return PercentValue;

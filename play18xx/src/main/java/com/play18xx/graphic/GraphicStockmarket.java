@@ -135,18 +135,18 @@ public class GraphicStockmarket extends JComponent {
 			g.drawString(Integer.toString(basic.getCorporations().get(i).getShareParValue()), xpos + 120, ypos);
 
 // set values for the initial stock per corp
-			for (int j = 1; j <= basic.getCorporations().get(i).getInitialStock().size(); j++) {
+/*			for (int j = 1; j <= basic.getCorporations().get(i).getInitialStock().size(); j++) {
 				g.drawString(
 						Integer.toString(basic.getCorporations().get(i).getInitialStock().get(j - 1).getPercentValue()),
 						xpos + 160 + ((j - 1) * 20), ypos);
-			}
+			}*/
 
 // set values for the bank stock per corp
-			for (int j = 1; j <= basic.getCorporations().get(i).getBankPool().size(); j++) {
+/*			for (int j = 1; j <= basic.getCorporations().get(i).getBankPool().size(); j++) {
 				g.drawString(
 						Integer.toString(basic.getCorporations().get(i).getBankPool().get(j - 1).getPercentValue()),
 						xpos + 160 + xoffintialstock + (j * 20), ypos);
-			}
+			}*/
 		}
 	}
 
