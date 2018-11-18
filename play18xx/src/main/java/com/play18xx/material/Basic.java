@@ -106,12 +106,25 @@ public class Basic implements Serializable {
 	}
 
 	public void newOperationRound() {
-		System.out.println("Basic:newOperationRound - not implemented");
-/*		basic.getGameplay().setOperationroundCounter(basic.getGameplay().getOperationroundCounter() + 1);
-		basic.getTP().refreshPOR();
-		basic.buildGraphics();
-		basic.getTP().setSelectedIndex(tabpos);*/
+		this.getGameplay().setOperationroundCounter(this.getGameplay().getOperationroundCounter() + 1);
+
+		this.getTP().refreshPOR();
 		
+		for(Corporation corp : this.Gameplay.getOperationroundCorpOrder()) {
+			corp.resetDoneFlags();
+		}
+				
+		this.Gameplay.setPrivatesDone(false);
+		
+		//NOT IMPLEMENTED: if player gets via MH-Private a 10% of NYC and therefore opens the Corp (is that possible? and yes when?)
+		com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+		this.Gameplay.getOperationroundCorpOrder().clear();
+		for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
+			this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
+		}
+		
+		this.buildGraphics();
+		this.getTP().setSelectedIndex(0);
 	}
 	
 	public void switchToStockMarketRound() {

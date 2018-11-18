@@ -105,6 +105,18 @@ public class Corporation implements Serializable {
 		return PlayerShares;
 	}
 	
+	public int getSaleableShares(int owner) {
+		int OSC = 0;		
+		int PSC = 0;
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == owner) {PSC = PSC + cert.getPercentValue();}
+			if(cert.getOwner() == 92)    {OSC = OSC + cert.getPercentValue();}
+		}
+		PSC = PSC / 10;
+		OSC = 5 - (OSC / 10);
+		return Math.min(PSC, OSC);
+	}
+	
 	public int[] getPlayerIncome(int income) {
 		int[] pincome = getPlayerShares();
 		for(int i=0; i<pincome.length; i++) {
@@ -164,7 +176,6 @@ public class Corporation implements Serializable {
 					}
 				}
 			}
-			
 			player.increaseMoney(this.Marker.getValue()  *  quantity);
 			player.getSoldCorps().add(this.Index);
 		}

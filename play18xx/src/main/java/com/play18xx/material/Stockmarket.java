@@ -110,14 +110,14 @@ public class Stockmarket implements Serializable {
 		
 		if(corp.getInitialStock().size() > 0 ) {
 			if(corp.getInitialStock().get(0).isPresident()  
-					&& player.getMoney() >= 128) { return 39; }
+					&& player.getMoney() >= 134) { return 39; }
 			
 			if(!corp.getInitialStock().get(0).isPresident() 
 					&& corp.getBankStock().size() > 0
-					&& player.getMoney() >= corp.getMarker().getValue()) { return 37;}
+					/*&& player.getMoney() >= corp.getMarker().getValue()*/) { return 37;}
 			
 			if(!corp.getInitialStock().get(0).isPresident() 
-					&& player.getMoney() >= 64 ) { return 38; }
+					&& player.getMoney() >= corp.getShareParValue() ) { return 38; }
 		}
 
 		if(corp.getBankStock().size() > 0) {

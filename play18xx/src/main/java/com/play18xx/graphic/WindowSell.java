@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.play18xx.material.Basic;
-import com.play18xx.material.Certificate;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Player;
 
@@ -76,9 +74,9 @@ public class WindowSell {
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.insets = new Insets(20, 0, 0, 0);
-		List<Certificate> certs = corp.getPlayerStock(player);
-		String[] combolist = new String[certs.size()];
-		for(int i=0; i<certs.size(); i++) { combolist[i] = String.valueOf(i); }
+		int shares = corp.getSaleableShares(player.getIndex());
+		String[] combolist = new String[shares+1];
+		for(int i=0; i<=shares; i++) { combolist[i] = ""+i; }
 		JComboBox<Object> quantity = new JComboBox<Object>(combolist);
 		quantity.setSelectedIndex(1);
 		frame.add(quantity, c);
