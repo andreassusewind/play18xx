@@ -94,14 +94,39 @@ public class Corporation implements Serializable {
 		return InitialShares;
 	}
 
-	public int[] getPlayerShares(List<Player> players) {  // delete List<Player> and set for the size() a maximum function
-		int[] revenue = new int[players.size()];
+	public int[] getPlayerShares() { 
+		int[] PlayerShares = new int[getInvolvedPlayer()];
+		
 		for (Certificate cert : this.Certificates) {
 			if (cert.getOwner() < 10) {
-				revenue[cert.getOwner()] = revenue[cert.getOwner()] + cert.getPercentValue();
+				PlayerShares[cert.getOwner()] = PlayerShares[cert.getOwner()] + cert.getPercentValue();
 			}
 		}
-		return revenue;
+		return PlayerShares;
+	}
+	
+	public int[] getPlayerIncome(int income) {
+		int[] pincome = getPlayerShares();
+		for(int i=0; i<pincome.length; i++) {
+			pincome[i] = (int) ( ( (double)pincome[i] / 100 ) * income);
+		}
+		return pincome;
+	}
+
+	public int getInvolvedPlayer() {
+		int max = 0;
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() > max && cert.getOwner() < 10) { max = cert.getOwner(); }
+		}
+		return (max+1);
+	}
+	
+	public List<Certificate> getPlayerStock(Player player){
+		List<Certificate> certs = new ArrayList<Certificate>();
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == player.getIndex()) {certs.add(cert);}
+		}
+		return certs;
 	}
 	
 	public List<Certificate> getInitialStock(){
@@ -111,19 +136,59 @@ public class Corporation implements Serializable {
 		}
 		return certs;
 	}
-
-	public int[] getPlayerIncome(int playernumber, int income) {  // Could be deleted....
-		int[] pincome = new int[playernumber];
-		int[] revenue = new int[playernumber];
-		for (Certificate cert : this.Certificates) {
-			if (cert.getOwner() < 10) {
-				revenue[cert.getOwner()] = revenue[cert.getOwner()] + cert.getPercentValue();
+	
+	public List<Certificate> getBankStock(){
+		List<Certificate> certs = new ArrayList<Certificate>();
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == 92) {certs.add(cert);}
+		}
+		return certs;
+	}
+	
+	public int getBankStockShare() {
+		int share = 0;
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == 92) {share = share + cert.getPercentValue();}
+		}
+		return share;
+	}
+	
+	public void sellShares(Basic basic, Player player, int quantity) {
+		if(quantity > 0) {
+			for(int i=0; i<quantity; i++) {
+				for(Certificate cert : this.Certificates) {
+					if(cert.getOwner() == player.getIndex()  && !cert.isPresident()) { 
+						cert.setOwner(92); 
+						this.Marker.setDown(basic);
+						break;
+					}
+				}
+			}
+			
+			player.increaseMoney(this.Marker.getValue()  *  quantity);
+			player.getSoldCorps().add(this.Index);
+		}
+	}
+	
+	public void checkPresident() {
+		int[] PlayerShares = getPlayerShares();
+		for(int i=0; i<PlayerShares.length; i++) {
+			if(PlayerShares[i] > PlayerShares[this.President]) {changePresident(this.President, i);}
+		}
+	}
+	
+	public void changePresident(int oldp, int newp) {
+		int COUNTER = 0;
+		while(COUNTER < this.Certificates.get(0).getPercentValue()) {
+			for(Certificate cert : this.Certificates) {
+				if(cert.getOwner() == newp) {
+					cert.setOwner(oldp);
+					COUNTER = COUNTER + cert.getPercentValue();
+					break;
+				}
 			}
 		}
-		for (int i = 0; i < pincome.length; i++) {
-			pincome[i] = (int) ((double) revenue[i] / 100 * income);
-		}
-		return pincome;
+		this.Certificates.get(0).setOwner(newp);
 	}
 
 	public void increaseMoney(int diff) {
@@ -268,5 +333,14 @@ public class Corporation implements Serializable {
 
 	public void setOpRoundDone(boolean opRoundDone) {
 		OpRoundDone = opRoundDone;
+	}
+	
+	public void resetDoneFlags() {
+		PrivateDone = false;
+		TileDone = false;
+		StationDone = false;
+		DividendDone = false;
+		TrainDone = false;
+		OpRoundDone = false;
 	}
 }

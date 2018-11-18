@@ -173,6 +173,10 @@ public class Gameplay implements Serializable {
 	public void setStockmarketRoundCounter(int stockmarketRoundCounter) {
 		StockmarketRoundCounter = stockmarketRoundCounter;
 	}
+	
+	public void increaseStockmarketRoundCounter() {
+		StockmarketRoundCounter = StockmarketRoundCounter + 1;
+	}
 
 	public boolean isOperationRound() {
 		return OperationRound;

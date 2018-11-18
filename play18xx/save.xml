@@ -3,12 +3,12 @@
     <Players>
         <Player name="Andreas">
             <Index>0</Index>
-            <Money>95</Money>
+            <Money>135</Money>
             <SoldCorps/>
         </Player>
         <Player name="Miriam">
             <Index>1</Index>
-            <Money>90</Money>
+            <Money>124</Money>
             <SoldCorps/>
         </Player>
     </Players>
@@ -23,12 +23,12 @@
                 </Certificates>
                 <Certificates name="PRR-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>0</Owner>
+                    <Owner>92</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="PRR-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>1</Owner>
+                    <Owner>92</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="PRR-10">
@@ -63,13 +63,18 @@
                 </Certificates>
             </Certificates>
             <ShareParValue>100</ShareParValue>
-            <Marker value="100">
-                <row>0</row>
-                <col>5</col>
-                <stack>6</stack>
+            <Marker value="90">
+                <row>2</row>
+                <col>7</col>
+                <stack>8</stack>
             </Marker>
-            <Money>920</Money>
+            <Money>852</Money>
             <Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
                 <Trains distancePrimary="2">
                     <DistanceSecondary>0</DistanceSecondary>
                     <Cost>80</Cost>
@@ -87,15 +92,32 @@
                     <Build>false</Build>
                 </Stations>
             </Stations>
-            <Dividends/>
+            <Dividends>
+                <Dividends dividend="60">
+                    <Trains>
+                        <TrainSet distancePrimary="2">
+                            <DistanceSecondary>0</DistanceSecondary>
+                            <Cost>80</Cost>
+                            <Rust>4</Rust>
+                        </TrainSet>
+                        <TrainSet distancePrimary="2">
+                            <DistanceSecondary>0</DistanceSecondary>
+                            <Cost>80</Cost>
+                            <Rust>4</Rust>
+                        </TrainSet>
+                    </Trains>
+                    <GamePhase>2</GamePhase>
+                    <Payout>true</Payout>
+                </Dividends>
+            </Dividends>
             <President>0</President>
             <Open>true</Open>
             <PrivateDone>false</PrivateDone>
-            <TileDone>true</TileDone>
-            <StationDone>true</StationDone>
-            <DividendDone>true</DividendDone>
+            <TileDone>false</TileDone>
+            <StationDone>false</StationDone>
+            <DividendDone>false</DividendDone>
             <TrainDone>false</TrainDone>
-            <OpRoundDone>true</OpRoundDone>
+            <OpRoundDone>false</OpRoundDone>
         </Corporation>
         <Corporation name="NYC">
             <Index>1</Index>
@@ -303,33 +325,61 @@
                 </Certificates>
             </Certificates>
             <ShareParValue>100</ShareParValue>
-            <Marker value="100">
+            <Marker value="90">
                 <row>0</row>
                 <col>5</col>
-                <stack>7</stack>
+                <stack>8</stack>
             </Marker>
-            <Money>920</Money>
-            <Trains/>
+            <Money>640</Money>
+            <Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+            </Trains>
             <Stations>
                 <Stations cost="0">
                     <Build>true</Build>
                 </Stations>
                 <Stations cost="40">
-                    <Build>false</Build>
+                    <Build>true</Build>
                 </Stations>
                 <Stations cost="100">
                     <Build>false</Build>
                 </Stations>
             </Stations>
-            <Dividends/>
+            <Dividends>
+                <Dividends dividend="100">
+                    <Trains>
+                        <TrainSet distancePrimary="2">
+                            <DistanceSecondary>0</DistanceSecondary>
+                            <Cost>80</Cost>
+                            <Rust>4</Rust>
+                        </TrainSet>
+                        <TrainSet distancePrimary="2">
+                            <DistanceSecondary>0</DistanceSecondary>
+                            <Cost>80</Cost>
+                            <Rust>4</Rust>
+                        </TrainSet>
+                    </Trains>
+                    <GamePhase>2</GamePhase>
+                    <Payout>true</Payout>
+                </Dividends>
+            </Dividends>
             <President>1</President>
             <Open>true</Open>
             <PrivateDone>false</PrivateDone>
-            <TileDone>true</TileDone>
-            <StationDone>true</StationDone>
-            <DividendDone>true</DividendDone>
-            <TrainDone>true</TrainDone>
-            <OpRoundDone>true</OpRoundDone>
+            <TileDone>false</TileDone>
+            <StationDone>false</StationDone>
+            <DividendDone>false</DividendDone>
+            <TrainDone>false</TrainDone>
+            <OpRoundDone>false</OpRoundDone>
         </Corporation>
         <Corporation name="C&amp;O">
             <Index>4</Index>
@@ -492,27 +542,27 @@
             <Certificates>
                 <Certificates name="NNH-20">
                     <PercentValue>20</PercentValue>
-                    <Owner>91</Owner>
+                    <Owner>0</Owner>
                     <President>true</President>
                 </Certificates>
                 <Certificates name="NNH-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>91</Owner>
+                    <Owner>1</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="NNH-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>91</Owner>
+                    <Owner>0</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="NNH-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>91</Owner>
+                    <Owner>1</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="NNH-10">
                     <PercentValue>10</PercentValue>
-                    <Owner>91</Owner>
+                    <Owner>1</Owner>
                     <President>false</President>
                 </Certificates>
                 <Certificates name="NNH-10">
@@ -536,25 +586,31 @@
                     <President>false</President>
                 </Certificates>
             </Certificates>
-            <ShareParValue>0</ShareParValue>
-            <Marker value="0">
-                <row>0</row>
-                <col>0</col>
-                <stack>0</stack>
+            <ShareParValue>76</ShareParValue>
+            <Marker value="71">
+                <row>3</row>
+                <col>5</col>
+                <stack>8</stack>
             </Marker>
-            <Money>0</Money>
-            <Trains/>
+            <Money>680</Money>
+            <Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+            </Trains>
             <Stations>
                 <Stations cost="0">
-                    <Build>false</Build>
+                    <Build>true</Build>
                 </Stations>
                 <Stations cost="40">
                     <Build>false</Build>
                 </Stations>
             </Stations>
             <Dividends/>
-            <President>99</President>
-            <Open>false</Open>
+            <President>0</President>
+            <Open>true</Open>
             <PrivateDone>false</PrivateDone>
             <TileDone>false</TileDone>
             <StationDone>false</StationDone>
@@ -710,9 +766,9 @@
             <ParValue>220</ParValue>
             <Revenue>30</Revenue>
             <SpecialFunction>BO</SpecialFunction>
-            <Owner>1</Owner>
+            <Owner>99</Owner>
             <name>BO</name>
-            <owner>1</owner>
+            <owner>99</owner>
             <parValue>220</parValue>
             <revenue>30</revenue>
             <specialFunction>BO</specialFunction>
@@ -722,28 +778,8 @@
         <MaxMoney>12000</MaxMoney>
         <MaxCertificates>28</MaxCertificates>
         <CurrentPlayer>0</CurrentPlayer>
-        <PassNumber>2</PassNumber>
+        <PassNumber>0</PassNumber>
         <Trains>
-            <Trains distancePrimary="2">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>80</Cost>
-                <Rust>4</Rust>
-            </Trains>
-            <Trains distancePrimary="2">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>80</Cost>
-                <Rust>4</Rust>
-            </Trains>
-            <Trains distancePrimary="2">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>80</Cost>
-                <Rust>4</Rust>
-            </Trains>
-            <Trains distancePrimary="2">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>80</Cost>
-                <Rust>4</Rust>
-            </Trains>
             <Trains distancePrimary="2">
                 <DistanceSecondary>0</DistanceSecondary>
                 <Cost>80</Cost>
@@ -855,175 +891,12 @@
             <Cost>80</Cost>
             <Rust>4</Rust>
         </LastTrain>
-        <StockmarketRound>false</StockmarketRound>
-        <StockmarketRoundCounter>1</StockmarketRoundCounter>
-        <OperationRound>true</OperationRound>
+        <StockmarketRound>true</StockmarketRound>
+        <StockmarketRoundCounter>3</StockmarketRoundCounter>
+        <OperationRound>false</OperationRound>
         <OperationroundCounter>1</OperationroundCounter>
-        <OperationroundCorpOrder>
-            <OperationroundCorpOrder name="B&amp;O">
-                <Index>3</Index>
-                <Certificates>
-                    <Certificates name="B&amp;O-20">
-                        <PercentValue>20</PercentValue>
-                        <Owner>1</Owner>
-                        <President>true</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="B&amp;O-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                </Certificates>
-                <ShareParValue>100</ShareParValue>
-                <Marker value="100">
-                    <row>0</row>
-                    <col>5</col>
-                    <stack>7</stack>
-                </Marker>
-                <Money>920</Money>
-                <Trains/>
-                <Stations>
-                    <Stations cost="0">
-                        <Build>true</Build>
-                    </Stations>
-                    <Stations cost="40">
-                        <Build>false</Build>
-                    </Stations>
-                    <Stations cost="100">
-                        <Build>false</Build>
-                    </Stations>
-                </Stations>
-                <Dividends/>
-                <President>1</President>
-                <Open>true</Open>
-                <PrivateDone>false</PrivateDone>
-                <TileDone>true</TileDone>
-                <StationDone>true</StationDone>
-                <DividendDone>true</DividendDone>
-                <TrainDone>true</TrainDone>
-                <OpRoundDone>true</OpRoundDone>
-            </OperationroundCorpOrder>
-            <OperationroundCorpOrder name="PRR">
-                <Index>0</Index>
-                <Certificates>
-                    <Certificates name="PRR-20">
-                        <PercentValue>20</PercentValue>
-                        <Owner>0</Owner>
-                        <President>true</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>0</Owner>
-                        <President>false</President>
-                    </Certificates>
-                    <Certificates name="PRR-10">
-                        <PercentValue>10</PercentValue>
-                        <Owner>1</Owner>
-                        <President>false</President>
-                    </Certificates>
-                </Certificates>
-                <ShareParValue>100</ShareParValue>
-                <Marker value="100">
-                    <row>0</row>
-                    <col>5</col>
-                    <stack>6</stack>
-                </Marker>
-                <Money>920</Money>
-                <Trains>
-                    <Trains distancePrimary="2">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>80</Cost>
-                        <Rust>4</Rust>
-                    </Trains>
-                </Trains>
-                <Stations>
-                    <Stations cost="0">
-                        <Build>true</Build>
-                    </Stations>
-                    <Stations cost="40">
-                        <Build>false</Build>
-                    </Stations>
-                    <Stations cost="100">
-                        <Build>false</Build>
-                    </Stations>
-                </Stations>
-                <Dividends/>
-                <President>0</President>
-                <Open>true</Open>
-                <PrivateDone>false</PrivateDone>
-                <TileDone>true</TileDone>
-                <StationDone>true</StationDone>
-                <DividendDone>true</DividendDone>
-                <TrainDone>false</TrainDone>
-                <OpRoundDone>true</OpRoundDone>
-            </OperationroundCorpOrder>
-        </OperationroundCorpOrder>
-        <PrivatesDone>true</PrivatesDone>
+        <OperationroundCorpOrder/>
+        <PrivatesDone>false</PrivatesDone>
     </Gameplay>
     <Stockmarket>
         <Code>
@@ -1491,15 +1364,20 @@
         <Rows>11</Rows>
         <Cols>19</Cols>
         <CorporationPositions>
-            <CorporationPositions value="100">
+            <CorporationPositions value="82">
                 <row>0</row>
-                <col>5</col>
-                <stack>7</stack>
+                <col>4</col>
+                <stack>8</stack>
             </CorporationPositions>
-            <CorporationPositions value="100">
-                <row>0</row>
-                <col>5</col>
-                <stack>6</stack>
+            <CorporationPositions value="82">
+                <row>2</row>
+                <col>6</col>
+                <stack>8</stack>
+            </CorporationPositions>
+            <CorporationPositions value="76">
+                <row>3</row>
+                <col>6</col>
+                <stack>8</stack>
             </CorporationPositions>
         </CorporationPositions>
     </Stockmarket>

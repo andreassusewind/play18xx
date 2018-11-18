@@ -69,4 +69,12 @@ public class Player implements Serializable {
 	public void setMoney(int money) {
 		Money = money;
 	}
+
+	public List<Integer> getSoldCorps() {
+		return SoldCorps;
+	}
+
+	public void setSoldCorps(List<Integer> soldCorps) {
+		SoldCorps = soldCorps;
+	}
 }

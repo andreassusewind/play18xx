@@ -25,7 +25,7 @@ public class CorporationPosition implements Serializable {
 	@XmlElement
 	private int col; // begins with 0
 	@XmlElement
-	private int stack; // default 8
+	private int stack; // default 8 BUT on changing positions first default must be 9 as in the setStack this is compared also with corp(this) ;-)
 	@XmlAttribute
 	private int value = 0;
 
@@ -50,7 +50,7 @@ public class CorporationPosition implements Serializable {
 	private void setStack(Basic basic) {
 		for (Corporation corp : basic.getCorporations()) {
 			if (corp.getMarker().getValue() > 0) {
-				if (corp.getMarker().getRow() == this.row && corp.getMarker().getCol() == this.col) {
+				if (corp.getMarker().getRow() == this.row && corp.getMarker().getCol() == this.col) { 
 					if (this.stack >= corp.getMarker().getStack()) {
 						this.stack = corp.getMarker().getStack() - 1;
 					}
@@ -62,26 +62,28 @@ public class CorporationPosition implements Serializable {
 	public void setUp(Basic basic) {
 		if (this.row > 0) {
 			this.row = this.row - 1;
-			this.stack = 8;
+			this.stack = 9;
 			setStack(basic);
 		}
+		setValue(basic);
 	}
 
 	public void setLeft(Basic basic) {
 		if (this.col > 0) {
 			this.col = this.col - 1;
-			this.stack = 8;
+			this.stack = 9;
 			setStack(basic);
 		} else {
 			setDown(basic);
 		}
+		setValue(basic);
 	}
 
 	public void setRight(Basic basic) {
 		if (this.col < basic.getStockmarket().getCols() - 1) {
 			if (basic.getStockmarket().getCode()[this.row][this.col + 1] > 0) {
 				this.col = this.col + 1;
-				this.stack = 8;
+				this.stack = 9;
 				setStack(basic);
 			}
 		} else {
@@ -91,14 +93,16 @@ public class CorporationPosition implements Serializable {
 				}
 			}
 		}
+		setValue(basic);
 	}
 
 	public void setDown(Basic basic) {
 		if (basic.getStockmarket().getCode()[this.row + 1][this.col] > 0) {
 			this.row = this.row + 1;
-			this.stack = 8;
+			this.stack = 9;
 			setStack(basic);
 		}
+		setValue(basic);
 	}
 
 	public static Comparator<CorporationPosition> ValueComparator = new Comparator<CorporationPosition>() {

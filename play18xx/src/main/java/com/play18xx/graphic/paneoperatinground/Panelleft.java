@@ -144,13 +144,6 @@ public class Panelleft extends JPanel{
 			});
 			if(corp.isOpRoundDone()) { corpbutton.setEnabled(false); }
 			panelleftmiddel.add(corpbutton, c);
-/*			JLabel label = new JLabel(corp.getOpRoundDone());
-			c.weighty = 0.1;
-			c.gridx = 2;
-			c.gridy = COUNTER;
-			c.gridwidth = 1;
-			c.insets = new Insets(10, 0, 0, 0);
-			panelleftmiddel.add(label, c);*/
 			COUNTER = COUNTER + 1;
 		}
 				
@@ -163,16 +156,9 @@ public class Panelleft extends JPanel{
 		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (basic.getGameplay().getOperationroundCounter() < basic.getGameplay().getMaxOperationrounds()) {
-//					basic.getGameplay().setOperationroundCounter(basic.getGameplay().getOperationroundCounter() + 1);
-//					refreshAll();
-//					basic.buildGraphics();
-//					basic.getTP().setSelectedIndex(tabpos);
+					basic.newOperationRound();
 				} else {
-//					basic.getGameplay().setOperationroundCounter(1);
-//					basic.getGameplay().setPassNumber(0);
-//					refreshAll();
-//					basic.buildGraphics();
-//					basic.getTP().setSelectedIndex(0);
+					basic.switchToStockMarketRound();
 				}
 			}
 		});

@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.play18xx.material.Basic;
-import com.play18xx.material.Certificate;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.CorporationPosition;
 import com.play18xx.material.Player;

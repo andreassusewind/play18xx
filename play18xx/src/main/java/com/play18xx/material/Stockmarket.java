@@ -74,9 +74,13 @@ public class Stockmarket implements Serializable {
 		/*
 		 * BUY OPTIONS: : Player has not enough money for min(Bank or initial share)
 		 * 
-		 * 38: Shares are lying on Initial stock AND President share is NOT lying on Initial Stock
+		 * 29: Shares are lying on Bank Stock AND player has enough money
 		 * 
-		 * 39: Shares are lying on Initial stock AND President share is lying on Initial Stock
+		 * 37: Shares are lying on Initial stock AND on Bank Stock (AND President share is NOT lying on Initial Stock) AND player has enough money
+		 * 
+		 * 38: Shares are lying on Initial stock AND President share is NOT lying on Initial Stock AND player has enough money
+		 * 
+		 * 39: Shares are lying on Initial stock AND President share is lying on Initial Stock AND player has enough money
 		 * 
 		 * : CorporationPosition is in Brown Colored Area -> Buy as much as you like :
 		 * 51 + CorporationPosition is in Orange or lower Colored Area -> Buy more than
@@ -92,32 +96,33 @@ public class Stockmarket implements Serializable {
 		 * sold share from Corp -> BankPool Certificates has player number : no normal
 		 * share in Initial Stock or Bank Pool -> 38
 		 * 
-		 * 95: If the game begins there is no by option until the Privates are sold
+		 * 91: If the player has sold a Certificate of the Corporation it could not be bought any Certificate of the Corporation
 		 * 
-		 * 97: If you sell certificates in a corporation, you may not later buy certificates in that corporation in the same stock round.
+		 * 95: If the game begins (0 on StockmarketRoundCounter) there is no by option until the Privates are sold
+		 * 
+		 * 
 		 */
 
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 		
-		if(corp.getInitialStock().size() > 0) {
-			if(corp.getInitialStock().get(0).isPresident()) {
-				if(player.getMoney() >= 128) {return 39;}
-				}
-			else {
-				return 38;
-			}
+		if(player.getSoldCorps().contains(corp.getIndex())) { return 91; }
+		
+		
+		if(corp.getInitialStock().size() > 0 ) {
+			if(corp.getInitialStock().get(0).isPresident()  
+					&& player.getMoney() >= 128) { return 39; }
+			
+			if(!corp.getInitialStock().get(0).isPresident() 
+					&& corp.getBankStock().size() > 0
+					&& player.getMoney() >= corp.getMarker().getValue()) { return 37;}
+			
+			if(!corp.getInitialStock().get(0).isPresident() 
+					&& player.getMoney() >= 64 ) { return 38; }
 		}
 
-/*		if (corp.getInitialStock().size() > 0) { // if shares are on the initial stock
-			if (corp.getInitialStock().get(0).isPresident()) { // 39: President share is lying in Initial Stock -> set
-																// Par Value (Drop-Down-List)
-				Buyoption = 39;
-			} else { // 38: Normal share is lying in Initial Stock or Bank Pool -> buy from bank or
-						// initial (Drop-Down-List)
-				Buyoption = 38;
-			}
-		}*/
-		
+		if(corp.getBankStock().size() > 0) {
+			if(player.getMoney() >= corp.getMarker().getValue()) { return 29; }
+		}
 		
 		
 //		if(player.soldCorp(corp)) { return 97; }
@@ -131,21 +136,22 @@ public class Stockmarket implements Serializable {
 		 * 
 		 * 49: Player has certs of corp
 		 * 
+		 * 93: If the corporation has min 50% shares in the BankPool
+		 * 
 		 * 95: If the game begins there is no by option until the Privates are sold
 		 * 
 		 * 
 		 * 98: Certificates may not be sold in the first stock round
 		 * 
 		 */
-		int Selloption = 99;
 		
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 		if(basic.getGameplay().getStockmarketRoundCounter()==1) {return 98;}
+		if(corp.getBankStockShare() >= 50) {return 93;}
 		
-//		for(Certificate cert : player.getCertificates()) { if( cert.getCorporation().equals(corp) ) { return 49; } }
-
-
-		return (Selloption);
+		for(Certificate cert : corp.getCertificates()) {if(cert.getOwner() == player.getIndex()) {return 49;}}
+		
+		return 99;
 	}
 
 	public void pass(Basic basic) {

@@ -43,7 +43,7 @@ public class Certificate implements Serializable {
 			return CertName1.compareTo(CertName2);
 		}
 	};
-
+	
 	public String getName() {
 		return Name;
 	}

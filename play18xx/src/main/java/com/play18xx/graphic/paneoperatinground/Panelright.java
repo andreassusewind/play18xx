@@ -16,14 +16,14 @@ import javax.swing.event.DocumentListener;
 
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
-import com.play18xx.material.Player;
+import com.play18xx.material.Dividend;
 import com.play18xx.material.Station;
 import com.play18xx.material.Train;
 
 public class Panelright extends JPanel{
 	private final static int tabpos = 1;
 
-	JPanel player;
+	JPanel player = new JPanel();
 	int lastincome;
 	int trainbuyindex;
 	/**
@@ -205,7 +205,9 @@ public class Panelright extends JPanel{
 			c.insets = new Insets(40, 0, 0, 0);
 			this.add(label, c);
 
-			if(corp.getDividends().size()>0) {lastincome = corp.getDividends().get(corp.getDividends().size()-1).getDividend();} else {lastincome = 50;}
+			if(corp.getDividends().size()>0) 
+				{lastincome = corp.getDividends().get(corp.getDividends().size()-1).getDividend();} 
+			else {lastincome = 50;}
 			JTextField income = new JTextField(String.valueOf(lastincome), 5);
 			c.gridx = 0;
 			c.gridy = 3;
@@ -213,15 +215,15 @@ public class Panelright extends JPanel{
 			c.anchor = GridBagConstraints.CENTER;
 			c.insets = new Insets(10, 0, 0, 0);
 			this.add(income, c);
-			int[] revenue = corp.getPlayerShares(basic.getPlayers());
-			int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
+			int[] revenue = corp.getPlayerShares();
+			int[] pincome = corp.getPlayerIncome(Integer.parseInt((String) income.getText()));
 			DocumentListener incomelistener = new DocumentListener() {
 				@Override
 				public void insertUpdate(DocumentEvent e) {
 					lastincome = Integer.parseInt(income.getText());
 					basic.getTP().getPOR().getPanelright().remove(player);
-					int[] revenue = corp.getPlayerShares(basic.getPlayers());
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
+					int[] revenue = corp.getPlayerShares();
+					int[] pincome = corp.getPlayerIncome(Integer.parseInt((String) income.getText()));
 					player = setPanelDividendtoPlayer(basic, revenue, pincome);
 					c.gridx = 0;
 					c.gridy = 6;
@@ -239,8 +241,8 @@ public class Panelright extends JPanel{
 				public void changedUpdate(DocumentEvent e) {
 					lastincome = Integer.parseInt(income.getText());
 					basic.getTP().getPOR().getPanelright().remove(player);
-					int[] revenue = corp.getPlayerShares(basic.getPlayers());
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
+					int[] revenue = corp.getPlayerShares();
+					int[] pincome = corp.getPlayerIncome(Integer.parseInt((String) income.getText()));
 					player = setPanelDividendtoPlayer(basic, revenue, pincome);
 					c.gridx = 0;
 					c.gridy = 6;
@@ -260,11 +262,17 @@ public class Panelright extends JPanel{
 			c.insets = new Insets(10, 0, 0, 0);
 			toplayer.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int[] pincome = corp.getPlayerIncome(basic.getPlayers().size(), Integer.parseInt((String) income.getText()));
-					for (Player player : basic.getPlayers()) {
-						player.increaseMoney(pincome[player.getIndex()]);
+					int[] pincome = corp.getPlayerIncome(Integer.parseInt((String) income.getText()));
+					for(int i=0; i<pincome.length; i++) {
+						basic.getPlayers().get(i).increaseMoney(pincome[i]);
 					}
+					corp.increaseMoney((int) ( ( (double)corp.getBankStockShare() / 100 ) * Integer.parseInt((String) income.getText())));
 					corp.getMarker().setRight(basic);
+					corp.getDividends().add(new Dividend(
+							Integer.parseInt((String) income.getText()), 
+							corp.getTrains(),
+							basic.getGameplay().getStockmarketRoundCounter(),
+							true));
 					corp.setDividendDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
@@ -285,6 +293,11 @@ public class Panelright extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					corp.increaseMoney(Integer.parseInt((String) income.getText()));
 					corp.getMarker().setLeft(basic);
+					corp.getDividends().add(new Dividend(
+							Integer.parseInt((String) income.getText()), 
+							corp.getTrains(),
+							basic.getGameplay().getStockmarketRoundCounter(),
+							false));
 					corp.setDividendDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
@@ -400,7 +413,7 @@ public class Panelright extends JPanel{
 				corp.getTrains().add(basic.getGameplay().getTrains().get(0));
 				basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(0));
 				basic.getGameplay().getTrains().remove(0);
-				corp.setTrainDone(true);
+//				corp.setTrainDone(true);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
@@ -500,7 +513,7 @@ public class Panelright extends JPanel{
 					buycorp.increaseMoney(Integer.valueOf(trainvalue.getText()));
 					corp.getTrains().add(buycorp.getTrains().get(trainbox.getSelectedIndex()));
 					buycorp.getTrains().remove(trainbox.getSelectedIndex());
-					corp.setTrainDone(true);
+//					corp.setTrainDone(true);
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);

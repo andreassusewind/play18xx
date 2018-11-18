@@ -30,6 +30,13 @@ public class Dividend implements Serializable {
 
 	public Dividend() {
 	}
+	
+	public Dividend(int div, List<Train> TrainSet, int GamePhase, boolean payout) {
+		this.Dividend = div;
+		this.TrainSet = TrainSet;
+		this.GamePhase = GamePhase;
+		this.Payout = payout;
+	}
 
 	public int getDividend() {
 		return Dividend;

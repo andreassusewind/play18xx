@@ -62,7 +62,7 @@ public class PaneStockmarket {
 			c.gridwidth = 1;
 			c.insets = new Insets(0, 0, 0, 0);
 
-			// BUY BUTTONS
+			// BUY/SELL BUTTONS
 			for (int i = 0; i < basic.getCorporations().size(); i++) {
 				Corporation corp = basic.getCorporations().get(i);
 
@@ -82,7 +82,6 @@ public class PaneStockmarket {
 				c.gridy = i + 2;
 				c.gridheight = 1;
 				c.gridwidth = 1;
-//				if(buyoption < 50) {panel.add(corpbuy[i], c);} // only buttons with a coded buyoption (value < 50) is shown
 				if (buyoption < 50) {
 					corpbuy[i].setEnabled(true);
 				} else {
@@ -90,17 +89,18 @@ public class PaneStockmarket {
 				}
 				panel.add(corpbuy[i], c);
 
-//					selloption function must be set
+				
+				corpsell[i] = new JButton(basic.getCorporations().get(i).getName() + " sell");
+				corpsell[i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						WindowSell.setWindowSell(basic, corp, 
+								basic.getPlayers().get(basic.getGameplay().getCurrentPlayer()), selloption);
+					}
+				});
 				c.gridx = 2;
 				c.gridy = i + 2;
 				c.gridheight = 1;
 				c.gridwidth = 1;
-				corpsell[i] = new JButton(basic.getCorporations().get(i).getName() + " sell");
-				corpsell[i].addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-					}
-				});
 				if (selloption < 50) {
 					corpsell[i].setEnabled(true);
 				} else {

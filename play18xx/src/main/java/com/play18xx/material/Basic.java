@@ -1,9 +1,5 @@
 package com.play18xx.material;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +29,6 @@ public class Basic implements Serializable {
 	private Gameplay Gameplay;
 	private Stockmarket Stockmarket;
 	private FrameMain TP;
-//	private PaneOperatingRound_OLD POR = new PaneOperatingRound_OLD();
 
 	public Basic() {
 		this.TP = new FrameMain();
@@ -110,12 +105,37 @@ public class Basic implements Serializable {
 		this.getTP().setSelectedIndex(1);
 	}
 
+	public void newOperationRound() {
+		System.out.println("Basic:newOperationRound - not implemented");
+/*		basic.getGameplay().setOperationroundCounter(basic.getGameplay().getOperationroundCounter() + 1);
+		basic.getTP().refreshPOR();
+		basic.buildGraphics();
+		basic.getTP().setSelectedIndex(tabpos);*/
+		
+	}
+	
 	public void switchToStockMarketRound() {
-		this.Gameplay.getOperationroundCorpOrder().clear();
-		this.getGameplay().setOperationRound(false);
-		this.getGameplay().setStockmarketRound(true);
+		if(this.Gameplay.isOperationRound()) {
+			this.getTP().refreshPOR();
+			
+			for(Corporation corp : this.Gameplay.getOperationroundCorpOrder()) {
+				corp.resetDoneFlags();
+			}
+			
+			for(Player player : this.Players) {
+				player.setSoldCorps(new ArrayList<Integer>());
+			}
+			
+			this.Gameplay.setPrivatesDone(false);
+			this.Gameplay.setPassNumber(0);
+			this.Gameplay.setOperationroundCounter(1);
+			this.Gameplay.increaseStockmarketRoundCounter();
+			this.Gameplay.getOperationroundCorpOrder().clear();
+			this.getGameplay().setOperationRound(false);
+			this.getGameplay().setStockmarketRound(true);
+		}
 		this.buildGraphics();
-		this.getTP().setSelectedIndex(1);
+		this.getTP().setSelectedIndex(0);
 	}
 	
 	public int getCorporationIndex(String Name) {
@@ -143,22 +163,6 @@ public class Basic implements Serializable {
 		return certs;
 	}
 	
-/*	public void asave() {
-		try {
-			// write object to file
-			//FileOutputStream fos = new FileOutputStream("/home/andreas/eclipse-workspace/play18xx/save.1830");
-			FileOutputStream fos = new FileOutputStream("../save.1830");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(this);
-			oos.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}*/
-
 	public List<Player> getPlayers() {
 		return Players;
 	}

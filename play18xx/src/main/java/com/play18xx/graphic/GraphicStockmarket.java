@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 import com.play18xx.material.Basic;
+import com.play18xx.material.Certificate;
 import com.play18xx.material.Corporation;
 
 public class GraphicStockmarket extends JComponent {
@@ -88,29 +89,10 @@ public class GraphicStockmarket extends JComponent {
 				g.drawString(Integer.toString(corp.getIndex() + 1), xpos + xoff, ypos + yoff);
 			}
 		}
-		/*
-		 * for(int i=1; i<=basic.getStockmarket().getCorporationPositions().size(); i++)
-		 * {
-		 * System.out.println(basic.getStockmarket().getCorporationPositions().get(i-1).
-		 * getRow()); int xpos =
-		 * (basic.getStockmarket().getCorporationPositions().get(i-1).getCol() * 50) +
-		 * 5; int ypos =
-		 * (basic.getStockmarket().getCorporationPositions().get(i-1).getRow() * 50) +
-		 * 10 + ((8 -
-		 * basic.getStockmarket().getCorporationPositions().get(i-1).getStack()) * 10);
-		 * int xoff; int yoff;
-		 * if(basic.getStockmarket().getCorporationPositions().get(i-1).getStack() > 4)
-		 * {xoff = 0; yoff = 0;} else {xoff = 12; yoff = -40;} g.setColor(Color.BLACK);
-		 * g.fillOval( xpos+xoff-4, ypos+yoff-10, 12, 12); g.setColor(Color.WHITE);
-		 * g.drawString(Integer.toString(basic.getStockmarket().getCorporationPositions(
-		 * ).get(i-1).getCorp().getCorporationNumber(basic) +1 ), xpos+xoff, ypos+yoff);
-		 * }
-		 */
-// Set the overview of corp details
+// Set the overview of Corporation details
 		int xpos = 10;
 		int yoff = basic.getStockmarket().getRows() * 50 + 10;
-		int xoffintialstock = basic.getCorporations().get(0).getCertificates().size() * 20 + 20; // factor with
-																									// initialstock
+		int xoffintialstock = basic.getCorporations().get(0).getCertificates().size() * 20 + 20; 
 		g.setColor(Color.BLACK);
 		g.drawString("Player", xpos + 60, yoff + 10);
 		g.drawString("shares", xpos + 60, yoff + 20);
@@ -121,32 +103,29 @@ public class GraphicStockmarket extends JComponent {
 		g.drawString("Bank", xpos + 160 + xoffintialstock, yoff + 10);
 		g.drawString("stock", xpos + 160 + xoffintialstock, yoff + 20);
 
-		for (int i = 0; i < basic.getCorporations().size(); i++) {
-			int ypos = i * 20 + 40 + yoff;// this.corps[i].getCorporationnumber()*20 + 40 + yoff;
+		
+		for(Corporation corp : basic.getCorporations()) {
+			int ypos = corp.getIndex() * 20 + 40 + yoff;// this.corps[i].getCorporationnumber()*20 + 40 + yoff;
 			g.setColor(Color.BLACK);
 			g.fillOval(xpos - 4, ypos - 10, 12, 12);
 			g.setColor(Color.WHITE);
-			g.drawString(Integer.toString(i + 1), xpos, ypos); // this.corps[i].getCorporationnumber() + 1 ), xpos,
-																// ypos);
+			g.drawString(Integer.toString(corp.getIndex() + 1), xpos, ypos);
 
 			g.setColor(Color.BLACK);
-			g.drawString(basic.getCorporations().get(i).getName(), xpos + 20, ypos);
-			g.drawString(Integer.toString(basic.getCorporations().get(i).getSoldShares()) + " %", xpos + 60, ypos);
-			g.drawString(Integer.toString(basic.getCorporations().get(i).getShareParValue()), xpos + 120, ypos);
-
-// set values for the initial stock per corp
-/*			for (int j = 1; j <= basic.getCorporations().get(i).getInitialStock().size(); j++) {
-				g.drawString(
-						Integer.toString(basic.getCorporations().get(i).getInitialStock().get(j - 1).getPercentValue()),
-						xpos + 160 + ((j - 1) * 20), ypos);
-			}*/
-
-// set values for the bank stock per corp
-/*			for (int j = 1; j <= basic.getCorporations().get(i).getBankPool().size(); j++) {
-				g.drawString(
-						Integer.toString(basic.getCorporations().get(i).getBankPool().get(j - 1).getPercentValue()),
-						xpos + 160 + xoffintialstock + (j * 20), ypos);
-			}*/
+			g.drawString(corp.getName(), xpos + 20, ypos);
+			g.drawString(Integer.toString(corp.getSoldShares()) + " %", xpos + 60, ypos);
+			g.drawString(Integer.toString(corp.getShareParValue()), xpos + 120, ypos);
+			
+			int COUNTER = 1;
+			for(Certificate cert : corp.getInitialStock()) {
+				g.drawString(Integer.toString(cert.getPercentValue()), xpos + 160 + ((COUNTER - 1) * 20), ypos);
+				COUNTER = COUNTER + 1;
+			}
+			COUNTER = 1;
+			for(Certificate cert : corp.getBankStock()) {
+				g.drawString(Integer.toString(cert.getPercentValue()), xpos + 160 + xoffintialstock + (COUNTER * 20), ypos);
+				COUNTER = COUNTER + 1;
+			}
 		}
 	}
 
