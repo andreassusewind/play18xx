@@ -112,7 +112,7 @@ public class Stockmarket implements Serializable {
 		
 		if(player.getPlayersCertsCount(basic) >= basic.getGameplay().getMaxCertificates()) { return 97; }
 		
-		if(corp.getPlayerShares(player) >= 60 ) { return 89; }
+		if(corp.getPlayerShares(player) >= 60 && corp.getMarker().CountToCorpLimit(basic)) { return 89; }
 		
 		if(corp.getInitialStock().size() > 0 ) {
 			if(corp.getInitialStock().get(0).isPresident()  
