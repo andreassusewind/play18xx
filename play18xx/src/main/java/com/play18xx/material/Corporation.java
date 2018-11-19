@@ -199,6 +199,21 @@ public class Corporation implements Serializable {
 		}
 	}
 	
+	public void buyShares(Basic basic, Player player, int quantity, int buyoption) {
+		if(quantity > 0) {
+			for(int i=0; i<quantity; i++) {
+				for(Certificate cert : this.Certificates) {
+					if(cert.getOwner() == buyoption && !cert.isPresident()) {
+						cert.setOwner(player.getIndex());
+						if(buyoption == 91) {player.decreaseMoney(this.ShareParValue);}
+						if(buyoption == 92) {player.decreaseMoney(this.Marker.getValue());}
+						break;
+					}
+				}
+			}
+		}
+	}
+	
 	public void checkPresident() {
 		int[] PlayerShares = getPlayerShares();
 		for(int i=0; i<PlayerShares.length; i++) {

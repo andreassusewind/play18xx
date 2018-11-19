@@ -74,6 +74,11 @@ public class Stockmarket implements Serializable {
 		/*
 		 * BUY OPTIONS: : Player has not enough money for min(Bank or initial share)
 		 * 
+		 * 10: Marker lies on a brown field on stock market (not a return value -> 11,12,13)
+		 * 11: 10-> only initial stock (NOT ALLOWED)
+		 * 12: 10-> only bank stock
+		 * 13: 10-> bank AND initial stock (NOT ALLOWED)
+		 * 
 		 * 29: Shares are lying on Bank Stock AND player has enough money
 		 * 
 		 * 37: Shares are lying on Initial stock AND on Bank Stock (AND President share is NOT lying on Initial Stock) AND player has enough money
@@ -106,13 +111,23 @@ public class Stockmarket implements Serializable {
 		 * 97: Player exceeds the shares limit
 		 */
 
-		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
+		if(basic.getGameplay().getStockmarketRoundCounter()==0) { return 95;}
 		
 		if(player.getSoldCorps().contains(corp.getIndex())) { return 91; }
 		
 		if(player.getPlayersCertsCount(basic) >= basic.getGameplay().getMaxCertificates()) { return 97; }
 		
 		if(corp.getPlayerShares(player) >= 60 && corp.getMarker().CountToCorpLimit(basic)) { return 89; }
+		
+		if(!corp.getMarker().CountToBuyLimit(basic)) {
+			if(corp.getInitialStock().size() > 0) {
+				if(corp.getBankStock().size() > 0) { return 13; }
+				else                               { return 11; }
+			}
+			else {
+				if(corp.getBankStock().size() > 0) { return 12; }
+			}
+		}
 		
 		if(corp.getInitialStock().size() > 0 ) {
 			if(corp.getInitialStock().get(0).isPresident()  
@@ -130,9 +145,6 @@ public class Stockmarket implements Serializable {
 			if(player.getMoney() >= corp.getMarker().getValue()) { return 29; }
 		}
 		
-		
-//		if(player.soldCorp(corp)) { return 97; }
-
 		return 99;
 	}
 

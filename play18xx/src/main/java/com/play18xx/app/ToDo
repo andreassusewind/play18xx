@@ -1,22 +1,8 @@
- The shares of any corporation whose share value token is in an 
-orange or brown grid box
- may be held in excess of the individual 
-corporation certificate limit (60%).
-
--> Restrictions in buyoptions for 60% limit (DONE)
---> Exceed of the limit in the buyoptions
+on buyoption 37 max function for player money
 --------------------------------------------------------------------------------
- During your turn in a stock round, you may purchase any 
-number of certificates from the bank pool of one corporation 
-whose share value token is in a 
-brown grid box
-. This purchase 
-counts as your one certificate purchase for the turn.
-
--> return option in buyoption
+buy from bank stock -> BuyWindow on buyoption 29
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+on buy functions check for president
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
