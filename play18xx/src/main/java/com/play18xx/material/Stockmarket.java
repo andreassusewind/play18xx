@@ -136,6 +136,13 @@ public class Stockmarket implements Serializable {
 		 * 
 		 * 49: Player has certs of corp
 		 * 
+		 * 91: Note that the owner of the CA private company receives a free 
+		 * share (10%) of the PRR. This share cannot be sold until the
+		 * president’s certificate has been purchased, thereby setting the
+		 * value of the PRR share. 
+		 * --> Implemented for all Corporations; if the President share is not sold
+		 * from initial stock no other share could sold
+		 * 
 		 * 93: If the corporation has min 50% shares in the BankPool
 		 * 
 		 * 95: If the game begins there is no by option until the Privates are sold
@@ -148,6 +155,7 @@ public class Stockmarket implements Serializable {
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 		if(basic.getGameplay().getStockmarketRoundCounter()==1) {return 98;}
 		if(corp.getBankStockShare() >= 50) {return 93;}
+		if(corp.getCertificates().get(0).getOwner() == 91) {return 91;}
 		
 		for(Certificate cert : corp.getCertificates()) {if(cert.getOwner() == player.getIndex()) {return 49;}}
 		

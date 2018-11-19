@@ -105,6 +105,14 @@ public class Corporation implements Serializable {
 		return PlayerShares;
 	}
 	
+	public int getPlayersCertsCount(Player player) {
+		int pc = 0;
+		for(Certificate cert : this.Certificates) {
+			if(cert.getOwner() == player.getIndex()) {pc++;}
+		}
+		return pc;
+	}
+	
 	public int getSaleableShares(int owner) {
 		int OSC = 0;		
 		int PSC = 0;

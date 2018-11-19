@@ -59,5 +59,10 @@ public class GraphicPlayer extends JComponent {
 			ypos = ypos + 10;
 			g.drawString(cert.getName(), xpos1, ypos);
 		}
+		
+		ypos = ypos + 10;
+		g.drawString("----------------", xpos1, ypos);
+		ypos = ypos + 10;
+		g.drawString("Total: " + player.getPlayersCertsCount(basic), xpos1, ypos);
 	}
 }
