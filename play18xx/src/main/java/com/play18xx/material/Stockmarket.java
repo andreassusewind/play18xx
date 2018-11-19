@@ -96,6 +96,9 @@ public class Stockmarket implements Serializable {
 		 * sold share from Corp -> BankPool Certificates has player number : no normal
 		 * share in Initial Stock or Bank Pool -> 38
 		 * 
+		 * 89: If the player holds 60% of an corporation it could be bought any further
+		 * -- is overruled by...
+		 * 
 		 * 91: If the player has sold a Certificate of the Corporation it could not be bought any Certificate of the Corporation
 		 * 
 		 * 95: If the game begins (0 on StockmarketRoundCounter) there is no by option until the Privates are sold
@@ -109,6 +112,7 @@ public class Stockmarket implements Serializable {
 		
 		if(player.getPlayersCertsCount(basic) >= basic.getGameplay().getMaxCertificates()) { return 97; }
 		
+		if(corp.getPlayerShares(player) >= 60 ) { return 89; }
 		
 		if(corp.getInitialStock().size() > 0 ) {
 			if(corp.getInitialStock().get(0).isPresident()  
