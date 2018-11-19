@@ -130,7 +130,7 @@ public class Gameplay implements Serializable {
 		CurrentPlayer = currentPlayer;
 	}
 	
-	public void setCurrentPlayer(Basic basic) {
+	public void increaseCurrentPlayer(Basic basic) {
 		CurrentPlayer = ((CurrentPlayer + 1) % basic.getPlayers().size());
 	}
 

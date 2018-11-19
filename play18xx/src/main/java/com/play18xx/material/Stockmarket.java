@@ -100,12 +100,14 @@ public class Stockmarket implements Serializable {
 		 * 
 		 * 95: If the game begins (0 on StockmarketRoundCounter) there is no by option until the Privates are sold
 		 * 
-		 * 
+		 * 97: Player exceeds the shares limit
 		 */
 
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {return 95;}
 		
 		if(player.getSoldCorps().contains(corp.getIndex())) { return 91; }
+		
+		if(player.getPlayersCertsCount(basic) >= basic.getGameplay().getMaxCertificates()) { return 97; }
 		
 		
 		if(corp.getInitialStock().size() > 0 ) {

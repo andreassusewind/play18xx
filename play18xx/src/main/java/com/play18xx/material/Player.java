@@ -41,12 +41,26 @@ public class Player implements Serializable {
 	public int getPlayersCertsCount(Basic basic) {
 		int pc = 0;
 		for(Corporation corp : basic.getCorporations()) {
-			pc = pc + corp.getPlayersCertsCount(this);
+			if(corp.getMarker().CountToShareLimit(basic)) {
+				pc = pc + corp.getPlayersCertsCount(this);
+			}
 		}
 		for(Private priv : basic.getPrivates()) {
 			if(priv.getOwner() == this.Index) {pc++;}
 		}
 		return pc;
+	}
+	
+	public int getPlayersCertsOverall(Basic basic) {
+		int pc = 0;
+		for(Corporation corp : basic.getCorporations()) {
+				pc = pc + corp.getPlayersCertsCount(this);
+		}
+		for(Private priv : basic.getPrivates()) {
+			if(priv.getOwner() == this.Index) {pc++;}
+		}
+		return pc;
+		
 	}
 
 	public void increaseMoney(int diff) {

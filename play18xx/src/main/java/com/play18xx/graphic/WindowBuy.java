@@ -26,6 +26,9 @@ public class WindowBuy {
 
 		//For Buyoptions search in material.Stockmarket.java
 		switch (buyoption) {
+		case 37:
+			BuyNormalShareInitialBank(basic, corp, player, frame, c);
+			break;
 		case 38:
 			BuyNormalShareInitialStock(basic, corp, player, frame, c);
 			break;
@@ -42,6 +45,82 @@ public class WindowBuy {
 		frame.setVisible(true);
 	}
 
+	private static void BuyNormalShareInitialBank(Basic basic, Corporation corp, Player player, JFrame frame,
+			GridBagConstraints c) {
+
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 2;
+		JLabel label = new JLabel(player.getName());
+		frame.add(label, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.gridwidth = 2;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("Get share from");
+		frame.add(label, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.gridwidth = 2;
+		c.insets = new Insets(10, 0, 0, 0);
+		label = new JLabel(corp.getName());
+		frame.add(label, c);
+
+		c.gridx = 0;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("for " + corp.getShareParValue());
+		frame.add(label, c);
+
+		c.gridx = 0;
+		c.gridy = 5;
+		c.gridwidth = 1;
+		JButton initial = new JButton("Buy from Initial Stock");
+		initial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.decreaseMoney(corp.getShareParValue()); 
+				corp.getInitialStock().get(0).setOwner(player.getIndex());
+				basic.getGameplay().increaseCurrentPlayer(basic);
+				basic.getGameplay().setPassNumber(0);
+
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		frame.add(initial, c);
+
+	
+		c.gridx = 1;
+		c.gridy = 3;
+		c.gridwidth = 0;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("for " + corp.getMarker().getValue());
+		frame.add(label, c);
+
+		c.gridx = 1;
+		c.gridy = 5;
+		c.gridwidth = 0;
+		JButton bank = new JButton("Buy from Bank Stock");
+		bank.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.decreaseMoney(corp.getMarker().getValue()); 
+				corp.getBankStock().get(0).setOwner(player.getIndex());
+				basic.getGameplay().increaseCurrentPlayer(basic);
+				basic.getGameplay().setPassNumber(0);
+
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		frame.add(bank, c);
+		frame.setSize(400, 300);
+	}
+	
 	private static void BuyNormalShareInitialStock(Basic basic, Corporation corp, Player player, JFrame frame,
 			GridBagConstraints c) {
 
@@ -80,13 +159,7 @@ public class WindowBuy {
 			public void actionPerformed(ActionEvent e) {
 				player.decreaseMoney(corp.getShareParValue()); 
 				corp.getInitialStock().get(0).setOwner(player.getIndex());
-/*				for (Certificate Certs : corp.getCertificates()) {
-					if (Certs.getOwner() == 91) {
-						Certs.setOwner(player.getIndex());
-						break;
-					}
-				}*/
-				basic.getGameplay().setCurrentPlayer(basic);
+				basic.getGameplay().increaseCurrentPlayer(basic);
 				basic.getGameplay().setPassNumber(0);
 
 				basic.buildGraphics();
@@ -143,7 +216,7 @@ public class WindowBuy {
 						new CorporationPosition(basic, corp, Integer.parseInt((String) initvalue.getSelectedItem())));
 //				basic.getStockmarket().getCorporationPositions().add(new CorporationPosition(basic, corp, Integer.parseInt((String)initvalue.getSelectedItem())));
 				//basic.getGameplay().setCurrentPlayer((basic.getGameplay().getCurrentPlayer() + 1) % basic.getPlayers().size());
-				basic.getGameplay().setCurrentPlayer(basic);
+				basic.getGameplay().increaseCurrentPlayer(basic);
 				basic.getGameplay().setPassNumber(0);
 
 				basic.buildGraphics();

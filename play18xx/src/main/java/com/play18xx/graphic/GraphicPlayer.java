@@ -26,7 +26,7 @@ public class GraphicPlayer extends JComponent {
 	public GraphicPlayer(Basic basic, Player player) {
 		this.player = player;
 		this.basic = basic;
-		setPreferredSize(new Dimension(200, 250));
+		setPreferredSize(new Dimension(200, 500));
 	}
 
 	@Override
@@ -60,9 +60,13 @@ public class GraphicPlayer extends JComponent {
 			g.drawString(cert.getName(), xpos1, ypos);
 		}
 		
+		String OverallCount = "";
+		if(player.getPlayersCertsOverall(basic) > player.getPlayersCertsCount(basic)) { 
+			OverallCount = " ("+player.getPlayersCertsOverall(basic)+")";
+		}
 		ypos = ypos + 10;
 		g.drawString("----------------", xpos1, ypos);
 		ypos = ypos + 10;
-		g.drawString("Total: " + player.getPlayersCertsCount(basic), xpos1, ypos);
+		g.drawString("Total: " + player.getPlayersCertsCount(basic) + OverallCount, xpos1, ypos);
 	}
 }

@@ -104,6 +104,14 @@ public class CorporationPosition implements Serializable {
 		}
 		setValue(basic);
 	}
+	
+	public boolean CountToShareLimit(Basic basic) {
+		if(basic.getStockmarket().getCode()[this.row][this.col] > 1 
+				&& basic.getStockmarket().getCode()[this.row][this.col] < 5) {
+			return false;
+		}
+		else {return true;}
+	}
 
 	public static Comparator<CorporationPosition> ValueComparator = new Comparator<CorporationPosition>() {
 		public int compare(CorporationPosition s1, CorporationPosition s2) {

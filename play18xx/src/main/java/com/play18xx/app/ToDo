@@ -1,14 +1,3 @@
-If your share holdings exceed the limits on certificate ownership, 
-you must sell sufficient certificates to conform to the limits 
-during your next turn in a stock round. 
-
--> function for total shares (GUI in players graphic) - over all corps and privs  (DONE)
---> function must exceed special coded marker fields
---- Certificates of any corporation whose share value token is in a 
---- yellow, orange, or brown grid box
---- do not count against a player’s 
---- overall certificate limit.
---------------------------------------------------------------------------------
  The shares of any corporation whose share value token is in an 
 orange or brown grid box
  may be held in excess of the individual 
@@ -26,19 +15,6 @@ counts as your one certificate purchase for the turn.
 
 -> return option in buyoption
 --------------------------------------------------------------------------------
-Conforming to 
-l
-i
-mits —
- A change of corporation presidency and 
-movement of share value tokens between the different sections of 
-the stock market may cause a player to be in violation of certificate 
-limits. When this occurs, the player must sell sufficient shares and/
-or certificates to conform to the limits during the player’s next turn 
-in a stock round (which may be after a series of operatiiong rounds). 
-
--> in Stockmarket GUI pass and buy buttons must be set as "false"
--> Mayby an additional warning of exceeding certs
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

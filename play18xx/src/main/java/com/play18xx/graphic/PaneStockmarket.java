@@ -55,6 +55,8 @@ public class PaneStockmarket {
 				}
 			});
 			if(basic.getGameplay().getStockmarketRoundCounter()==0) {pass.setEnabled(false);}
+			if(basic.getPlayers().get(basic.getGameplay().getCurrentPlayer()).getPlayersCertsCount(basic)
+					> basic.getGameplay().getMaxCertificates()) {pass.setEnabled(false);}
 			panel.add(pass, c);
 			c.gridx = 1;
 			c.gridy = 1;
