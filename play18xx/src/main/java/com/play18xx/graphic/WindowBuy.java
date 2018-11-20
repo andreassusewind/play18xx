@@ -89,14 +89,24 @@ public class WindowBuy {
 		label = new JLabel("for " + corp.getShareParValue());
 		frame.add(label, c);
 
+
+		List<Certificate> certlist = corp.getBankStock();
+		String[] combolist = new String[certlist.size()+1];
+		for(int i=0; i<=certlist.size(); i++) {
+			combolist[i] = ""+i;
+		}
+		JComboBox<Object> quantity = new JComboBox<Object>(combolist);
+		
 		c.gridx = 0;
 		c.gridy = 5;
 		c.gridwidth = 1;
 		JButton initial = new JButton("Buy from Initial Stock");
 		initial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				player.decreaseMoney(corp.getShareParValue()); 
-				corp.getInitialStock().get(0).setOwner(player.getIndex());
+				corp.buyShares(basic, player, 
+						quantity.getSelectedIndex(), 91);
+				corp.checkPresident();
+				
 				basic.getGameplay().increaseCurrentPlayer(basic);
 				basic.getGameplay().setPassNumber(0);
 
@@ -116,21 +126,14 @@ public class WindowBuy {
 		c.insets = new Insets(20, 0, 0, 0);
 		label = new JLabel("Quantity: ");
 		frame.add(label, c);
-
-		List<Certificate> certlist = corp.getBankStock();
-		String[] combolist = new String[certlist.size()+1];
-		for(int i=0; i<=certlist.size(); i++) {
-			combolist[i] = ""+i;
-		}
 		
 		c.gridx = 1;
 		c.gridy = 5;
 		c.gridwidth = 1;
 		c.insets = new Insets(20, 0, 0, 0);
-		JComboBox<Object> quantity = new JComboBox<Object>(combolist);
 		frame.add(quantity, c);
 
-		
+
 		c.gridx = 2;
 		c.gridy = 3;
 		c.gridwidth = 1;
@@ -242,7 +245,7 @@ public class WindowBuy {
 		frame.setSize(500, 300);		
 	}
 
-	private static void BuyNormalShareInitialBank(Basic basic, Corporation corp, Player player, JFrame frame,
+/*	private static void BuyNormalShareInitialBank(Basic basic, Corporation corp, Player player, JFrame frame,
 			GridBagConstraints c) {
 
 		c.gridx = 0;
@@ -316,9 +319,10 @@ public class WindowBuy {
 		});
 		frame.add(bank, c);
 		frame.setSize(400, 300);
-	}
-	
-	private static void BuyNormalShareInitialStock(Basic basic, Corporation corp, Player player, JFrame frame,
+	} 
+*/	
+
+/*	private static void BuyNormalShareInitialStock(Basic basic, Corporation corp, Player player, JFrame frame,
 			GridBagConstraints c) {
 
 		c.gridx = 0;
@@ -366,8 +370,8 @@ public class WindowBuy {
 		});
 		frame.add(buy, c);
 		frame.setSize(300, 300);
-
 	}
+*/	
 
 	private static void BuyPresident(Basic basic, Corporation corp, Player player, JFrame frame, GridBagConstraints c) {
 		c.gridx = 0;
