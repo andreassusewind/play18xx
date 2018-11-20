@@ -37,11 +37,16 @@ public class WindowBuy {
 		case 13:
 			BuyWithoutBuylimit(basic, corp, player, frame, c, buyoption);
 			break;
+		case 29:	
+			BuyWithBuylimit(basic, corp, player, frame, c, buyoption);
+			break;
 		case 37:
-			BuyNormalShareInitialBank(basic, corp, player, frame, c);
+			BuyWithBuylimit(basic, corp, player, frame, c, buyoption);
+			//BuyNormalShareInitialBank(basic, corp, player, frame, c);
 			break;
 		case 38:
-			BuyNormalShareInitialStock(basic, corp, player, frame, c);
+			BuyWithBuylimit(basic, corp, player, frame, c, buyoption);
+			//BuyNormalShareInitialStock(basic, corp, player, frame, c);
 			break;
 		case 39:
 			BuyPresident(basic, corp, player, frame, c);
@@ -157,6 +162,86 @@ public class WindowBuy {
 		frame.setSize(500, 300);		
 	}
 	
+	private static void BuyWithBuylimit(Basic basic, Corporation corp, Player player, JFrame frame,
+			GridBagConstraints c, int buyoption) {
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 3;
+		JLabel label = new JLabel(player.getName());
+		frame.add(label, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.gridwidth = 3;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("Get share from");
+		frame.add(label, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.gridwidth = 3;
+		c.insets = new Insets(10, 0, 0, 0);
+		label = new JLabel(corp.getName());
+		frame.add(label, c);
+
+		c.gridx = 0;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("for " + corp.getShareParValue());
+		frame.add(label, c);
+
+		c.gridx = 0;
+		c.gridy = 5;
+		c.gridwidth = 1;
+		JButton initial = new JButton("Buy from Initial Stock");
+		initial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				corp.buyShares(basic, player, 1, 91);
+				corp.checkPresident();
+				
+				basic.getGameplay().increaseCurrentPlayer(basic);
+				basic.getGameplay().setPassNumber(0);
+
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		if(buyoption == 29) { initial.setEnabled(false); }
+		frame.add(initial, c);
+		
+		c.gridx = 2;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		c.insets = new Insets(20, 0, 0, 0);
+		label = new JLabel("for " + corp.getMarker().getValue());
+		frame.add(label, c);
+	
+		c.gridx = 2;
+		c.gridy = 5;
+		c.gridwidth = 1;
+		JButton bank = new JButton("Buy from Bank Stock");
+		bank.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				corp.buyShares(basic, player, 1, 92);
+				corp.checkPresident();
+				
+				basic.getGameplay().increaseCurrentPlayer(basic);
+				basic.getGameplay().setPassNumber(0);
+
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		if(buyoption == 38) { bank.setEnabled(false); }
+		frame.add(bank, c);
+		
+		frame.setSize(500, 300);		
+	}
+
 	private static void BuyNormalShareInitialBank(Basic basic, Corporation corp, Player player, JFrame frame,
 			GridBagConstraints c) {
 
