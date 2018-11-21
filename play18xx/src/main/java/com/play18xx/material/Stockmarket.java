@@ -121,11 +121,13 @@ public class Stockmarket implements Serializable {
 		
 		if(!corp.getMarker().CountToBuyLimit(basic)) {
 			if(corp.getInitialStock().size() > 0) {
-				if(corp.getBankStock().size() > 0) { return 13; }
-				else                               { return 11; }
+				if(corp.getBankStock().size() > 0 
+					&& player.getMoney() >= Math.min(corp.getMarker().getValue(), corp.getShareParValue())) 
+					{ return 13; }
+				else                               { if(player.getMoney() >= corp.getShareParValue()) {return 11;} }
 			}
 			else {
-				if(corp.getBankStock().size() > 0) { return 12; }
+				if(corp.getBankStock().size() > 0 && player.getMoney() >= corp.getMarker().getValue()) { return 12; }
 			}
 		}
 		
@@ -142,9 +144,8 @@ public class Stockmarket implements Serializable {
 					&& player.getMoney() >= corp.getShareParValue() ) { return 38; }
 		}
 
-		if(corp.getBankStock().size() > 0) {
-			if(player.getMoney() >= corp.getMarker().getValue()) { return 29; }
-		}
+		if(corp.getBankStock().size() > 0 && player.getMoney() >= corp.getMarker().getValue()) 
+			{ return 29; }
 		
 		return 99;
 	}

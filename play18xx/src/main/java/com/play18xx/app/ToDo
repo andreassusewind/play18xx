@@ -1,5 +1,62 @@
+ The game ends when the bank runs out of money. Play until 
+the next time a set of operation rounds ends. Keep track of any 
+further money paid out on paper.
+--------------------------------------------------------------------------------
+End of game:
+ Total your money and the value of your shares. 
+The wealthiest player win
+--------------------------------------------------------------------------------
+Train limitations on PlayPhase
+--------------------------------------------------------------------------------
+Privates buy by corp (Phase 3)
+--------------------------------------------------------------------------------
+Rust trains depending on phase
+--------------------------------------------------------------------------------
+Close privates on Phase 5
+--------------------------------------------------------------------------------
+Private companies may be sold between players for any mutually 
+agreed price at any time during the buyer’s or the seller’s turn of a 
+stock round (other than the first)
+--------------------------------------------------------------------------------
+During phases 3 and 4, a railroad may 
+buy a private company
+at any time during its turn in an operating round. In addition, 
+ownership of private companies may make possible activities 
+otherwise not allowed. (See pp. 46-47).
+
+Private companies may be bought by railroad corporations but 
+not sold by them. This may not be done until the first 3-train has 
+been bought. The price paid may not be less than half or more than 
+twice the face value of the company and must be publicly declared. 
+This action may be performed at any time during the buying 
+corporation’s turn in an operating round
+--------------------------------------------------------------------------------
+The Mohawk & Hudson is 
+closed if traded for a 10% share of the New York Central railroad 
+as described on the left.
+
+ A player owning 
+the MH may exchange it for a 10% share 
+of NYC, provided he does not already 
+hold 60% of the NYC shares and there 
+is NYC shares available in the bank or 
+the pool. The exchange may be made 
+during the player’s turn of a stock round 
+or between the turns of other players 
+or railroads in either stock or operating 
+rounds. This action closes the MH.
+--------------------------------------------------------------------------------
+WEITER AUF SEITE 14
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Spielfehler?
+1. Anpassung der Operation Rounds erst am Ende einer StockMarketRound p.9 auch in p.10
 --------------------------------------------------------------------------------
