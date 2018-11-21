@@ -105,6 +105,13 @@ public class Gameplay implements Serializable {
 		}
 		return MaxOperationrounds;
 	}
+	
+	public int getMaxTrainLimit() {
+		if(getPhase() < 4) {return 4;}
+		if(getPhase() < 5 && getPhase() > 3) {return 3;}
+		if(getPhase() > 4) {return 2;}
+		return 99;
+	}
 
 	public int getMaxMoney() {
 		return MaxMoney;

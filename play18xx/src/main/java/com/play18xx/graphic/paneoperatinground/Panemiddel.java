@@ -105,13 +105,6 @@ public class Panemiddel extends JPanel{
 		});
 		if(corp.isTileDone()) {tile.setEnabled(false);}
 		this.add(tile, c);
-/*		label = new JLabel(corp.getTileDone());
-		c.gridx = 1;
-		c.gridy = 1;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(10, 0, 0, 0);
-		this.add(label, c);*/
 
 		JButton station = new JButton("Station placement");
 		c.gridx = 0;
@@ -129,13 +122,6 @@ public class Panemiddel extends JPanel{
 		});
 		if(corp.isStationDone()) {station.setEnabled(false);}
 		this.add(station, c);
-/*		label = new JLabel(corp.getStationDone());
-		c.gridx = 1;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(10, 0, 0, 0);
-		this.add(label, c);*/
 
 		JButton dividend = new JButton("Run trains");
 		c.gridx = 0;
@@ -153,13 +139,6 @@ public class Panemiddel extends JPanel{
 		});
 		if(corp.isDividendDone()) {dividend.setEnabled(false);}
 		this.add(dividend, c);
-/*		label = new JLabel(corp.getDividendDone());
-		c.gridx = 1;
-		c.gridy = 3;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(10, 0, 0, 0);
-		this.add(label, c);*/
 
 		JButton train = new JButton("Buy trains");
 		c.gridx = 0;
@@ -176,14 +155,8 @@ public class Panemiddel extends JPanel{
 			}
 		});
 		if(corp.isTrainDone()) {train.setEnabled(false);}
+		if(basic.getGameplay().getMaxTrainLimit() <= corp.getTrains().size()) {train.setEnabled(false);}
 		this.add(train, c);
-/*		label = new JLabel(corp.getTrainDone());
-		c.gridx = 1;
-		c.gridy = 4;
-		c.gridwidth = 1;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(10, 0, 0, 0);
-		this.add(label, c);*/
 
 		if (basic.getGameplay().getPhase() >= 3 && basic.getGameplay().getPhase() <= 4) {
 			JButton buyprivate = new JButton("Buy Private");
@@ -202,13 +175,6 @@ public class Panemiddel extends JPanel{
 				}
 			});
 			this.add(buyprivate, c);
-//			label = new JLabel(corp.getPrivateDone());
-			c.gridx = 1;
-			c.gridy = 5;
-			c.gridwidth = 1;
-			c.anchor = GridBagConstraints.CENTER;
-			c.insets = new Insets(10, 0, 0, 0);
-			this.add(label, c);
 		}
 
 		JButton corpdone = new JButton("Corporation finished");
