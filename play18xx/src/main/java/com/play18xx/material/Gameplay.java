@@ -131,6 +131,14 @@ public class Gameplay implements Serializable {
 		if(getPhase() == 7) {return 4;}
 		return 0;
 	}
+	
+	public void closePrivates(Basic basic) {
+		if(getPhase() >= 5) {
+			for(Private priv : basic.getPrivates()) {
+				priv.setOwner(99);
+			}
+		}
+	}
 
 	public int getMaxMoney() {
 		return MaxMoney;

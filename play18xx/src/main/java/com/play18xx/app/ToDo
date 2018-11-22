@@ -6,7 +6,7 @@ End of game:
  Total your money and the value of your shares. 
 The wealthiest player win
 --------------------------------------------------------------------------------
-Close privates on Phase 5
+Close privates on Phase 5 (implemented - untested)
 --------------------------------------------------------------------------------
 Private companies may be sold between players for any mutually 
 agreed price at any time during the buyer’s or the seller’s turn of a 

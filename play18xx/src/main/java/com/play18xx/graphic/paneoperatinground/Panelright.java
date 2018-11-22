@@ -415,6 +415,7 @@ public class Panelright extends JPanel{
 				basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(0));
 				basic.getGameplay().getTrains().remove(0);
 				basic.getGameplay().rustTrains(basic);
+				basic.getGameplay().closePrivates(basic);
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
