@@ -112,6 +112,25 @@ public class Gameplay implements Serializable {
 		if(getPhase() > 4) {return 2;}
 		return 99;
 	}
+	
+	public void rustTrains(Basic basic) {
+		int rust = maxRustTrains();
+		for(Corporation corp : basic.getCorporations()) {
+			for(int i=0; i<corp.getTrains().size(); i++) {
+				if(corp.getTrains().get(i).getDistancePrimary() <= rust) {
+					i = 0;
+					corp.getTrains().remove(i);
+				}
+			}
+		}
+	}
+	
+	public int maxRustTrains() {
+		if(getPhase() == 4) {return 2;}
+		if(getPhase() == 6) {return 3;}
+		if(getPhase() == 7) {return 4;}
+		return 0;
+	}
 
 	public int getMaxMoney() {
 		return MaxMoney;
