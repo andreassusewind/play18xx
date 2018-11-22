@@ -17,6 +17,7 @@ import javax.swing.event.DocumentListener;
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Dividend;
+import com.play18xx.material.Private;
 import com.play18xx.material.Station;
 import com.play18xx.material.Train;
 
@@ -556,16 +557,15 @@ public class Panelright extends JPanel{
 	
 	public void setPanelPrivate(Basic basic, Corporation corp) {
 		this.setLayout(new GridBagLayout());
-		/*		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints c = new GridBagConstraints();
 		
-		//must me defined
-/*		JLabel label = new JLabel("Buy a Private");
+		JLabel label = new JLabel("Buy a Private");
 		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(10, 0, 0, 0);
-		panel3.add(label, c);
+		this.add(label, c);
 
 		String[] privlist = new String[basic.getPrivates().size()];
 		int privcounter = 0;
@@ -581,23 +581,22 @@ public class Panelright extends JPanel{
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(10, 0, 0, 0);
-		panel3.add(privbox, c);
+		this.add(privbox, c);
 
 		label = new JLabel("Value: ");
 		JTextField privvalue = new JTextField("50", 4);
-		privvalue.setText("50");
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(10, 0, 0, 0);
-		panel3.add(label, c);
+		this.add(label, c);
 		c.gridx = 1;
 		c.gridy = 4;
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(10, 0, 0, 0);
-		panel3.add(privvalue, c);
+		this.add(privvalue, c);
 
 		JButton privbuy = new JButton("Buy Private");
 		c.gridx = 0;
@@ -612,32 +611,21 @@ public class Panelright extends JPanel{
 				if (buypriv.getOwner() < 10) {
 					corp.decreaseMoney(Integer.valueOf(privvalue.getText()));
 					basic.getPlayers().get(buypriv.getOwner()).increaseMoney(Integer.valueOf(privvalue.getText()));
-
-					basic.getPlayers().get(buypriv.getOwner()).getPrivates()
-							.remove(basic.getPlayers().get(buypriv.getOwner()).findPrivate(buypriv));
-					buypriv.setOwner(corp.getCorporationNumber(basic) + 30);
-					corp.getPrivates().add(buypriv);
+					buypriv.setOwner(corp.getIndex() + 30);
 				}
 				if (buypriv.getOwner() > 20 && buypriv.getOwner() < 50) {
 					corp.decreaseMoney(Integer.valueOf(privvalue.getText()));
-					basic.getCorporations().get(buypriv.getOwner() - 30)
-							.increaseMoney(Integer.valueOf(privvalue.getText()));
-
-					basic.getCorporations().get(buypriv.getOwner() - 30).getPrivates()
-							.remove(basic.getCorporations().get(buypriv.getOwner() - 30).findPrivate(buypriv));
-					buypriv.setOwner(corp.getCorporationNumber(basic) + 30);
-					corp.getPrivates().add(buypriv);
+					basic.getCorporations().get(buypriv.getOwner() - 30).increaseMoney(Integer.valueOf(privvalue.getText()));
+					buypriv.setOwner(corp.getIndex() + 30);
 				}
-
-				refreshPanel3();
-				corp.setPrivateDone("done");
-				setPanel2Corp(basic, corp);
+				basic.getTP().getPOR().getPanelright().removeAll();
+				basic.getTP().getPOR().getPanemiddel().removeAll();
+				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		panel3.add(privbuy, c);
-		*/
+		this.add(privbuy, c);
 	}
 	
 	

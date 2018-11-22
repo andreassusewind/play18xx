@@ -167,7 +167,6 @@ public class Panemiddel extends JPanel{
 			c.insets = new Insets(10, 0, 0, 0);
 			buyprivate.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					basic.getTP().getPOR().getPanelleft().getPanelleftmiddel().removeAll();
 					basic.getTP().getPOR().getPanelright().removeAll();
 					basic.getTP().getPOR().getPanelright().setPanelPrivate(basic, corp);
 					PaneOperatingRound.setPaneOperatingRound(basic);
