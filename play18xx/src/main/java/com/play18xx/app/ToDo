@@ -1,4 +1,8 @@
- The game ends when the bank runs out of money. Play until 
+Private companies may be sold between players for any mutually 
+agreed price at any time during the buyer’s or the seller’s turn of a 
+stock round (other than the first)
+--------------------------------------------------------------------------------
+The game ends when the bank runs out of money. Play until 
 the next time a set of operation rounds ends. Keep track of any 
 further money paid out on paper.
 --------------------------------------------------------------------------------
@@ -7,10 +11,6 @@ End of game:
 The wealthiest player win
 --------------------------------------------------------------------------------
 Close privates on Phase 5 (implemented - untested)
---------------------------------------------------------------------------------
-Private companies may be sold between players for any mutually 
-agreed price at any time during the buyer’s or the seller’s turn of a 
-stock round (other than the first)
 --------------------------------------------------------------------------------
 During phases 3 and 4, a railroad may 
 buy a private company
@@ -41,6 +41,7 @@ or railroads in either stock or operating
 rounds. This action closes the MH.
 --------------------------------------------------------------------------------
 WEITER AUF SEITE 14
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

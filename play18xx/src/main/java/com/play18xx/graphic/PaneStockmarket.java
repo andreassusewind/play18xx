@@ -111,6 +111,22 @@ public class PaneStockmarket {
 				panel.add(corpsell[i], c);
 
 			}
+			
+			JButton priv = new JButton("buy/sell Private");
+			priv.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					WindowSell.buysellPrivate(basic, basic.getPlayers().get(basic.getGameplay().getCurrentPlayer()));
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+				}
+			});
+			c.gridx = 1;
+			c.gridy = 100;
+			c.gridheight = 1;
+			c.gridwidth = 2;
+			if(basic.getGameplay().getStockmarketRoundCounter()==0) {priv.setEnabled(false);}
+			panel.add(priv, c);
+
 		} else {
 			c.gridx = 1;
 			c.gridy = 1;

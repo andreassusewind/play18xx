@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
@@ -99,5 +100,89 @@ public class WindowSell {
 		
 
 		frame.setSize(300, 300);
+	}
+	
+	public static void buysellPrivate(Basic basic, Player player) {
+		JFrame frame = new JFrame();
+		frame.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		JLabel label = new JLabel("Buy / sell Private: ");
+		frame.add(label, c);
+		
+		String[] privs = new String[basic.getPrivates().size()];
+		for(int i=0; i<basic.getPrivates().size(); i++) {
+			privs[i] = basic.getPrivates().get(i).getName();
+		}
+		JComboBox<Object> privbox = new JComboBox<Object>(privs);
+		c.gridx = 1;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		frame.add(privbox, c);
+
+		c.gridx = 0;
+		c.gridy = 1;
+		c.gridwidth = 1;
+		label = new JLabel("from / to Player: ");
+		frame.add(label, c);
+		
+		String[] players = new String[basic.getPlayers().size()];
+		for(int i=0; i<basic.getPlayers().size(); i++) {
+			players[i] = basic.getPlayers().get(i).getName();
+		}
+		JComboBox<Object> playerbox = new JComboBox<Object>(players);
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 1;
+		frame.add(playerbox, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.gridwidth = 1;
+		label = new JLabel("for: ");
+		frame.add(label, c);
+		
+		JTextField value = new JTextField("50", 4);
+		c.gridx = 1;
+		c.gridy = 2;
+		c.gridwidth = 1;
+		frame.add(value, c);
+		
+		JButton buy = new JButton("Buy");
+		buy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		c.gridx = 1;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		frame.add(buy, c);
+		
+		JButton sell = new JButton("Sell");
+		sell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+				frame.dispose();
+			}
+		});
+		c.gridx = 1;
+		c.gridy = 4;
+		c.gridwidth = 1;
+		frame.add(sell, c);
+		
+		
+		frame.setSize(300, 300);
+		frame.setVisible(true);
 	}
 }
