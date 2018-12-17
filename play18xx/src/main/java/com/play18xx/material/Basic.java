@@ -72,28 +72,11 @@ public class Basic implements Serializable {
 	public void switchToOperationRound() {
 		if(this.Gameplay.isStockmarketRound())
 		{ 
-			// get all CorporationPositions of President sold corps
-			this.getStockmarket().getCorporationPositions().clear(); 
-			for (Corporation corp : this.Corporations) {
-				if (corp.getCertificates().get(0).getOwner() < 10) {
-					this.getStockmarket().getCorporationPositions().add(corp.getMarker()); 
-				}
-			}
-			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
-			// in sorting order set all fully sold corps marker one up
-			for (CorporationPosition cp : this.getStockmarket().getCorporationPositions()) {
-				if (cp.getCorp().getSoldShares() == 100) { cp.getCorp().getMarker().setUp(this); }
-			}
-			// get all CorporationPositions of min 60% sold corps
-			this.getStockmarket().getCorporationPositions().clear();
-			for (Corporation corp : this.Corporations) {
-				if (corp.getInitialShares() <= 40) { 
-					corp.setOpen(true);
-					this.getStockmarket().getCorporationPositions().add(corp.getMarker());
-				}
-			}
-			com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+			this.getStockmarket().checkForFullSoldCorps(this, this.getCorporations());
+
+			this.getStockmarket().checkForOpenedCorps(this.Corporations);
 			// in sorting order write the corp of CorporationPositions on the OperationroundCorpOrder
+			this.Gameplay.getOperationroundCorpOrder().clear();
 			for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 				this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
 			}
@@ -117,7 +100,8 @@ public class Basic implements Serializable {
 		this.Gameplay.setPrivatesDone(false);
 		
 		//NOT IMPLEMENTED: if player gets via MH-Private a 10% of NYC and therefore opens the Corp (is that possible? and yes when?)
-		com.play18xx.material.Stockmarket.sortCorporationPosition(this.getStockmarket().getCorporationPositions()); 
+		this.getStockmarket().checkForOpenedCorps(this.Corporations);
+
 		this.Gameplay.getOperationroundCorpOrder().clear();
 		for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 			this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());

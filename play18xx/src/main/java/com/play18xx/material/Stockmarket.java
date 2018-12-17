@@ -187,7 +187,13 @@ public class Stockmarket implements Serializable {
 		basic.getGameplay().setPassNumber(basic.getGameplay().getPassNumber() + 1);
 	}
 
-	public static void sortCorporationPosition(List<CorporationPosition> CorporationPositions) {
+	public void sortCorporationPosition() {
+		Collections.sort(CorporationPositions, CorporationPosition.StackComparator);
+		Collections.sort(CorporationPositions, CorporationPosition.RowComparator);
+		Collections.sort(CorporationPositions, CorporationPosition.ValueComparator);
+	}
+
+	public static void sortaCorporationPosition(List<CorporationPosition> CorporationPositions) {
 		Collections.sort(CorporationPositions, CorporationPosition.StackComparator);
 		Collections.sort(CorporationPositions, CorporationPosition.RowComparator);
 		Collections.sort(CorporationPositions, CorporationPosition.ValueComparator);
@@ -231,5 +237,29 @@ public class Stockmarket implements Serializable {
 
 	public void setCorporationPositions(List<CorporationPosition> corporationPositions) {
 		CorporationPositions = corporationPositions;
+	}
+	
+	public void checkForOpenedCorps(List<Corporation> Corporations) {
+		this.getCorporationPositions().clear();
+		for(Corporation corp : Corporations) {
+			if (corp.getInitialShares() <= 40) { 
+				corp.setOpen(true);
+				this.getCorporationPositions().add(corp.getMarker());
+			}
+		}
+		sortCorporationPosition();
+	}
+	
+	public void checkForFullSoldCorps(Basic basic, List<Corporation> Corporations) {
+		this.getCorporationPositions().clear();
+		for (Corporation corp : Corporations) {
+			if (corp.getCertificates().get(0).getOwner() < 10) {
+				this.getCorporationPositions().add(corp.getMarker()); 
+			}
+		}
+		sortCorporationPosition();
+		for (CorporationPosition cp : this.getCorporationPositions()) {
+			if (cp.getCorp().getSoldShares() == 100) { cp.getCorp().getMarker().setUp(basic); }
+		}
 	}
 }

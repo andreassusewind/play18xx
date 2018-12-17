@@ -44,7 +44,6 @@ public class Private implements Serializable {
 
 	public void BuyPrivate(Basic basic, int playernumber) {
 		int index = 99;
-//		Certificate Cert;
 		switch (this.SpecialFunction) {
 		case "CA": // the CA owner get an 10% share of the PRR
 			for (int i = 0; i < basic.getCorporations().size(); i++) { // Find PRR Corporation
@@ -53,10 +52,6 @@ public class Private implements Serializable {
 				}
 			}
 			basic.getCorporations().get(index).getCertificates().get(1).setOwner(playernumber);
-//			Cert = basic.getCorporations().get(index).getInitialStock().get(1);
-//			Cert.setOwner(playernumber); // Get Normal Certificate and switch Owner
-//			basic.getPlayers().get(playernumber).getCertificates().add(Cert); // Save Certificate on Player
-//			basic.getCorporations().get(index).getInitialStock().remove(1); // Remove Certificate from InitialStock
 			break;
 		case "BO": // the BO owner get the 20% president share of the B&O --> Sets ParValue...
 			for (int i = 0; i < basic.getCorporations().size(); i++) { // Find B&O Corporation
@@ -65,10 +60,6 @@ public class Private implements Serializable {
 				}
 			}
 			basic.getCorporations().get(index).getCertificates().get(0).setOwner(playernumber);
-//			Cert = basic.getCorporations().get(index).getInitialStock().get(0);
-//			Cert.setOwner(playernumber); // Get President Certificate and switch Owner
-//			basic.getPlayers().get(playernumber).getCertificates().add(Cert); // Save Certificate on Player
-//			basic.getCorporations().get(index).getInitialStock().remove(0); // Remove Certificate from InitialStock
 			// ***** WindowBuy for President Certificate must be implemented
 			WindowBuy.setWindowBuy(basic, basic.getCorporations().get(index),
 					basic.getPlayers().get(playernumber), 48);

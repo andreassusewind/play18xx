@@ -185,6 +185,7 @@ public class Corporation implements Serializable {
 	
 	public void sellShares(Basic basic, Player player, int quantity) {
 		if(quantity > 0) {
+			player.increaseMoney(this.Marker.getValue()  *  quantity);
 			for(int i=0; i<quantity; i++) {
 				for(Certificate cert : this.Certificates) {
 					if(cert.getOwner() == player.getIndex()  && !cert.isPresident()) { 
@@ -194,7 +195,6 @@ public class Corporation implements Serializable {
 					}
 				}
 			}
-			player.increaseMoney(this.Marker.getValue()  *  quantity);
 			player.getSoldCorps().add(this.Index);
 		}
 	}

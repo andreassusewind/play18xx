@@ -62,6 +62,18 @@ public class Player implements Serializable {
 		return pc;
 		
 	}
+	
+	public int getPlayersCertsValue(Basic basic) {
+		int pcv = 0;
+		for(Corporation corp : basic.getCorporations()) {
+			for(Certificate cert : corp.getCertificates()) {
+				if(cert.getOwner() == this.Index) {
+					pcv = pcv + corp.getMarker().getValue();
+				}
+			}
+		}
+		return (pcv);
+	}
 
 	public void increaseMoney(int diff) {
 		this.Money = this.Money + diff;

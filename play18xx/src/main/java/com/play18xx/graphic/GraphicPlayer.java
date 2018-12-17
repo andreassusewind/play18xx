@@ -26,7 +26,7 @@ public class GraphicPlayer extends JComponent {
 	public GraphicPlayer(Basic basic, Player player) {
 		this.player = player;
 		this.basic = basic;
-		setPreferredSize(new Dimension(200, 500));
+		setPreferredSize(new Dimension(200, 400));
 	}
 
 	@Override
@@ -45,6 +45,11 @@ public class GraphicPlayer extends JComponent {
 
 		ypos = ypos + 20;
 		g.drawString(Integer.toString(player.getMoney()), xpos2, ypos);
+		
+		ypos = ypos + 30;
+		g.drawString("Share value:", xpos2, ypos);
+		ypos = ypos + 20;
+		g.drawString(""+player.getPlayersCertsValue(basic), xpos2, ypos);
 
 		ypos = 50;
 		
@@ -68,5 +73,7 @@ public class GraphicPlayer extends JComponent {
 		g.drawString("----------------", xpos1, ypos);
 		ypos = ypos + 10;
 		g.drawString("Total: " + player.getPlayersCertsCount(basic) + OverallCount, xpos1, ypos);
+		
+		
 	}
 }

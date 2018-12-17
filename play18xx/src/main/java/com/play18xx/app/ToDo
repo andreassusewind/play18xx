@@ -10,8 +10,6 @@ End of game:
  Total your money and the value of your shares. 
 The wealthiest player win
 --------------------------------------------------------------------------------
-Close privates on Phase 5 (implemented - untested)
---------------------------------------------------------------------------------
 During phases 3 and 4, a railroad may 
 buy a private company
 at any time during its turn in an operating round. In addition, 
