@@ -68,7 +68,7 @@ public class Player implements Serializable {
 		for(Corporation corp : basic.getCorporations()) {
 			for(Certificate cert : corp.getCertificates()) {
 				if(cert.getOwner() == this.Index) {
-					pcv = pcv + corp.getMarker().getValue();
+					pcv = pcv + (corp.getMarker().getValue() * cert.getPercentValue()/10);
 				}
 			}
 		}
