@@ -153,14 +153,12 @@ public class PaneStockmarket {
 
 		c.insets = new Insets(0, 0, 0, 0);
 		for(Private priv : basic.getPrivates()) {
-			if(priv.getName().equals("MH")) {
+			if(priv.getName().equals("MH") && priv.getOwner() < 10) {
 				Private mhpriv = priv;
 				JButton mhspecial = new JButton("MH-private special");
 				mhspecial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-		///implementation
 						mhpriv.specialMH(basic);
-						//com.play18xx.material.Private.specialMH(basic);
 						basic.buildGraphics();
 						basic.getTP().setSelectedIndex(tabpos);
 					}

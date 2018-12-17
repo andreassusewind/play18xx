@@ -83,9 +83,10 @@ public class Basic implements Serializable {
 			
 			this.getGameplay().setOperationRound(true);
 			this.getGameplay().setStockmarketRound(false);
+			this.getGameplay().getGameplayStatistic().add(new GameplayStatistic(this));
 		}
 		this.buildGraphics();
-		this.getTP().setSelectedIndex(1);
+		this.getTP().setSelectedIndex(1);		
 	}
 
 	public void newOperationRound() {
@@ -106,6 +107,7 @@ public class Basic implements Serializable {
 		for (CorporationPosition pos : this.Stockmarket.getCorporationPositions()) {
 			this.Gameplay.getOperationroundCorpOrder().add(pos.getCorp());
 		}
+		this.getGameplay().getGameplayStatistic().add(new GameplayStatistic(this));
 		
 		this.buildGraphics();
 		this.getTP().setSelectedIndex(0);
@@ -130,6 +132,7 @@ public class Basic implements Serializable {
 			this.Gameplay.getOperationroundCorpOrder().clear();
 			this.getGameplay().setOperationRound(false);
 			this.getGameplay().setStockmarketRound(true);
+			this.getGameplay().getGameplayStatistic().add(new GameplayStatistic(this));
 		}
 		this.buildGraphics();
 		this.getTP().setSelectedIndex(0);

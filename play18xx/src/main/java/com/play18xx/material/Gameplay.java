@@ -44,6 +44,9 @@ public class Gameplay implements Serializable {
 	private List<Corporation> OperationroundCorpOrder = new ArrayList<Corporation>();
 	@XmlElement
 	private boolean PrivatesDone = false;
+	@XmlElementWrapper(name = "GameplayStatistics") 
+	@XmlElement
+	private List<GameplayStatistic> GameplayStatistic = new ArrayList<GameplayStatistic>();
 
 	public Gameplay() {
 	}
@@ -255,4 +258,46 @@ public class Gameplay implements Serializable {
 	public void setPrivatesDone(boolean privatesDone) {
 		PrivatesDone = privatesDone;
 	}
+
+	public List<GameplayStatistic> getGameplayStatistic() {
+		return GameplayStatistic;
+	}
+
+	public void setGameplayStatistic(List<GameplayStatistic> gameplayStatistic) {
+		GameplayStatistic = gameplayStatistic;
+	}
+}
+
+class GameplayStatistic{
+	@XmlElement
+	private int StockmarketRoundCounter;
+	@XmlElement
+	private int OperationroundCounter;
+	@XmlElement
+	private int PlayerMoney;
+	@XmlElement
+	private int CorporationMoney;
+	@XmlElement
+	private int FreeFlowMoney;
+	
+	public GameplayStatistic() {
+		
+	}
+
+	public GameplayStatistic(Basic basic) {
+		this.StockmarketRoundCounter = basic.getGameplay().getStockmarketRoundCounter();
+		this.OperationroundCounter   = basic.getGameplay().getOperationroundCounter();
+		int pm = 0;
+		for(Player player : basic.getPlayers()) {
+			pm = pm + player.getMoney();
+		}
+		this.PlayerMoney = pm;
+		int cm = 0;
+		for(Corporation corp : basic.getCorporations()) {
+			cm = cm + corp.getMoney();
+		}
+		this.CorporationMoney = cm;
+		this.FreeFlowMoney = cm + pm;
+	}
+	
 }
