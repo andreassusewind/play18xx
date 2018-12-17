@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
+import com.play18xx.material.Private;
 
 public class PaneStockmarket {
 	private final static int tabpos = 0;
@@ -127,6 +128,7 @@ public class PaneStockmarket {
 			if(basic.getGameplay().getStockmarketRoundCounter()==0) {priv.setEnabled(false);}
 			panel.add(priv, c);
 
+
 		} else {
 			c.gridx = 1;
 			c.gridy = 1;
@@ -147,6 +149,30 @@ public class PaneStockmarket {
 				}
 			});
 			panel.add(operatinground, c);
+		}
+
+		c.insets = new Insets(0, 0, 0, 0);
+		for(Private priv : basic.getPrivates()) {
+			if(priv.getName().equals("MH")) {
+				Private mhpriv = priv;
+				JButton mhspecial = new JButton("MH-private special");
+				mhspecial.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+		///implementation
+						mhpriv.specialMH(basic);
+						//com.play18xx.material.Private.specialMH(basic);
+						basic.buildGraphics();
+						basic.getTP().setSelectedIndex(tabpos);
+					}
+				});
+				c.gridx = 1;
+				c.gridy = 101;
+				c.gridheight = 1;
+				c.gridwidth = 2;
+				if(basic.getGameplay().getStockmarketRoundCounter()==0) {mhspecial.setEnabled(false);}
+				panel.add(mhspecial, c);
+				
+			}
 		}
 		
 		if(basic.getGameplay().getStockmarketRoundCounter()==0) {

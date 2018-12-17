@@ -138,6 +138,21 @@ public class Private implements Serializable {
 		return Owner;
 	}
 
+	public void specialMH(Basic basic) {
+		for(Corporation corp : basic.getCorporations()) {
+			if(corp.getName().equals("NYC")) {
+				for(Certificate cert : corp.getCertificates()) {
+					if(cert.getOwner() > 90 && !cert.isPresident()) {
+						cert.setOwner(this.Owner);
+						break;
+					}
+				}
+				
+			}
+		}
+		this.Owner = 99;
+	}
+	
 	public String getOwner(Basic basic) {
 		String Owner = "";
 		if (this.Owner < 10) {
