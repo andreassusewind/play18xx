@@ -119,9 +119,8 @@ public class Gameplay implements Serializable {
 	public void rustTrains(Basic basic) {
 		int rust = maxRustTrains();
 		for(Corporation corp : basic.getCorporations()) {
-			for(int i=0; i<corp.getTrains().size(); i++) {
+			for(int i=corp.getTrains().size()-1; i>=0; i--) {
 				if(corp.getTrains().get(i).getDistancePrimary() <= rust) {
-					i = 0;
 					corp.getTrains().remove(i);
 				}
 			}
