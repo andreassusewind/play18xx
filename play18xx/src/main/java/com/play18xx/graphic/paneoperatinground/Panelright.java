@@ -440,12 +440,6 @@ public class Panelright extends JPanel{
 		}
 		JComboBox<Object> corpbox = new JComboBox<Object>(corpnames);
 		corpbox.setSelectedIndex(trainbuyindex);
-		c.gridx = 0;
-		c.gridy = 4;
-		c.gridwidth = 2;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(10, 0, 0, 0);
-		this.add(corpbox, c);
 
 		Corporation buycorp = basic.getCorporations().get(corpbox.getSelectedIndex());
 		if (buycorp.getTrains().size() == 0) {
@@ -526,15 +520,25 @@ public class Panelright extends JPanel{
 			if(basic.getGameplay().getMaxTrainLimit() <= corp.getTrains().size()) {corpbuy.setEnabled(false);}
 			this.add(corpbuy, c);
 		}
-		corpbox.addActionListener(new ActionListener() {
+		ActionListener corpboxActionListener = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				trainbuyindex = corpbox.getSelectedIndex();
 				basic.getTP().getPOR().getPanelright().removeAll();
-				basic.getTP().getPOR().getPanelright().setPanelTrain(basic, buycorp);
+				basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 			}
-		});
+        };
+        corpbox.addActionListener(corpboxActionListener);
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(10, 0, 0, 0);
+		this.add(corpbox, c);
+		
+		
 
 		JButton non = new JButton("Köpt ingen tåg");
 		c.gridx = 0;
