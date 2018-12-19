@@ -3,6 +3,7 @@ package com.play18xx.graphic;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Player;
+import com.play18xx.material.Private;
 
 public class WindowSell {
 	private final static int tabpos = 0;
@@ -102,7 +104,134 @@ public class WindowSell {
 		frame.setSize(300, 300);
 	}
 	
-	public static void buysellPrivate(Basic basic, Player player) {
+	public static void buysellPrivate(Basic basic, Player player, int index, Point pos) {
+		JFrame frame = new JFrame("Buying / Selling Private Companies between Players");
+		frame.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		
+
+		frame.setLocation(pos);
+		//Variable typing
+		JLabel label;
+		JComboBox<Object> privbox;
+		String[] privs = new String[basic.getPrivates().size()];
+		JComboBox<Object> playerbox;
+		String[] players = new String[basic.getPlayers().size()-1];
+		JTextField price;
+		JButton buy;
+		JButton sell;
+		
+
+		int COUNTER = 0;
+		for(Private priv : basic.getPrivates()) {
+			privs[COUNTER] = priv.getName();
+			COUNTER++;
+		}
+		COUNTER = 0;
+		for(Player play : basic.getPlayers()) {
+			if(play.getIndex() != player.getIndex()) {
+				players[COUNTER] = play.getName();
+				COUNTER++;
+			}
+		}
+		
+		// Begin of frame components
+		label = new JLabel ("Select Private: ");
+		c.gridx = 0;
+		c.gridy = 0;
+		frame.add(label,c);
+		
+		privbox = new JComboBox<Object>(privs);
+		c.gridx = 1;
+		c.gridy = 0;
+		privbox.setSelectedIndex(index);
+		ActionListener privboxActionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			buysellPrivate(basic,player,privbox.getSelectedIndex(), frame.getLocation());
+			frame.dispose();	
+			
+			}
+        };		
+		privbox.addActionListener(privboxActionListener);
+		frame.add(privbox,c);
+		
+		Private selectedPrivate = basic.getPrivates().get(privbox.getSelectedIndex());
+		
+		label = new JLabel("Price: ");
+		c.gridx = 0;
+		c.gridy = 2;
+		frame.add(label,c);
+		price = new JTextField("5");
+		c.gridx = 1;
+		c.gridy = 2;
+		frame.add(price,c);
+
+		
+		if(selectedPrivate.getOwner() == player.getIndex()) {
+			label = new JLabel("Sell Private to:       ");
+			c.gridx = 0;
+			c.gridy = 1;
+			frame.add(label,c);
+			playerbox = new JComboBox<Object>(players);
+			c.gridx = 1;
+			c.gridy = 1;
+			frame.add(playerbox,c);
+			sell = new JButton("Sell");
+			sell.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					player.increaseMoney(Integer.parseInt(price.getText()));
+					Player otherplayer = com.play18xx.material.Player.getPlayer(basic, (String)playerbox.getSelectedItem());
+					otherplayer.decreaseMoney(Integer.parseInt(price.getText()));
+					selectedPrivate.setOwner(otherplayer.getIndex());
+					
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+					frame.dispose();
+				}
+			});
+			c.gridx = 1;
+			c.gridy = 3;
+			if(selectedPrivate.getOwner() > 10) {sell.setEnabled(false);}
+			frame.add(sell,c);
+		}
+		else {
+			label = new JLabel("Buy Private from:       ");
+			c.gridx = 0;
+			c.gridy = 1;
+			frame.add(label,c);
+			label = new JLabel(selectedPrivate.getOwner(basic));
+			c.gridx = 1;
+			c.gridy = 1;
+			frame.add(label,c);
+			buy = new JButton("Buy");
+			buy.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					player.decreaseMoney(Integer.parseInt(price.getText()));
+					basic.getPlayers().get(selectedPrivate.getOwner()).increaseMoney(Integer.parseInt(price.getText()));
+					selectedPrivate.setOwner(player.getIndex());
+					
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+					frame.dispose();
+				}
+			});
+			c.gridx = 1;
+			c.gridy = 3;
+			if(selectedPrivate.getOwner() > 10) {buy.setEnabled(false);}
+			frame.add(buy,c);
+			
+		}
+		
+		
+		frame.setSize(300, 300);
+		frame.setVisible(true);
+	}
+	
+	public static void buysellPrivateOLD(Basic basic, Player player) {
 		JFrame frame = new JFrame();
 		frame.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

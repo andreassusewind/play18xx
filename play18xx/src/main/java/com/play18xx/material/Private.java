@@ -170,6 +170,7 @@ public class Private implements Serializable {
 		return Owner;
 	}
 	
+		
 	public void setOwner(int owner) {
 		Owner = owner;
 	}

@@ -119,4 +119,17 @@ public class Player implements Serializable {
 	public void setSoldCorps(List<Integer> soldCorps) {
 		SoldCorps = soldCorps;
 	}
+	
+	public static Player getPlayer(Basic basic, String name) {
+		Player player = new Player();
+		
+		for(Player play : basic.getPlayers()) {
+			if(play.getName().equals(name)) {
+				return play;
+			}
+		}
+		
+		return player;
+	}
+
 }

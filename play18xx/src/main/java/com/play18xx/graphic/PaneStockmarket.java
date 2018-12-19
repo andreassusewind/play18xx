@@ -3,6 +3,7 @@ package com.play18xx.graphic;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -116,7 +117,7 @@ public class PaneStockmarket {
 			JButton priv = new JButton("buy/sell Private");
 			priv.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					WindowSell.buysellPrivate(basic, basic.getPlayers().get(basic.getGameplay().getCurrentPlayer()));
+					WindowSell.buysellPrivate(basic, basic.getPlayers().get(basic.getGameplay().getCurrentPlayer()), 0, new Point(0,0));
 					basic.buildGraphics();
 					basic.getTP().setSelectedIndex(tabpos);
 				}
