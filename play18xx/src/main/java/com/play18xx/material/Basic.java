@@ -13,6 +13,7 @@ import com.play18xx.graphic.PaneConfiguration;
 import com.play18xx.graphic.PaneCorporation;
 import com.play18xx.graphic.PaneOperatingRound;
 import com.play18xx.graphic.PanePlayer;
+import com.play18xx.graphic.PaneStatistic;
 import com.play18xx.graphic.PaneStockmarket;
 
 @XmlRootElement
@@ -66,6 +67,7 @@ public class Basic implements Serializable {
 		PaneStockmarket.setPaneStockmarket(this);
 		PaneOperatingRound.setPaneOperatingRound(this);
 		PanePlayer.setPanePlayer(this);
+		PaneStatistic.setPaneStatistic(this);
 		PaneCorporation.setPaneCorporation(this);
 	}
 

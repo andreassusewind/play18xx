@@ -268,7 +268,7 @@ public class Gameplay implements Serializable {
 	}
 }
 
-class GameplayStatistic{
+/*class GameplayStatistic{
 	@XmlElement
 	private int StockmarketRoundCounter;
 	@XmlElement
@@ -299,5 +299,45 @@ class GameplayStatistic{
 		this.CorporationMoney = cm;
 		this.FreeFlowMoney = cm + pm;
 	}
+
+	public int getStockmarketRoundCounter() {
+		return StockmarketRoundCounter;
+	}
+
+	public void setStockmarketRoundCounter(int stockmarketRoundCounter) {
+		StockmarketRoundCounter = stockmarketRoundCounter;
+	}
+
+	public int getOperationroundCounter() {
+		return OperationroundCounter;
+	}
+
+	public void setOperationroundCounter(int operationroundCounter) {
+		OperationroundCounter = operationroundCounter;
+	}
+
+	public int getPlayerMoney() {
+		return PlayerMoney;
+	}
+
+	public void setPlayerMoney(int playerMoney) {
+		PlayerMoney = playerMoney;
+	}
+
+	public int getCorporationMoney() {
+		return CorporationMoney;
+	}
+
+	public void setCorporationMoney(int corporationMoney) {
+		CorporationMoney = corporationMoney;
+	}
+
+	public int getFreeFlowMoney() {
+		return FreeFlowMoney;
+	}
+
+	public void setFreeFlowMoney(int freeFlowMoney) {
+		FreeFlowMoney = freeFlowMoney;
+	}
 	
-}
+}*/

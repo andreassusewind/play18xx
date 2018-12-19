@@ -18,7 +18,7 @@ import com.play18xx.material.Train;
 
 public class PaneCorporation {
 
-	private final static int tabpos = 3;
+	private final static int tabpos = 4;
 
 	public static void setPaneCorporation(Basic basic) {
 		int COUNTER = 0;
@@ -159,23 +159,6 @@ public class PaneCorporation {
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.PAGE_START;
 		panel.add(label, c);
-/*				for (Private priv : corp.getPrivates()) {
-			label = new JLabel(priv.getName());
-			c.gridx = COUNTERpriv;
-			c.gridy = 7;
-			c.gridwidth = 1;
-			c.anchor = GridBagConstraints.PAGE_START;
-			panel.add(label, c);
-
-			label = new JLabel(String.valueOf(priv.getRevenue()));
-			c.gridx = COUNTERpriv;
-			c.gridy = 8;
-			c.gridwidth = 1;
-			c.anchor = GridBagConstraints.PAGE_START;
-			panel.add(label, c);
-
-			COUNTERpriv = COUNTERpriv + 1;
-		}*/
 		return panel;
 	}
 	

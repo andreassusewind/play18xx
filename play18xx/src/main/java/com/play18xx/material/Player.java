@@ -2,6 +2,7 @@ package com.play18xx.material;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -73,6 +74,10 @@ public class Player implements Serializable {
 			}
 		}
 		return (pcv);
+	}
+	
+	public int getPlayersOverallValue(Basic basic) {
+		return getPlayersCertsValue(basic) + this.Money;
 	}
 
 	public void increaseMoney(int diff) {
