@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -194,5 +195,42 @@ public class Panemiddel extends JPanel{
 		});
 		this.add(corpdone, c);
 		
+	}
+	
+	public void setPanelExceedTrain(Basic basic, List<Corporation> corps) {
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		JLabel label = new JLabel("Corporations must sell exceeding Trains");
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.anchor = GridBagConstraints.PAGE_START;
+		c.insets = new Insets(10, 0, 0, 0);
+		this.add(label, c);
+		
+		//Corporation Buttons
+		JButton corpbutton = new JButton();
+		int COUNTER = 2;
+		for (Corporation corp : corps) {
+			c.weighty = 0.1;
+			c.gridx = 0;
+			c.gridy = COUNTER;
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridwidth = 1;
+			c.insets = new Insets(10, 0, 0, 0);
+			corpbutton = new JButton(corp.getName());
+			corpbutton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					basic.getTP().getPOR().getPanelright().removeAll();
+					basic.getTP().getPOR().getPanelright().setPanelTrainExceed(basic, corp);
+					PaneOperatingRound.setPaneOperatingRound(basic);
+					basic.getTP().setSelectedIndex(tabpos);
+				}
+			});
+			this.add(corpbutton, c);
+			COUNTER = COUNTER + 1;
+		}
+	
 	}
 }

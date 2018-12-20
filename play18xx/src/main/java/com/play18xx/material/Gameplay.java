@@ -29,6 +29,9 @@ public class Gameplay implements Serializable {
 	@XmlElementWrapper(name = "Trains") 
 	@XmlElement
 	private List<Train> Trains = new ArrayList<Train>();
+	@XmlElementWrapper(name = "BankTrains") 
+	@XmlElement
+	private List<Train> BankTrains = new ArrayList<Train>();
 	@XmlElement
 	private Train LastTrain = new Train(0, 0, 0);
 	@XmlElement
@@ -127,6 +130,17 @@ public class Gameplay implements Serializable {
 		}
 	}
 	
+	public List<Corporation> exceedTrains(Basic basic) {
+		List<Corporation> Corporations = new ArrayList<Corporation>();
+		int maxTrains = getMaxTrainLimit();
+		for(Corporation corp : basic.getGameplay().getOperationroundCorpOrder()) {
+			if(corp.getTrains().size() > maxTrains) {
+				Corporations.add(corp);
+			}
+		}
+		return Corporations;
+	}
+	
 	public int maxRustTrains() {
 		if(getPhase() == 4) {return 2;}
 		if(getPhase() == 6) {return 3;}
@@ -184,6 +198,14 @@ public class Gameplay implements Serializable {
 
 	public void setTrains(List<Train> trains) {
 		Trains = trains;
+	}
+
+	public List<Train> getBankTrains() {
+		return BankTrains;
+	}
+
+	public void setBankTrains(List<Train> bankTrains) {
+		BankTrains = bankTrains;
 	}
 
 	public Train getLastTrain() {

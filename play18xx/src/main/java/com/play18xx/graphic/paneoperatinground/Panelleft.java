@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -114,14 +115,7 @@ public class Panelleft extends JPanel{
 			});
 			if(basic.getGameplay().isPrivatesDone()) {privates.setEnabled(false);}
 			panelleftmiddel.add(privates, c);
-			/*			JLabel label = new JLabel(basic.getGameplay().getPrivatesDone());
-			c.gridx = 2;
-			c.gridy = 1;
-			c.gridwidth = 1;
-			c.insets = new Insets(10, 0, 0, 0);
-			panelleftmiddel.add(label, c);*/
 		}
-		
 		
 		//Corporation Buttons
 		JButton corpbutton = new JButton();
@@ -163,6 +157,9 @@ public class Panelleft extends JPanel{
 			}
 		});
 		panelleftmiddel.add(done,c);
+		
+		List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
+		if(corps.size()>0) panelleftmiddel.removeAll();
 	}
 	
 	public JPanel getPanelleftmiddel() {

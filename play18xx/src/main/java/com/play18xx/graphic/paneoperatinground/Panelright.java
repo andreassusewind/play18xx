@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -416,14 +417,22 @@ public class Panelright extends JPanel{
 				basic.getGameplay().getTrains().remove(0);
 				basic.getGameplay().rustTrains(basic);
 				basic.getGameplay().closePrivates(basic);
+				
+				
 				basic.getTP().getPOR().getPanelright().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
-				basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
+				
+				List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
+				if(corps.size()>0) {basic.getTP().getPOR().getPanemiddel().setPanelExceedTrain(basic, corps);
+									basic.getTP().getPOR().getPanelleft().removeAll(); }
+				else                basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
+
 				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});
-		if(basic.getGameplay().getMaxTrainLimit() <= corp.getTrains().size()) {stack.setEnabled(false);}
+		if(basic.getGameplay().getTrains().get(0).getCost() > corp.getMoney()) {stack.setEnabled(false);}
+		else stack.setEnabled(true);
 		this.add(stack, c);
 
 		label = new JLabel("Buy a train from");
@@ -518,6 +527,7 @@ public class Panelright extends JPanel{
 				}
 			});
 			if(basic.getGameplay().getMaxTrainLimit() <= corp.getTrains().size()) {corpbuy.setEnabled(false);}
+			else corpbuy.setEnabled(true);
 			this.add(corpbuy, c);
 		}
 		ActionListener corpboxActionListener = new ActionListener() {
@@ -539,10 +549,27 @@ public class Panelright extends JPanel{
 		this.add(corpbox, c);
 		
 		
+		JButton openmarket = new JButton("Buy from open market - nonimp");
+		c.gridx = 0;
+		c.gridy = 10;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(50, 0, 0, 0);
+		this.add(openmarket, c);
+
+		JButton president = new JButton("Buy as president - nonimp");
+		c.gridx = 0;
+		c.gridy = 11;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(50, 0, 0, 0);
+		if(basic.getGameplay().getTrains().get(0).getCost() > corp.getMoney()) {president.setEnabled(true);}
+		else president.setEnabled(false);
+		this.add(president, c);
 
 		JButton non = new JButton("Köpt ingen tåg");
 		c.gridx = 0;
-		c.gridy = 10;
+		c.gridy = 12;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(50, 0, 0, 0);
@@ -557,6 +584,8 @@ public class Panelright extends JPanel{
 			}
 		});
 		this.add(non, c);
+		
+		
 
 	}
 
@@ -634,5 +663,63 @@ public class Panelright extends JPanel{
 		this.add(privbuy, c);
 	}
 	
-	
+	public void setPanelTrainExceed(Basic basic, Corporation corp) {
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		JLabel label = new JLabel("Give train to Bank Pool");
+		c.gridx = 0;
+		c.gridy = 3;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(50, 0, 0, 0);
+		this.add(label, c);
+
+
+
+		label = new JLabel("Select train from " + corp.getName());
+		c.gridx = 0;
+		c.gridy = 5;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(10, 0, 0, 0);
+		this.add(label, c);
+
+		String[] trainlist = new String[corp.getTrains().size()];
+		int traincounter = 0;
+		for (Train train : corp.getTrains()) {
+			trainlist[traincounter] = "" + train.getDistancePrimary();
+			traincounter++;
+		}
+
+		JComboBox<Object> trainbox = new JComboBox<Object>(trainlist);
+		trainbox.setSelectedIndex(0);
+		c.gridx = 0;
+		c.gridy = 6;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(10, 0, 0, 0);
+		this.add(trainbox, c);
+
+		JButton corpbuy = new JButton("Get rid of Train");
+		c.gridx = 0;
+		c.gridy = 9;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(10, 0, 0, 0);
+		corpbuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Train selectedTrain = corp.getTrains().get(trainbox.getSelectedIndex());
+				
+				basic.getGameplay().getBankTrains().add(selectedTrain);
+				corp.getTrains().remove(trainbox.getSelectedIndex());
+				
+				basic.getTP().getPOR().getPanelright().removeAll();
+				basic.getTP().getPOR().getPanemiddel().removeAll();
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+			}
+		});
+		this.add(corpbuy, c);
+	}
 }
