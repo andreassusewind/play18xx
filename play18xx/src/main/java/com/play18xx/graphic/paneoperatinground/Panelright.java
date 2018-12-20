@@ -420,6 +420,7 @@ public class Panelright extends JPanel{
 				
 				
 				basic.getTP().getPOR().getPanelright().removeAll();
+				basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				
 				List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
@@ -520,6 +521,7 @@ public class Panelright extends JPanel{
 					corp.getTrains().add(buycorp.getTrains().get(trainbox.getSelectedIndex()));
 					buycorp.getTrains().remove(trainbox.getSelectedIndex());
 					basic.getTP().getPOR().getPanelright().removeAll();
+					basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
 					basic.getTP().getPOR().getPanemiddel().removeAll();
 					basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
 					basic.buildGraphics();
@@ -549,17 +551,61 @@ public class Panelright extends JPanel{
 		this.add(corpbox, c);
 		
 		
-		JButton openmarket = new JButton("Buy from open market - nonimp");
-		c.gridx = 0;
-		c.gridy = 10;
-		c.gridwidth = 2;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(50, 0, 0, 0);
-		this.add(openmarket, c);
+		if(basic.getGameplay().getBankTrains().size() > 0) {
+			label = new JLabel("Buy train from open market");
+			c.gridx = 0;
+			c.gridy = 10;
+			c.gridwidth = 2;
+			c.anchor = GridBagConstraints.CENTER;
+			c.insets = new Insets(50, 0, 0, 0);
+			this.add(label, c);
+			
+			
+			String openmarkettrains[] = new String[basic.getGameplay().getBankTrains().size()];
+			for(int i=0; i<openmarkettrains.length; i++) {
+				openmarkettrains[i] = basic.getGameplay().getBankTrains().get(i).getDistancePrimary() + " for " +
+							basic.getGameplay().getBankTrains().get(i).getCost();
+			}
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			JComboBox openmarketbox = new JComboBox(openmarkettrains);
+			c.gridx = 0;
+			c.gridy = 11;
+			c.gridwidth = 2;
+			c.anchor = GridBagConstraints.CENTER;
+			c.insets = new Insets(10, 0, 0, 0);
+			this.add(openmarketbox, c);
+			
+			
+			JButton openmarket = new JButton("Buy from open market");
+			c.gridx = 0;
+			c.gridy = 12;
+			c.gridwidth = 2;
+			c.anchor = GridBagConstraints.CENTER;
+			c.insets = new Insets(10, 0, 0, 0);
+			ActionListener openmarketActionListener = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Train selectedTrain = basic.getGameplay().getBankTrains().get(openmarketbox.getSelectedIndex());
+					
+					corp.decreaseMoney(selectedTrain.getCost());
+					corp.getTrains().add(selectedTrain);
+					
+					basic.getGameplay().getBankTrains().remove(openmarketbox.getSelectedIndex());
+
+					
+					basic.getTP().getPOR().getPanelright().removeAll();
+					basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+				}
+	        };
+	        openmarket.addActionListener(openmarketActionListener);
+			this.add(openmarket, c);
+		}
 
 		JButton president = new JButton("Buy as president - nonimp");
 		c.gridx = 0;
-		c.gridy = 11;
+		c.gridy = 13;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(50, 0, 0, 0);
@@ -569,7 +615,7 @@ public class Panelright extends JPanel{
 
 		JButton non = new JButton("Köpt ingen tåg");
 		c.gridx = 0;
-		c.gridy = 12;
+		c.gridy = 14;
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(50, 0, 0, 0);

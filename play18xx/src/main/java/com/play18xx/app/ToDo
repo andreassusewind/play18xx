@@ -30,9 +30,10 @@ Testfehler...
 - Diesel parallel zu 6er Loks zu kaufen
 - President weitergabe bei gleichen Shares nach Sitzreihenfolge
 - Zwangskauf von Loks
-- Kauf von Loks aus einem Bankpool
 --------------------------------------------------------------------------------
 
 Spielfehler?
 1. Anpassung der Operation Rounds erst am Ende einer StockMarketRound p.9 auch in p.10
+
+- Lok Kaufen (Panelright ist nicht removed wenn lok limit erreicht)
 --------------------------------------------------------------------------------
