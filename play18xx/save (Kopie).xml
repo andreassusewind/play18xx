@@ -8,7 +8,7 @@
         </Player>
         <Player name="Frank">
             <Index>1</Index>
-            <Money>0</Money>
+            <Money>550</Money>
             <SoldCorps/>
         </Player>
         <Player name="Thilo">
@@ -83,8 +83,24 @@
                 <col>5</col>
                 <stack>7</stack>
             </Marker>
-            <Money>60</Money>
-            <Trains/>
+            <Money>660</Money>
+            <Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="3">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>180</Cost>
+                    <Rust>6</Rust>
+                </Trains>
+            </Trains>
             <Stations>
                 <Stations cost="0">
                     <Build>true</Build>
@@ -165,7 +181,28 @@
                 <stack>7</stack>
             </Marker>
             <Money>280</Money>
-            <Trains/>
+            <Trains>
+                <Trains distancePrimary="3">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>180</Cost>
+                    <Rust>6</Rust>
+                </Trains>
+                <Trains distancePrimary="3">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>180</Cost>
+                    <Rust>6</Rust>
+                </Trains>
+                <Trains distancePrimary="3">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>180</Cost>
+                    <Rust>6</Rust>
+                </Trains>
+                <Trains distancePrimary="3">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>180</Cost>
+                    <Rust>6</Rust>
+                </Trains>
+            </Trains>
             <Stations>
                 <Stations cost="0">
                     <Build>false</Build>
@@ -245,19 +282,8 @@
                 <col>6</col>
                 <stack>6</stack>
             </Marker>
-            <Money>400</Money>
-            <Trains>
-                <Trains distancePrimary="4">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>300</Cost>
-                    <Rust>99</Rust>
-                </Trains>
-                <Trains distancePrimary="4">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>300</Cost>
-                    <Rust>99</Rust>
-                </Trains>
-            </Trains>
+            <Money>1000</Money>
+            <Trains/>
             <Stations>
                 <Stations cost="0">
                     <Build>false</Build>
@@ -337,12 +363,27 @@
                 <col>6</col>
                 <stack>8</stack>
             </Marker>
-            <Money>300</Money>
+            <Money>600</Money>
             <Trains>
-                <Trains distancePrimary="4">
+                <Trains distancePrimary="2">
                     <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>300</Cost>
-                    <Rust>99</Rust>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
+                </Trains>
+                <Trains distancePrimary="2">
+                    <DistanceSecondary>0</DistanceSecondary>
+                    <Cost>80</Cost>
+                    <Rust>4</Rust>
                 </Trains>
             </Trains>
             <Stations>
@@ -448,19 +489,8 @@
                 <col>6</col>
                 <stack>5</stack>
             </Marker>
-            <Money>250</Money>
-            <Trains>
-                <Trains distancePrimary="4">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>300</Cost>
-                    <Rust>99</Rust>
-                </Trains>
-                <Trains distancePrimary="5">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>450</Cost>
-                    <Rust>100</Rust>
-                </Trains>
-            </Trains>
+            <Money>1000</Money>
+            <Trains/>
             <Stations>
                 <Stations cost="0">
                     <Build>false</Build>
@@ -537,14 +567,8 @@
                 <col>6</col>
                 <stack>4</stack>
             </Marker>
-            <Money>370</Money>
-            <Trains>
-                <Trains distancePrimary="6">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>630</Cost>
-                    <Rust>100</Rust>
-                </Trains>
-            </Trains>
+            <Money>1000</Money>
+            <Trains/>
             <Stations>
                 <Stations cost="0">
                     <Build>false</Build>
@@ -621,19 +645,8 @@
                 <col>6</col>
                 <stack>8</stack>
             </Marker>
-            <Money>0</Money>
-            <Trains>
-                <Trains distancePrimary="5">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>450</Cost>
-                    <Rust>100</Rust>
-                </Trains>
-                <Trains distancePrimary="5">
-                    <DistanceSecondary>0</DistanceSecondary>
-                    <Cost>450</Cost>
-                    <Rust>100</Rust>
-                </Trains>
-            </Trains>
+            <Money>900</Money>
+            <Trains/>
             <Stations>
                 <Stations cost="0">
                     <Build>false</Build>
@@ -734,9 +747,9 @@
             <ParValue>20</ParValue>
             <Revenue>5</Revenue>
             <SpecialFunction>SV</SpecialFunction>
-            <Owner>99</Owner>
+            <Owner>4</Owner>
             <name>SV</name>
-            <owner>99</owner>
+            <owner>4</owner>
             <parValue>20</parValue>
             <revenue>5</revenue>
             <specialFunction>SV</specialFunction>
@@ -746,9 +759,9 @@
             <ParValue>40</ParValue>
             <Revenue>10</Revenue>
             <SpecialFunction>CS</SpecialFunction>
-            <Owner>99</Owner>
+            <Owner>1</Owner>
             <name>CS</name>
-            <owner>99</owner>
+            <owner>1</owner>
             <parValue>40</parValue>
             <revenue>10</revenue>
             <specialFunction>CS</specialFunction>
@@ -758,9 +771,9 @@
             <ParValue>70</ParValue>
             <Revenue>15</Revenue>
             <SpecialFunction>DH</SpecialFunction>
-            <Owner>99</Owner>
+            <Owner>3</Owner>
             <name>DH</name>
-            <owner>99</owner>
+            <owner>3</owner>
             <parValue>70</parValue>
             <revenue>15</revenue>
             <specialFunction>DH</specialFunction>
@@ -770,9 +783,9 @@
             <ParValue>110</ParValue>
             <Revenue>20</Revenue>
             <SpecialFunction>MH</SpecialFunction>
-            <Owner>99</Owner>
+            <Owner>2</Owner>
             <name>MH</name>
-            <owner>99</owner>
+            <owner>2</owner>
             <parValue>110</parValue>
             <revenue>20</revenue>
             <specialFunction>MH</specialFunction>
@@ -782,9 +795,9 @@
             <ParValue>160</ParValue>
             <Revenue>25</Revenue>
             <SpecialFunction>CA</SpecialFunction>
-            <Owner>99</Owner>
+            <Owner>1</Owner>
             <name>CA</name>
-            <owner>99</owner>
+            <owner>1</owner>
             <parValue>160</parValue>
             <revenue>25</revenue>
             <specialFunction>CA</specialFunction>
@@ -808,6 +821,46 @@
         <CurrentPlayer>3</CurrentPlayer>
         <PassNumber>5</PassNumber>
         <Trains>
+            <Trains distancePrimary="4">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>300</Cost>
+                <Rust>99</Rust>
+            </Trains>
+            <Trains distancePrimary="4">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>300</Cost>
+                <Rust>99</Rust>
+            </Trains>
+            <Trains distancePrimary="4">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>300</Cost>
+                <Rust>99</Rust>
+            </Trains>
+            <Trains distancePrimary="4">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>300</Cost>
+                <Rust>99</Rust>
+            </Trains>
+            <Trains distancePrimary="5">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>450</Cost>
+                <Rust>100</Rust>
+            </Trains>
+            <Trains distancePrimary="5">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>450</Cost>
+                <Rust>100</Rust>
+            </Trains>
+            <Trains distancePrimary="5">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>450</Cost>
+                <Rust>100</Rust>
+            </Trains>
+            <Trains distancePrimary="6">
+                <DistanceSecondary>0</DistanceSecondary>
+                <Cost>630</Cost>
+                <Rust>100</Rust>
+            </Trains>
             <Trains distancePrimary="6">
                 <DistanceSecondary>0</DistanceSecondary>
                 <Cost>630</Cost>
@@ -844,25 +897,14 @@
                 <Rust>100</Rust>
             </Trains>
         </Trains>
-        <BankTrains>
-            <BankTrains distancePrimary="3">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>180</Cost>
-                <Rust>6</Rust>
-            </BankTrains>
-            <BankTrains distancePrimary="3">
-                <DistanceSecondary>0</DistanceSecondary>
-                <Cost>180</Cost>
-                <Rust>6</Rust>
-            </BankTrains>
-        </BankTrains>
-        <LastTrain distancePrimary="6">
+        <BankTrains/>
+        <LastTrain distancePrimary="3">
             <DistanceSecondary>0</DistanceSecondary>
-            <Cost>630</Cost>
-            <Rust>100</Rust>
+            <Cost>180</Cost>
+            <Rust>6</Rust>
         </LastTrain>
         <StockmarketRound>false</StockmarketRound>
-        <StockmarketRoundCounter>9</StockmarketRoundCounter>
+        <StockmarketRoundCounter>8</StockmarketRoundCounter>
         <OperationRound>true</OperationRound>
         <OperationroundCounter>1</OperationroundCounter>
         <OperationroundCorpOrder>
@@ -921,12 +963,27 @@
                     <col>6</col>
                     <stack>8</stack>
                 </Marker>
-                <Money>300</Money>
+                <Money>600</Money>
                 <Trains>
-                    <Trains distancePrimary="4">
+                    <Trains distancePrimary="2">
                         <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>300</Cost>
-                        <Rust>99</Rust>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
+                    </Trains>
+                    <Trains distancePrimary="2">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
+                    </Trains>
+                    <Trains distancePrimary="2">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
+                    </Trains>
+                    <Trains distancePrimary="2">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
                     </Trains>
                 </Trains>
                 <Stations>
@@ -1033,7 +1090,28 @@
                     <stack>7</stack>
                 </Marker>
                 <Money>280</Money>
-                <Trains/>
+                <Trains>
+                    <Trains distancePrimary="3">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>180</Cost>
+                        <Rust>6</Rust>
+                    </Trains>
+                    <Trains distancePrimary="3">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>180</Cost>
+                        <Rust>6</Rust>
+                    </Trains>
+                    <Trains distancePrimary="3">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>180</Cost>
+                        <Rust>6</Rust>
+                    </Trains>
+                    <Trains distancePrimary="3">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>180</Cost>
+                        <Rust>6</Rust>
+                    </Trains>
+                </Trains>
                 <Stations>
                     <Stations cost="0">
                         <Build>false</Build>
@@ -1113,19 +1191,8 @@
                     <col>6</col>
                     <stack>6</stack>
                 </Marker>
-                <Money>400</Money>
-                <Trains>
-                    <Trains distancePrimary="4">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>300</Cost>
-                        <Rust>99</Rust>
-                    </Trains>
-                    <Trains distancePrimary="4">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>300</Cost>
-                        <Rust>99</Rust>
-                    </Trains>
-                </Trains>
+                <Money>1000</Money>
+                <Trains/>
                 <Stations>
                     <Stations cost="0">
                         <Build>false</Build>
@@ -1205,19 +1272,8 @@
                     <col>6</col>
                     <stack>5</stack>
                 </Marker>
-                <Money>250</Money>
-                <Trains>
-                    <Trains distancePrimary="4">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>300</Cost>
-                        <Rust>99</Rust>
-                    </Trains>
-                    <Trains distancePrimary="5">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>450</Cost>
-                        <Rust>100</Rust>
-                    </Trains>
-                </Trains>
+                <Money>1000</Money>
+                <Trains/>
                 <Stations>
                     <Stations cost="0">
                         <Build>false</Build>
@@ -1294,14 +1350,8 @@
                     <col>6</col>
                     <stack>4</stack>
                 </Marker>
-                <Money>370</Money>
-                <Trains>
-                    <Trains distancePrimary="6">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>630</Cost>
-                        <Rust>100</Rust>
-                    </Trains>
-                </Trains>
+                <Money>1000</Money>
+                <Trains/>
                 <Stations>
                     <Stations cost="0">
                         <Build>false</Build>
@@ -1378,8 +1428,24 @@
                     <col>5</col>
                     <stack>7</stack>
                 </Marker>
-                <Money>60</Money>
-                <Trains/>
+                <Money>660</Money>
+                <Trains>
+                    <Trains distancePrimary="2">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
+                    </Trains>
+                    <Trains distancePrimary="2">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>80</Cost>
+                        <Rust>4</Rust>
+                    </Trains>
+                    <Trains distancePrimary="3">
+                        <DistanceSecondary>0</DistanceSecondary>
+                        <Cost>180</Cost>
+                        <Rust>6</Rust>
+                    </Trains>
+                </Trains>
                 <Stations>
                     <Stations cost="0">
                         <Build>true</Build>
@@ -1459,19 +1525,8 @@
                     <col>6</col>
                     <stack>8</stack>
                 </Marker>
-                <Money>0</Money>
-                <Trains>
-                    <Trains distancePrimary="5">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>450</Cost>
-                        <Rust>100</Rust>
-                    </Trains>
-                    <Trains distancePrimary="5">
-                        <DistanceSecondary>0</DistanceSecondary>
-                        <Cost>450</Cost>
-                        <Rust>100</Rust>
-                    </Trains>
-                </Trains>
+                <Money>900</Money>
+                <Trains/>
                 <Stations>
                     <Stations cost="0">
                         <Build>false</Build>
@@ -1840,42 +1895,6 @@
                 <operationroundCounter>1</operationroundCounter>
                 <playerMoney>5950</playerMoney>
                 <stockmarketRoundCounter>8</stockmarketRoundCounter>
-            </GameplayStatistic>
-            <GameplayStatistic>
-                <StockmarketRoundCounter>8</StockmarketRoundCounter>
-                <OperationroundCounter>2</OperationroundCounter>
-                <PlayerMoney>5400</PlayerMoney>
-                <CorporationMoney>4540</CorporationMoney>
-                <FreeFlowMoney>9940</FreeFlowMoney>
-                <corporationMoney>4540</corporationMoney>
-                <freeFlowMoney>9940</freeFlowMoney>
-                <operationroundCounter>2</operationroundCounter>
-                <playerMoney>5400</playerMoney>
-                <stockmarketRoundCounter>8</stockmarketRoundCounter>
-            </GameplayStatistic>
-            <GameplayStatistic>
-                <StockmarketRoundCounter>9</StockmarketRoundCounter>
-                <OperationroundCounter>1</OperationroundCounter>
-                <PlayerMoney>5400</PlayerMoney>
-                <CorporationMoney>4540</CorporationMoney>
-                <FreeFlowMoney>9940</FreeFlowMoney>
-                <corporationMoney>4540</corporationMoney>
-                <freeFlowMoney>9940</freeFlowMoney>
-                <operationroundCounter>1</operationroundCounter>
-                <playerMoney>5400</playerMoney>
-                <stockmarketRoundCounter>9</stockmarketRoundCounter>
-            </GameplayStatistic>
-            <GameplayStatistic>
-                <StockmarketRoundCounter>9</StockmarketRoundCounter>
-                <OperationroundCounter>1</OperationroundCounter>
-                <PlayerMoney>5400</PlayerMoney>
-                <CorporationMoney>4540</CorporationMoney>
-                <FreeFlowMoney>9940</FreeFlowMoney>
-                <corporationMoney>4540</corporationMoney>
-                <freeFlowMoney>9940</freeFlowMoney>
-                <operationroundCounter>1</operationroundCounter>
-                <playerMoney>5400</playerMoney>
-                <stockmarketRoundCounter>9</stockmarketRoundCounter>
             </GameplayStatistic>
         </GameplayStatistics>
     </Gameplay>

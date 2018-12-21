@@ -664,7 +664,148 @@ public class Panelright extends JPanel{
 		this.add(non, c);
 		
 		
+		if(basic.getGameplay().getLastTrain().getDistancePrimary() >= 6 && basic.getGameplay().getTrains().get(0).getDistancePrimary() != 99) {
+			JButton diesel = new JButton("Buy Diesel Train - 1100");
+			c.gridx = 0;
+			c.gridy = 15;
+			c.gridwidth = 2;
+			c.anchor = GridBagConstraints.CENTER;
+			c.insets = new Insets(50, 0, 0, 0);
+			diesel.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int lasttrain = basic.getGameplay().getTrains().size() - 1;
+					corp.decreaseMoney(basic.getGameplay().getTrains().get(lasttrain).getCost());
+					corp.getTrains().add(basic.getGameplay().getTrains().get(lasttrain));
+					basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(lasttrain));
+					basic.getGameplay().getTrains().remove(lasttrain);
+					basic.getGameplay().rustTrains(basic);
+					basic.getGameplay().closePrivates(basic);
+					
+					
+					basic.getTP().getPOR().getPanelright().removeAll();
+					basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
+					basic.getTP().getPOR().getPanemiddel().removeAll();
+					
+					List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
+					if(corps.size()>0) {basic.getTP().getPOR().getPanemiddel().setPanelExceedTrain(basic, corps);
+										basic.getTP().getPOR().getPanelleft().removeAll(); }
+					else                basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
 
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+				}
+			});
+			this.add(diesel, c);
+		
+			if(corp.getTrains().size() > 0) {
+				String[] trainlist2 = new String[corp.getTrains().size()];
+				int traincounter2 = 0;
+				for (Train train : corp.getTrains()) {
+					trainlist2[traincounter2] = "" + train.getDistancePrimary();
+					traincounter2 = traincounter2 + 1;
+				}
+
+
+				JComboBox<Object> trainbox2 = new JComboBox<Object>(trainlist2);
+				trainbox2.setSelectedIndex(0);
+				c.gridx = 1;
+				c.gridy = 16;
+				c.gridwidth = 1;
+				c.anchor = GridBagConstraints.CENTER;
+				c.insets = new Insets(10, 0, 0, 0);
+				this.add(trainbox2, c);
+				
+				JButton diesel2 = new JButton("Buy Diesel Train - 800");
+				c.gridx = 0;
+				c.gridy = 16;
+				c.gridwidth = 1;
+				c.anchor = GridBagConstraints.CENTER;
+				diesel2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Train soldtrain = corp.getTrains().get(trainbox2.getSelectedIndex());
+						corp.getTrains().remove(trainbox2.getSelectedIndex());
+						basic.getGameplay().getBankTrains().add(soldtrain);
+						int lasttrain = basic.getGameplay().getTrains().size() - 1;
+						corp.decreaseMoney(800);
+						corp.getTrains().add(basic.getGameplay().getTrains().get(lasttrain));
+						basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(lasttrain));
+						basic.getGameplay().getTrains().remove(lasttrain);
+						basic.getGameplay().rustTrains(basic);
+						basic.getGameplay().closePrivates(basic);
+						
+						
+						
+						basic.getTP().getPOR().getPanelright().removeAll();
+						basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
+						basic.getTP().getPOR().getPanemiddel().removeAll();
+						
+						List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
+						if(corps.size()>0) {basic.getTP().getPOR().getPanemiddel().setPanelExceedTrain(basic, corps);
+											basic.getTP().getPOR().getPanelleft().removeAll(); }
+						else                basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
+
+						basic.buildGraphics();
+						basic.getTP().setSelectedIndex(tabpos);
+					}
+				});
+				this.add(diesel2, c);
+			}
+		}
+		if(basic.getGameplay().getTrains().get(0).getDistancePrimary() == 99) {
+			if(corp.getTrains().size() > 0) {
+				String[] trainlist2 = new String[corp.getTrains().size()];
+				int traincounter2 = 0;
+				for (Train train : corp.getTrains()) {
+					trainlist2[traincounter2] = "" + train.getDistancePrimary();
+					traincounter2 = traincounter2 + 1;
+				}
+
+
+				JComboBox<Object> trainbox2 = new JComboBox<Object>(trainlist2);
+				trainbox2.setSelectedIndex(0);
+				c.gridx = 1;
+				c.gridy = 16;
+				c.gridwidth = 1;
+				c.anchor = GridBagConstraints.CENTER;
+				c.insets = new Insets(10, 0, 0, 0);
+				this.add(trainbox2, c);
+				
+				JButton diesel2 = new JButton("Buy Diesel Train - 800");
+				c.gridx = 0;
+				c.gridy = 16;
+				c.gridwidth = 1;
+				c.anchor = GridBagConstraints.CENTER;
+				diesel2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Train soldtrain = corp.getTrains().get(trainbox2.getSelectedIndex());
+						corp.getTrains().remove(trainbox2.getSelectedIndex());
+						basic.getGameplay().getBankTrains().add(soldtrain);
+						int lasttrain = basic.getGameplay().getTrains().size() - 1;
+						corp.decreaseMoney(800);
+						corp.getTrains().add(basic.getGameplay().getTrains().get(lasttrain));
+						basic.getGameplay().setLastTrain(basic.getGameplay().getTrains().get(lasttrain));
+						basic.getGameplay().getTrains().remove(lasttrain);
+						basic.getGameplay().rustTrains(basic);
+						basic.getGameplay().closePrivates(basic);
+						
+						
+						
+						basic.getTP().getPOR().getPanelright().removeAll();
+						basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
+						basic.getTP().getPOR().getPanemiddel().removeAll();
+						
+						List<Corporation> corps = basic.getGameplay().exceedTrains(basic);
+						if(corps.size()>0) {basic.getTP().getPOR().getPanemiddel().setPanelExceedTrain(basic, corps);
+											basic.getTP().getPOR().getPanelleft().removeAll(); }
+						else                basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
+
+						basic.buildGraphics();
+						basic.getTP().setSelectedIndex(tabpos);
+					}
+				});
+				this.add(diesel2, c);
+			}
+		}
 	}
 
 	
