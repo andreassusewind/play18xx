@@ -128,6 +128,11 @@ public class Gameplay implements Serializable {
 				}
 			}
 		}
+		for(int i=this.BankTrains.size()-1; i>=0; i--) {
+			if(this.BankTrains.get(i).getDistancePrimary() <= rust) {
+				this.BankTrains.remove(i);
+			}
+		}
 	}
 	
 	public List<Corporation> exceedTrains(Basic basic) {

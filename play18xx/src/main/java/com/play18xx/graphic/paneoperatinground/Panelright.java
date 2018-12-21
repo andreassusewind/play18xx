@@ -606,7 +606,7 @@ public class Panelright extends JPanel{
 			this.add(openmarket, c);
 		}
 
-		JButton president = new JButton("Buy as president - nonimp");
+		JButton president = new JButton("Buy as president");
 		c.gridx = 0;
 		c.gridy = 13;
 		c.gridwidth = 2;
