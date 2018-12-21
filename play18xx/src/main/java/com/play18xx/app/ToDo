@@ -15,28 +15,45 @@ twice the face value of the company and must be publicly declared.
 This action may be performed at any time during the buying 
 corporation’s turn in an operating round
 --------------------------------------------------------------------------------
-WEITER AUF SEITE 14
-
---------------------------------------------------------------------------------
-Once the first 6-train is bought, the diesel (“D”) 
-trains may be purchased in addition to any 6 trains still in the 
-bank. A diesel train costs $1100. But, the price is only $800 if 
-the railroad “trades-in” a 4-, 5-, or 6- train. The exchanged train 
-(if not obsoleted by the exchange) is placed in the open market.
---------------------------------------------------------------------------------
-Rusting in bankpool
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-Testfehler...
-- Übergang zu Diesel
+If 2 or more floated railroads have the same share value but their 
+share value tokens are in different columns, the railroad whose 
+token is furthest to the right takes a turn first.
+♳
+If 2 or more floated railroads have the same share value and 
+their share value tokens are in the same column, the railroad 
+whose token is furthest up takes a turn first
 --------------------------------------------------------------------------------
 
-Spielfehler?
-1. Anpassung der Operation Rounds erst am Ende einer StockMarketRound p.9 auch in p.10
-
-- Lok Kaufen (Panelright ist nicht removed wenn lok limit erreicht)
 --------------------------------------------------------------------------------
+TESTING: Shares in the bank pool 
+pay dividends to the corporate treasury. No payments are made for 
+unsold initial offering shares.
+
+IMPLIMENT: On overview of dividend calculation fit the shares for corp
+--------------------------------------------------------------------------------
+selling and passing is no passing in the context of this tool
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Anpassung der Operation Rounds erst am Ende einer StockMarketRound p.9 auch in p.10
+
+
+Lok Kaufen (Panelright ist nicht removed wenn lok limit erreicht)
+
+
+--------------------------------------------------------------------------------
+
+
+
+Beibehaltene "Spielfehler":
+--------------------------------------------------------------------------------
+Seeling after buying a cert
+--------------------------------------------------------------------------------
+Special – 
+At the start of a railroad’s first turn of operation, it places one of 
+its tokens in its starting city to create its home station (see 7.3.1, p. 20).
+
+During its turn in an operating round, a railroad may place one 
+token in a city circle to create a station. This may be in addition to 
+the placement of a home station. The following restrictions apply:
