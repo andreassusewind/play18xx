@@ -183,7 +183,7 @@ public class Corporation implements Serializable {
 		return share;
 	}
 	
-	public void sellShares(Basic basic, Player player, int quantity) {
+/*	public void sellShares(Basic basic, Player player, int quantity) {
 		if(quantity > 0) {
 			player.increaseMoney(this.Marker.getValue()  *  quantity);
 			for(int i=0; i<quantity; i++) {
@@ -196,6 +196,39 @@ public class Corporation implements Serializable {
 				}
 			}
 			player.getSoldCorps().add(this.Index);
+		}
+	}*/
+	
+	public void sellShares(Basic basic, Player player, int quantity) {
+		if(quantity > 0) {
+			player.increaseMoney(this.Marker.getValue()  *  quantity);
+			int COUNTER = 0;
+			for(int i=0; i<quantity; i++) {
+				for(Certificate cert : this.Certificates) {
+					if(cert.getOwner() == player.getIndex()  && !cert.isPresident()) { 
+						cert.setOwner(92); 
+						this.Marker.setDown(basic);
+						COUNTER = COUNTER + 1;
+						break;
+					}
+				}
+			}
+			if(COUNTER < quantity) {
+				if(quantity - COUNTER == 2) {
+					this.Certificates.get(0).setOwner(92);
+				}
+				else {
+					System.out.println("Corporation.sellShares -> get one from bank pool - set President to bank pool");
+					for(Certificate cert : this.Certificates) {
+						if(cert.getOwner() == 92) {
+							cert.setOwner(player.getIndex());
+							break;
+						}
+					}
+					this.Certificates.get(0).setOwner(92);
+				}
+			}
+			
 		}
 	}
 	
@@ -214,19 +247,43 @@ public class Corporation implements Serializable {
 		}
 	}
 	
-	public void checkPresident() {
+/*	public void checkPresident() {
 		int[] PlayerShares = getPlayerShares();
 		for(int i=0; i<PlayerShares.length; i++) {
 			if(PlayerShares[i] > PlayerShares[this.President]) {changePresident(this.President, i);}
 		}
+	}*/
+	
+	public void checkPresident() {
+		int[] PlayerShares = getPlayerShares();
+		int maximumShare = 0;
+		for (int counter = 1; counter < PlayerShares.length; counter++)
+		{
+		     if (PlayerShares[counter] > maximumShare)
+		     {
+		    	 maximumShare = PlayerShares[counter];
+		     }
+		}
+		for(int i = this.President; i<PlayerShares.length; i++) {
+			if(PlayerShares[i] == maximumShare) {
+				changePresident(i);
+				return;
+			}
+		}
+		for(int i = 0; i<this.President; i++) {
+			if(PlayerShares[i] == maximumShare) {
+				changePresident(i);
+				return;
+			}
+		}
 	}
 	
-	public void changePresident(int oldp, int newp) {
+	public void changePresident(int newp) {
 		int COUNTER = 0;
 		while(COUNTER < this.Certificates.get(0).getPercentValue()) {
 			for(Certificate cert : this.Certificates) {
 				if(cert.getOwner() == newp) {
-					cert.setOwner(oldp);
+					cert.setOwner(this.Certificates.get(0).getOwner());
 					COUNTER = COUNTER + cert.getPercentValue();
 					break;
 				}

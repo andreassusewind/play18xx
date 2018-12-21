@@ -6,17 +6,24 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import com.play18xx.material.Basic;
+import com.play18xx.material.Certificate;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Player;
 import com.play18xx.material.Private;
+import com.play18xx.material.Train;
 
 public class WindowSell {
 	private final static int tabpos = 0;
@@ -110,9 +117,8 @@ public class WindowSell {
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
-		
-
 		frame.setLocation(pos);
+
 		//Variable typing
 		JLabel label;
 		JComboBox<Object> privbox;
@@ -231,7 +237,98 @@ public class WindowSell {
 		frame.setVisible(true);
 	}
 	
-	public static void buysellPrivateOLD(Basic basic, Player player) {
+	public static void sellfortrain(Basic basic, Player player, Corporation corp, Train train, String sellposition, List<Certificate> certs, int restvalue, int[] checkboxestrue, Point pos) {
+		JFrame frame = new JFrame("Selling Certs for Train");
+		frame.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		c.gridwidth = 2;
+		frame.setLocation(pos);
+		c.gridwidth = 1;
+
+		int selectedvalue = 0;
+		int certvalue = 0;
+		
+		if(player.getMoney() + corp.getMoney() >= train.getCost()) {
+			///implementation for direct buying of train without frame
+		}
+		else {
+			JLabel label = new JLabel(player.getName() + " must sell Certs to get "+ (train.getCost()-corp.getMoney()) + " for buying a " + train.getDistancePrimary()
+					+ " train from " + sellposition);
+			c.gridx=0;
+			c.gridy=0;
+			frame.add(label,c);
+
+			JCheckBox[] checkboxes = new JCheckBox[certs.size()];
+			ItemListener checkboxListener = new ItemListener() {
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					for(int i=0; i<certs.size(); i++) {
+						if(checkboxes[i].isSelected()) checkboxestrue[i] = 1; 
+						else checkboxestrue[i] = 0;
+					}
+					sellfortrain(basic, player, corp, train, sellposition, certs, restvalue, checkboxestrue, frame.getLocation());
+					frame.dispose();	
+				}
+	        };
+			
+			for(int i=0; i<certs.size(); i++) {
+				for(Corporation var : basic.getCorporations()) {
+					if(certs.get(i).getName().split("-")[0].equals(var.getName())) 
+						certvalue = var.getMarker().getValue() * certs.get(i).getPercentValue()/10;
+				}
+				
+				checkboxes[i] = new JCheckBox(certs.get(i).getName() + " - " + certvalue);
+				if(checkboxestrue[i] == 1) {
+					checkboxes[i].setSelected(true);
+					selectedvalue=selectedvalue+certvalue;
+				}
+				c.gridy=i+1;
+				checkboxes[i].addItemListener(checkboxListener);
+				frame.add(checkboxes[i],c);
+			}
+			
+			label = new JLabel("----------------------------------");
+			c.gridy=GridBagConstraints.RELATIVE;
+			frame.add(label,c);
+			label = new JLabel("Total selected: " + selectedvalue);
+			frame.add(label,c);
+			
+			final int moneyrest = selectedvalue + corp.getMoney() + player.getMoney() - train.getCost();
+			
+			JButton sell = new JButton("Sell Certs / Buy Train");
+			sell.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					for(int i=0; i<certs.size(); i++) {
+						if(checkboxestrue[i] == 1) {
+							certs.get(i).setOwner(92);
+							Corporation soldcorp = certs.get(i).getCorp(basic);
+							soldcorp.checkPresident();
+						}
+					}
+					player.setMoney(moneyrest);
+					corp.getTrains().add(train);
+					corp.setMoney(0);
+										
+					basic.buildGraphics();
+					basic.getTP().setSelectedIndex(tabpos);
+					frame.dispose();
+				}
+			});
+			if(player.getMoney() + corp.getMoney() + selectedvalue < train.getCost())sell.setEnabled(false);
+			frame.add(sell,c);
+
+			
+		}
+		
+		//must later be put in the else case
+		frame.setSize(500, 700);
+		frame.setVisible(true);
+		
+	}
+	
+/*	public static void deletebuysellPrivateOLD(Basic basic, Player player) {
 		JFrame frame = new JFrame();
 		frame.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -313,5 +410,5 @@ public class WindowSell {
 		
 		frame.setSize(300, 300);
 		frame.setVisible(true);
-	}
+	} */
 }

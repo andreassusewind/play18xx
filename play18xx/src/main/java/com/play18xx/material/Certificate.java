@@ -75,4 +75,12 @@ public class Certificate implements Serializable {
 	public void setPresident(boolean president) {
 		President = president;
 	}
+	
+	public Corporation getCorp(Basic basic) {
+		Corporation corp = null;
+		for(Corporation var : basic.getCorporations()) {
+			if(this.Name.split("-")[0].equals(var.getName())) return var;
+		}
+		return corp;
+	}
 }

@@ -131,5 +131,15 @@ public class Player implements Serializable {
 		
 		return player;
 	}
+	
+	public List<Certificate> getCertificates(Basic basic){
+		List<Certificate> certs= new ArrayList<Certificate>();
+		for(Corporation corp : basic.getCorporations()) {
+			for(Certificate cert : corp.getCertificates()) {
+				if(cert.getOwner() == this.Index) {certs.add(cert);}
+			}
+		}
+		return certs;
+	}
 
 }

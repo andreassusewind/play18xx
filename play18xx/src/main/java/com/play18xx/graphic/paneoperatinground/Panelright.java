@@ -3,6 +3,7 @@ package com.play18xx.graphic.paneoperatinground;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,8 +17,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.play18xx.material.Basic;
+import com.play18xx.material.Certificate;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Dividend;
+import com.play18xx.material.Player;
 import com.play18xx.material.Private;
 import com.play18xx.material.Station;
 import com.play18xx.material.Train;
@@ -609,6 +612,35 @@ public class Panelright extends JPanel{
 		c.gridwidth = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(50, 0, 0, 0);
+		ActionListener presidentActionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Train train = basic.getGameplay().getTrains().get(0);
+				String sellposition = "Trainstack";
+				if(basic.getGameplay().getBankTrains().size() > 0) {
+					for(int i=0; i<basic.getGameplay().getBankTrains().size(); i++) {
+						if(basic.getGameplay().getBankTrains().get(i).getCost() < train.getCost()) {
+							train = basic.getGameplay().getBankTrains().get(i);
+							sellposition = "Bank Pool";
+						}
+					}
+				}
+
+				Player player = basic.getPlayers().get(corp.getPresident());
+				List<Certificate> certs = player.getCertificates(basic);
+				int[] checkboxes = new int[certs.size()];
+				com.play18xx.graphic.WindowSell.sellfortrain(basic, 
+						player, 
+						corp, train, sellposition, certs,
+						0, checkboxes, new Point(0,0));
+				
+				basic.getTP().getPOR().getPanelright().removeAll();
+				basic.getTP().getPOR().getPanelright().setPanelTrain(basic, corp);
+				basic.buildGraphics();
+				basic.getTP().setSelectedIndex(tabpos);
+			}
+        };
+        president.addActionListener(presidentActionListener);
 		if(basic.getGameplay().getTrains().get(0).getCost() > corp.getMoney()) {president.setEnabled(true);}
 		else president.setEnabled(false);
 		this.add(president, c);
