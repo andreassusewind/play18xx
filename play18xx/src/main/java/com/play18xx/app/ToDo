@@ -23,8 +23,6 @@ If 2 or more floated railroads have the same share value and
 their share value tokens are in the same column, the railroad 
 whose token is furthest up takes a turn first
 --------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
 TESTING: Shares in the bank pool 
 pay dividends to the corporate treasury. No payments are made for 
 unsold initial offering shares.
@@ -33,6 +31,7 @@ IMPLIMENT: On overview of dividend calculation fit the shares for corp
 --------------------------------------------------------------------------------
 selling and passing is no passing in the context of this tool
 --------------------------------------------------------------------------------
+forced train buying -> seeling shares do not cause a downgrading of share value (Stockmarket)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

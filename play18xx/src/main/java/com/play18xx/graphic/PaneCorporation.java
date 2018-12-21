@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import com.play18xx.material.Basic;
 import com.play18xx.material.Corporation;
 import com.play18xx.material.Dividend;
+import com.play18xx.material.Private;
 import com.play18xx.material.Station;
 import com.play18xx.material.Train;
 
@@ -146,7 +147,7 @@ public class PaneCorporation {
 			COUNTERtrain = COUNTERtrain + 1;
 		}
 
-//		int COUNTERpriv = 1;
+		int COUNTERpriv = 1;
 		label = new JLabel("Privates: ");
 		c.gridx = 0;
 		c.gridy = 7;
@@ -159,6 +160,20 @@ public class PaneCorporation {
 		c.gridwidth = 1;
 		c.anchor = GridBagConstraints.PAGE_START;
 		panel.add(label, c);
+		for(Private priv : basic.getPrivates()) {
+			if(priv.getOwner()-30 == corp.getIndex()) {
+				label = new JLabel(priv.getName());
+				c.gridx = COUNTERpriv;
+				c.gridy = 7;
+				panel.add(label,c);
+				label = new JLabel(priv.getRevenue()+"");
+				c.gridy = 8;
+				panel.add(label,c);
+				COUNTERpriv++;
+			}
+		}
+		
+		
 		return panel;
 	}
 	

@@ -71,6 +71,7 @@ public class Panemiddel extends JPanel{
 				basic.getTP().getPOR().getPanelleft().getPanelleftmiddel().removeAll();
 				basic.getTP().getPOR().getPanemiddel().removeAll();
 				PaneOperatingRound.setPaneOperatingRound(basic);
+				basic.buildGraphics();
 				basic.getTP().setSelectedIndex(tabpos);
 			}
 		});

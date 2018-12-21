@@ -82,7 +82,7 @@ public class Panelright extends JPanel{
 		});
 		this.add(tile120, c);
 
-		JButton non = new JButton("ingen eller gratis");
+		JButton non = new JButton("no tile or free of charge");
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 1;
@@ -99,6 +99,44 @@ public class Panelright extends JPanel{
 			}
 		});
 		this.add(non, c);
+		
+		for(Private priv : basic.getPrivates()) {
+			if(priv.getName().equals("DH") && priv.getOwner() == corp.getIndex()+30) {
+				int stationcost = 9999;
+				Station Stationsave = new Station(0);
+				for (Station station : corp.getStations()) {
+					if (station.isBuild()) {}
+					else {
+						stationcost = station.getCost();
+						Stationsave = station;
+						break;
+					}
+				}
+
+				Station stationtouse = Stationsave;
+
+				
+				JButton dh = new JButton("DH special function");
+				c.gridy = 4;
+				dh.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						corp.decreaseMoney(120);
+						stationtouse.setBuild(true);
+						
+						corp.setTileDone(true);
+						basic.getTP().getPOR().getPanelright().removeAll();
+						basic.getTP().getPOR().getPanemiddel().removeAll();
+						basic.getTP().getPOR().getPanemiddel().setPanelCorporation(basic, corp);
+						basic.buildGraphics();
+						basic.getTP().setSelectedIndex(tabpos);
+					}
+				});
+				if(stationcost == 9999) dh.setEnabled(false);
+				this.add(dh, c);
+				
+				
+			}
+		}
 	}
 	
 	public void setPanelStation(Basic basic, Corporation corp) {
@@ -157,7 +195,7 @@ public class Panelright extends JPanel{
 			this.add(station, c);
 		}
 		
-		JButton non = new JButton("bygga ingen station");
+		JButton non = new JButton("build no station");
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 1;
@@ -645,7 +683,7 @@ public class Panelright extends JPanel{
 		else president.setEnabled(false);
 		this.add(president, c);
 
-		JButton non = new JButton("Köpt ingen tåg");
+		JButton non = new JButton("Buy no train");
 		c.gridx = 0;
 		c.gridy = 14;
 		c.gridwidth = 2;
